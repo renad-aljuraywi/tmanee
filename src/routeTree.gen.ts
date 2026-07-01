@@ -9,38 +9,495 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WhatIfRouteImport } from './routes/what-if'
+import { Route as WeeklyReportRouteImport } from './routes/weekly-report'
+import { Route as TransactionsRouteImport } from './routes/transactions'
+import { Route as SettingsRouteImport } from './routes/settings'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SearchRouteImport } from './routes/search'
+import { Route as RecoveryRouteImport } from './routes/recovery'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as FreezeRouteImport } from './routes/freeze'
+import { Route as BurnoutRouteImport } from './routes/burnout'
+import { Route as BudgetRouteImport } from './routes/budget'
+import { Route as BankConnectRouteImport } from './routes/bank-connect'
+import { Route as AlertsRouteImport } from './routes/alerts'
+import { Route as AchievementsRouteImport } from './routes/achievements'
+import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TransactionIdRouteImport } from './routes/transaction.$id'
+import { Route as GoalNewRouteImport } from './routes/goal.new'
+import { Route as GoalIdRouteImport } from './routes/goal.$id'
+import { Route as AuthOtpRouteImport } from './routes/auth.otp'
+import { Route as AuthLoginRouteImport } from './routes/auth.login'
+import { Route as AuthForgotRouteImport } from './routes/auth.forgot'
+import { Route as TabsProfileRouteImport } from './routes/_tabs.profile'
+import { Route as TabsInsightsRouteImport } from './routes/_tabs.insights'
+import { Route as TabsHomeRouteImport } from './routes/_tabs.home'
+import { Route as TabsGoalsRouteImport } from './routes/_tabs.goals'
+import { Route as TabsCoachRouteImport } from './routes/_tabs.coach'
 
+const WhatIfRoute = WhatIfRouteImport.update({
+  id: '/what-if',
+  path: '/what-if',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WeeklyReportRoute = WeeklyReportRouteImport.update({
+  id: '/weekly-report',
+  path: '/weekly-report',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TransactionsRoute = TransactionsRouteImport.update({
+  id: '/transactions',
+  path: '/transactions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SearchRoute = SearchRouteImport.update({
+  id: '/search',
+  path: '/search',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RecoveryRoute = RecoveryRouteImport.update({
+  id: '/recovery',
+  path: '/recovery',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreezeRoute = FreezeRouteImport.update({
+  id: '/freeze',
+  path: '/freeze',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BurnoutRoute = BurnoutRouteImport.update({
+  id: '/burnout',
+  path: '/burnout',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BudgetRoute = BudgetRouteImport.update({
+  id: '/budget',
+  path: '/budget',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BankConnectRoute = BankConnectRouteImport.update({
+  id: '/bank-connect',
+  path: '/bank-connect',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AchievementsRoute = AchievementsRouteImport.update({
+  id: '/achievements',
+  path: '/achievements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TabsRoute = TabsRouteImport.update({
+  id: '/_tabs',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TransactionIdRoute = TransactionIdRouteImport.update({
+  id: '/transaction/$id',
+  path: '/transaction/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GoalNewRoute = GoalNewRouteImport.update({
+  id: '/goal/new',
+  path: '/goal/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GoalIdRoute = GoalIdRouteImport.update({
+  id: '/goal/$id',
+  path: '/goal/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthOtpRoute = AuthOtpRouteImport.update({
+  id: '/auth/otp',
+  path: '/auth/otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthLoginRoute = AuthLoginRouteImport.update({
+  id: '/auth/login',
+  path: '/auth/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthForgotRoute = AuthForgotRouteImport.update({
+  id: '/auth/forgot',
+  path: '/auth/forgot',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TabsProfileRoute = TabsProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsInsightsRoute = TabsInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsHomeRoute = TabsHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsGoalsRoute = TabsGoalsRouteImport.update({
+  id: '/goals',
+  path: '/goals',
+  getParentRoute: () => TabsRoute,
+} as any)
+const TabsCoachRoute = TabsCoachRouteImport.update({
+  id: '/coach',
+  path: '/coach',
+  getParentRoute: () => TabsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/alerts': typeof AlertsRoute
+  '/bank-connect': typeof BankConnectRoute
+  '/budget': typeof BudgetRoute
+  '/burnout': typeof BurnoutRoute
+  '/freeze': typeof FreezeRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/recovery': typeof RecoveryRoute
+  '/search': typeof SearchRoute
+  '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
+  '/transactions': typeof TransactionsRoute
+  '/weekly-report': typeof WeeklyReportRoute
+  '/what-if': typeof WhatIfRoute
+  '/coach': typeof TabsCoachRoute
+  '/goals': typeof TabsGoalsRoute
+  '/home': typeof TabsHomeRoute
+  '/insights': typeof TabsInsightsRoute
+  '/profile': typeof TabsProfileRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/goal/$id': typeof GoalIdRoute
+  '/goal/new': typeof GoalNewRoute
+  '/transaction/$id': typeof TransactionIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/achievements': typeof AchievementsRoute
+  '/alerts': typeof AlertsRoute
+  '/bank-connect': typeof BankConnectRoute
+  '/budget': typeof BudgetRoute
+  '/burnout': typeof BurnoutRoute
+  '/freeze': typeof FreezeRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/recovery': typeof RecoveryRoute
+  '/search': typeof SearchRoute
+  '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
+  '/transactions': typeof TransactionsRoute
+  '/weekly-report': typeof WeeklyReportRoute
+  '/what-if': typeof WhatIfRoute
+  '/coach': typeof TabsCoachRoute
+  '/goals': typeof TabsGoalsRoute
+  '/home': typeof TabsHomeRoute
+  '/insights': typeof TabsInsightsRoute
+  '/profile': typeof TabsProfileRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/goal/$id': typeof GoalIdRoute
+  '/goal/new': typeof GoalNewRoute
+  '/transaction/$id': typeof TransactionIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_tabs': typeof TabsRouteWithChildren
+  '/achievements': typeof AchievementsRoute
+  '/alerts': typeof AlertsRoute
+  '/bank-connect': typeof BankConnectRoute
+  '/budget': typeof BudgetRoute
+  '/burnout': typeof BurnoutRoute
+  '/freeze': typeof FreezeRoute
+  '/notifications': typeof NotificationsRoute
+  '/onboarding': typeof OnboardingRoute
+  '/recovery': typeof RecoveryRoute
+  '/search': typeof SearchRoute
+  '/security': typeof SecurityRoute
+  '/settings': typeof SettingsRoute
+  '/transactions': typeof TransactionsRoute
+  '/weekly-report': typeof WeeklyReportRoute
+  '/what-if': typeof WhatIfRoute
+  '/_tabs/coach': typeof TabsCoachRoute
+  '/_tabs/goals': typeof TabsGoalsRoute
+  '/_tabs/home': typeof TabsHomeRoute
+  '/_tabs/insights': typeof TabsInsightsRoute
+  '/_tabs/profile': typeof TabsProfileRoute
+  '/auth/forgot': typeof AuthForgotRoute
+  '/auth/login': typeof AuthLoginRoute
+  '/auth/otp': typeof AuthOtpRoute
+  '/goal/$id': typeof GoalIdRoute
+  '/goal/new': typeof GoalNewRoute
+  '/transaction/$id': typeof TransactionIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/achievements'
+    | '/alerts'
+    | '/bank-connect'
+    | '/budget'
+    | '/burnout'
+    | '/freeze'
+    | '/notifications'
+    | '/onboarding'
+    | '/recovery'
+    | '/search'
+    | '/security'
+    | '/settings'
+    | '/transactions'
+    | '/weekly-report'
+    | '/what-if'
+    | '/coach'
+    | '/goals'
+    | '/home'
+    | '/insights'
+    | '/profile'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/goal/$id'
+    | '/goal/new'
+    | '/transaction/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/achievements'
+    | '/alerts'
+    | '/bank-connect'
+    | '/budget'
+    | '/burnout'
+    | '/freeze'
+    | '/notifications'
+    | '/onboarding'
+    | '/recovery'
+    | '/search'
+    | '/security'
+    | '/settings'
+    | '/transactions'
+    | '/weekly-report'
+    | '/what-if'
+    | '/coach'
+    | '/goals'
+    | '/home'
+    | '/insights'
+    | '/profile'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/goal/$id'
+    | '/goal/new'
+    | '/transaction/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/_tabs'
+    | '/achievements'
+    | '/alerts'
+    | '/bank-connect'
+    | '/budget'
+    | '/burnout'
+    | '/freeze'
+    | '/notifications'
+    | '/onboarding'
+    | '/recovery'
+    | '/search'
+    | '/security'
+    | '/settings'
+    | '/transactions'
+    | '/weekly-report'
+    | '/what-if'
+    | '/_tabs/coach'
+    | '/_tabs/goals'
+    | '/_tabs/home'
+    | '/_tabs/insights'
+    | '/_tabs/profile'
+    | '/auth/forgot'
+    | '/auth/login'
+    | '/auth/otp'
+    | '/goal/$id'
+    | '/goal/new'
+    | '/transaction/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  TabsRoute: typeof TabsRouteWithChildren
+  AchievementsRoute: typeof AchievementsRoute
+  AlertsRoute: typeof AlertsRoute
+  BankConnectRoute: typeof BankConnectRoute
+  BudgetRoute: typeof BudgetRoute
+  BurnoutRoute: typeof BurnoutRoute
+  FreezeRoute: typeof FreezeRoute
+  NotificationsRoute: typeof NotificationsRoute
+  OnboardingRoute: typeof OnboardingRoute
+  RecoveryRoute: typeof RecoveryRoute
+  SearchRoute: typeof SearchRoute
+  SecurityRoute: typeof SecurityRoute
+  SettingsRoute: typeof SettingsRoute
+  TransactionsRoute: typeof TransactionsRoute
+  WeeklyReportRoute: typeof WeeklyReportRoute
+  WhatIfRoute: typeof WhatIfRoute
+  AuthForgotRoute: typeof AuthForgotRoute
+  AuthLoginRoute: typeof AuthLoginRoute
+  AuthOtpRoute: typeof AuthOtpRoute
+  GoalIdRoute: typeof GoalIdRoute
+  GoalNewRoute: typeof GoalNewRoute
+  TransactionIdRoute: typeof TransactionIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/what-if': {
+      id: '/what-if'
+      path: '/what-if'
+      fullPath: '/what-if'
+      preLoaderRoute: typeof WhatIfRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/weekly-report': {
+      id: '/weekly-report'
+      path: '/weekly-report'
+      fullPath: '/weekly-report'
+      preLoaderRoute: typeof WeeklyReportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/transactions': {
+      id: '/transactions'
+      path: '/transactions'
+      fullPath: '/transactions'
+      preLoaderRoute: typeof TransactionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/search': {
+      id: '/search'
+      path: '/search'
+      fullPath: '/search'
+      preLoaderRoute: typeof SearchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/recovery': {
+      id: '/recovery'
+      path: '/recovery'
+      fullPath: '/recovery'
+      preLoaderRoute: typeof RecoveryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/freeze': {
+      id: '/freeze'
+      path: '/freeze'
+      fullPath: '/freeze'
+      preLoaderRoute: typeof FreezeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/burnout': {
+      id: '/burnout'
+      path: '/burnout'
+      fullPath: '/burnout'
+      preLoaderRoute: typeof BurnoutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/budget': {
+      id: '/budget'
+      path: '/budget'
+      fullPath: '/budget'
+      preLoaderRoute: typeof BudgetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/bank-connect': {
+      id: '/bank-connect'
+      path: '/bank-connect'
+      fullPath: '/bank-connect'
+      preLoaderRoute: typeof BankConnectRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/achievements': {
+      id: '/achievements'
+      path: '/achievements'
+      fullPath: '/achievements'
+      preLoaderRoute: typeof AchievementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_tabs': {
+      id: '/_tabs'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof TabsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +505,129 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/transaction/$id': {
+      id: '/transaction/$id'
+      path: '/transaction/$id'
+      fullPath: '/transaction/$id'
+      preLoaderRoute: typeof TransactionIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/goal/new': {
+      id: '/goal/new'
+      path: '/goal/new'
+      fullPath: '/goal/new'
+      preLoaderRoute: typeof GoalNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/goal/$id': {
+      id: '/goal/$id'
+      path: '/goal/$id'
+      fullPath: '/goal/$id'
+      preLoaderRoute: typeof GoalIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/otp': {
+      id: '/auth/otp'
+      path: '/auth/otp'
+      fullPath: '/auth/otp'
+      preLoaderRoute: typeof AuthOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/login': {
+      id: '/auth/login'
+      path: '/auth/login'
+      fullPath: '/auth/login'
+      preLoaderRoute: typeof AuthLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/forgot': {
+      id: '/auth/forgot'
+      path: '/auth/forgot'
+      fullPath: '/auth/forgot'
+      preLoaderRoute: typeof AuthForgotRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_tabs/profile': {
+      id: '/_tabs/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof TabsProfileRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/insights': {
+      id: '/_tabs/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof TabsInsightsRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/home': {
+      id: '/_tabs/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof TabsHomeRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/goals': {
+      id: '/_tabs/goals'
+      path: '/goals'
+      fullPath: '/goals'
+      preLoaderRoute: typeof TabsGoalsRouteImport
+      parentRoute: typeof TabsRoute
+    }
+    '/_tabs/coach': {
+      id: '/_tabs/coach'
+      path: '/coach'
+      fullPath: '/coach'
+      preLoaderRoute: typeof TabsCoachRouteImport
+      parentRoute: typeof TabsRoute
+    }
   }
 }
 
+interface TabsRouteChildren {
+  TabsCoachRoute: typeof TabsCoachRoute
+  TabsGoalsRoute: typeof TabsGoalsRoute
+  TabsHomeRoute: typeof TabsHomeRoute
+  TabsInsightsRoute: typeof TabsInsightsRoute
+  TabsProfileRoute: typeof TabsProfileRoute
+}
+
+const TabsRouteChildren: TabsRouteChildren = {
+  TabsCoachRoute: TabsCoachRoute,
+  TabsGoalsRoute: TabsGoalsRoute,
+  TabsHomeRoute: TabsHomeRoute,
+  TabsInsightsRoute: TabsInsightsRoute,
+  TabsProfileRoute: TabsProfileRoute,
+}
+
+const TabsRouteWithChildren = TabsRoute._addFileChildren(TabsRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  TabsRoute: TabsRouteWithChildren,
+  AchievementsRoute: AchievementsRoute,
+  AlertsRoute: AlertsRoute,
+  BankConnectRoute: BankConnectRoute,
+  BudgetRoute: BudgetRoute,
+  BurnoutRoute: BurnoutRoute,
+  FreezeRoute: FreezeRoute,
+  NotificationsRoute: NotificationsRoute,
+  OnboardingRoute: OnboardingRoute,
+  RecoveryRoute: RecoveryRoute,
+  SearchRoute: SearchRoute,
+  SecurityRoute: SecurityRoute,
+  SettingsRoute: SettingsRoute,
+  TransactionsRoute: TransactionsRoute,
+  WeeklyReportRoute: WeeklyReportRoute,
+  WhatIfRoute: WhatIfRoute,
+  AuthForgotRoute: AuthForgotRoute,
+  AuthLoginRoute: AuthLoginRoute,
+  AuthOtpRoute: AuthOtpRoute,
+  GoalIdRoute: GoalIdRoute,
+  GoalNewRoute: GoalNewRoute,
+  TransactionIdRoute: TransactionIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
