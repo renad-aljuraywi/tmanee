@@ -6,14 +6,18 @@ export const fmtSAR = (n: number) => {
 
 export const fmtNum = (n: number) => n.toLocaleString("en-US", { maximumFractionDigits: 0 });
 
+const AR_MONTHS = ["يناير","فبراير","مارس","أبريل","مايو","يونيو","يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر"];
+
 export const fmtDate = (iso: string) => {
   const d = new Date(iso);
-  return d.toLocaleDateString("ar-SA", { day: "numeric", month: "short" });
+  return `${d.getUTCDate()} ${AR_MONTHS[d.getUTCMonth()]}`;
 };
 
 export const fmtTime = (iso: string) => {
   const d = new Date(iso);
-  return d.toLocaleTimeString("ar-SA", { hour: "2-digit", minute: "2-digit" });
+  const h = d.getUTCHours().toString().padStart(2, "0");
+  const m = d.getUTCMinutes().toString().padStart(2, "0");
+  return `${h}:${m}`;
 };
 
 export function burnoutTier(score: number) {
