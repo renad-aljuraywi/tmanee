@@ -164,8 +164,8 @@
 
 @utility tap {
   transition: transform 180ms cubic-bezier(.2,.8,.2,1), background-color 180ms;
+  &:active { transform: scale(0.97); }
 }
-@utility tap:active { transform: scale(0.97); }
 
 @keyframes shimmer {
   0% { background-position: -200% 0; }
