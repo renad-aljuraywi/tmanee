@@ -37,6 +37,8 @@ export interface AppState {
   bankConnected: boolean;
   recoveryMode: boolean;
   darkMode: boolean;
+  fontScale: number; // 0.9, 1, 1.15
+  colorblind: boolean;
   user: { name: string; phone: string; avatar?: string };
   salary: number;
   fixed: number;
