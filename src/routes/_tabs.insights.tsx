@@ -61,7 +61,7 @@ function Insights() {
       <SectionTitle>اكتشافات AI</SectionTitle>
       <Card className="mx-4 !bg-primary-soft border-primary/20">
         <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-primary" />
+          <Sparkles className="h-4 w-4 text-muted-foreground" />
           <div className="text-sm font-bold text-primary">أنماط سلوكية</div>
         </div>
         <ul className="mt-3 space-y-2 text-sm">

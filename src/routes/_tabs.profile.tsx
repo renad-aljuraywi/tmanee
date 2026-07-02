@@ -87,7 +87,7 @@ function TrustedAssistantCard() {
               <div className="text-xs text-primary/80">دعوة جديدة</div>
               <div className="text-sm font-bold text-primary">{invite.fromName} دعاك كمساعد موثوق</div>
             </div>
-            <ChevronLeft className="h-4 w-4 text-primary" />
+            <ChevronLeft className="h-4 w-4 text-muted-foreground" />
           </div>
         </Link>
       )}
@@ -121,7 +121,7 @@ function TrustedAssistantCard() {
             <div className="flex-1">
               <div className="text-sm font-bold">{ta.name}</div>
               <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-muted-foreground">
-                <Circle className="h-2 w-2 fill-success text-success" strokeWidth={0} />
+                <Circle className="h-2 w-2 fill-muted-foreground text-muted-foreground" strokeWidth={0} />
                 <span>متصل · {ta.phone}</span>
               </div>
             </div>

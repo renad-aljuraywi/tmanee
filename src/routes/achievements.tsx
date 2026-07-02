@@ -46,7 +46,7 @@ function Achievements() {
             onClick={() => setOpen((o) => !o)}
             className="tap flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-[11px] font-bold"
           >
-            <SlidersHorizontal className="h-3.5 w-3.5 text-primary" strokeWidth={1.75} />
+            <SlidersHorizontal className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={1.75} />
             {active.label}
           </button>
           <AnimatePresence>
@@ -66,7 +66,7 @@ function Achievements() {
                       className="tap flex w-full items-center justify-between px-3 py-2.5 text-right text-xs hover:bg-muted"
                     >
                       <span className={filter === f.id ? "font-bold text-primary" : ""}>{f.label}</span>
-                      {filter === f.id && <Check className="h-3.5 w-3.5 text-primary" strokeWidth={2} />}
+                      {filter === f.id && <Check className="h-3.5 w-3.5 text-muted-foreground" strokeWidth={2} />}
                     </button>
                   ))}
                 </motion.div>
