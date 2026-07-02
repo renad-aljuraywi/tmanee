@@ -97,7 +97,7 @@ function GoalDetail() {
               <div className="text-xs text-muted-foreground">هدف</div>
               <div className="mt-0.5 text-2xl font-black">{goal.name}</div>
             </div>
-            <div className="text-4xl">{goal.emoji}</div>
+            <div className="text-primary"><IIcon e={goal.emoji} className="h-9 w-9" /></div>
           </div>
           <div className="num mt-3 text-3xl font-black text-primary">{pct}%</div>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-white/70">

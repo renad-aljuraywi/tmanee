@@ -39,7 +39,7 @@ function NewGoal() {
               key={x.name} onClick={() => { setT(x); setName(x.name); }}
               className={`flex flex-col items-center gap-1 rounded-2xl border-2 p-3 ${t.emoji === x.emoji ? "border-primary bg-primary-soft" : "border-border bg-surface"}`}
             >
-              <div className="text-3xl">{x.emoji}</div>
+              <div className={t.emoji === x.emoji ? "text-primary" : "text-foreground"}><IIcon e={x.emoji} className="h-8 w-8" /></div>
               <div className="text-[11px] font-bold">{x.name}</div>
             </button>
           ))}

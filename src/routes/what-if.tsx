@@ -94,7 +94,7 @@ function WhatIf() {
                           transition={{ delay: 0.1 + i * 0.06 }}
                           className="flex items-center gap-3 rounded-2xl bg-surface p-3"
                         >
-                          <div className="grid h-9 w-9 place-items-center rounded-xl bg-success-soft text-lg">{t.emoji}</div>
+                          <div className="grid h-9 w-9 place-items-center rounded-xl bg-success-soft text-success"><IIcon e={t.emoji} className="h-5 w-5" /></div>
                           <div className="flex-1">
                             <div className="text-sm font-bold">{t.label}</div>
                             <div className="text-[11px] text-success">{t.save}</div>

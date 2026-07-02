@@ -50,7 +50,7 @@ function WeeklyReport() {
         >
           <div className="pt-16 text-xs opacity-80">التقرير الأسبوعي · {s.title}</div>
           <div className="text-center">
-            <motion.div initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="text-8xl">{s.emoji}</motion.div>
+            <motion.div initial={{ scale: 0.6 }} animate={{ scale: 1 }} className="mx-auto grid h-24 w-24 place-items-center rounded-3xl bg-white/15 backdrop-blur"><IIcon e={s.emoji} className="h-12 w-12" /></motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
               className="num mt-8 text-7xl font-black tracking-tight"

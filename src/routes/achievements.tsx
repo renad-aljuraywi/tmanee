@@ -31,7 +31,7 @@ function Achievements() {
           <Trophy className="h-8 w-8" strokeWidth={1.75} />
           <div>
             <div className="text-xs opacity-80">مستواك</div>
-            <div className="text-2xl font-black">حارس مالي 🥈</div>
+            <div className="text-2xl font-black">حارس مالي</div>
           </div>
         </div>
         <div className="mt-3 text-xs opacity-80">
@@ -85,7 +85,7 @@ function Achievements() {
             transition={{ delay: i * 0.05 }}
             className="card-elevated p-4 text-center"
           >
-            <div className="text-4xl">{a.emoji}</div>
+            <div className="grid place-items-center text-primary"><IIcon e={a.emoji} className="h-9 w-9" /></div>
             <div className="mt-1 text-sm font-bold">{a.title}</div>
           </motion.div>
         ))}
@@ -95,7 +95,7 @@ function Achievements() {
       <div className="mx-4 grid grid-cols-2 gap-3">
         {locked.map((a) => (
           <div key={a.id} className="card-elevated p-4 text-center opacity-60">
-            <div className="text-4xl grayscale">{a.emoji}</div>
+            <div className="grid place-items-center text-muted-foreground"><IIcon e={a.emoji} className="h-9 w-9" /></div>
             <div className="mt-1 text-sm font-bold">{a.title}</div>
           </div>
         ))}
