@@ -7,7 +7,7 @@ import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Party } from "@/components/mobile/Party";
-import { Plus, Pencil, PiggyBank, CalendarDays, Wallet } from "lucide-react";
+import { Plus, Pencil, PiggyBank, CalendarDays, Wallet, Gift } from "lucide-react";
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
@@ -172,26 +172,28 @@ function GoalDetail() {
           </Btn>
         </div>
 
-        <Card className="!p-3">
-          <div className="mb-2 text-[11px] font-bold text-muted-foreground text-center">إضافة سريعة للهدف</div>
-          <div className="flex flex-wrap justify-center gap-2">
-            {[50, 100, 150, 200, 250].map((v) => (
-              <button
-                key={v}
-                onClick={() => {
-                  const g = getState().goals.map((x) =>
-                    x.id === goal.id ? { ...x, saved: Math.min(x.target, x.saved + v) } : x
-                  );
-                  setState({ goals: g });
-                  if (goal.saved + v >= goal.target) setShowParty(true);
-                }}
-                disabled={remaining <= 0}
-                className="tap rounded-full border border-primary/30 bg-primary-soft px-4 py-2 text-sm font-black text-primary num disabled:opacity-40"
-              >
-                +{v}
-              </button>
-            ))}
-          </div>
+        <Card className="!p-4">
+          <Btn
+            full
+            size="lg"
+            variant={goal.claimed ? "secondary" : "primary"}
+            disabled={goal.claimed || remaining > 0}
+            onClick={() => {
+              const g = getState().goals.map((x) =>
+                x.id === goal.id ? { ...x, claimed: true } : x
+              );
+              setState({ goals: g });
+              setShowParty(true);
+            }}
+          >
+            <Gift className="h-5 w-5" strokeWidth={1.75} />
+            {goal.claimed ? "تم تسليم الهدف" : "تسلم الهدف"}
+          </Btn>
+          {!goal.claimed && remaining > 0 && (
+            <div className="mt-2 text-center text-xs text-muted-foreground">
+              متاح بعد اكتمال المبلغ بالكامل
+            </div>
+          )}
         </Card>
       </div>
 
