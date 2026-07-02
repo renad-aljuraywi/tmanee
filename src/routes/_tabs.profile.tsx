@@ -35,10 +35,6 @@ function Profile() {
         <Stat label="إنجازات" value={`${s.achievements.filter(a => a.earned).length}`} sub={`/ ${s.achievements.length}`} />
       </div>
 
-      <SectionTitle>وضع التعافي</SectionTitle>
-      <div className="mx-4">
-        <RecoveryModeSection />
-      </div>
 
       <SectionTitle>المساعد الموثوق</SectionTitle>
       <div className="mx-4">
