@@ -83,12 +83,18 @@ function Onboarding() {
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
             className="flex flex-col items-center"
           >
-            <div
-              className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
-              style={{ background: `color-mix(in oklab, ${S.color} 15%, white)` }}
-            >
-              <Icon className="h-16 w-16" style={{ color: S.color }} strokeWidth={1.8} />
-            </div>
+            {S.image ? (
+              <div className="mb-2 w-full max-w-[260px] overflow-hidden rounded-3xl bg-white p-3 shadow-sm">
+                <img src={S.image} alt="" className="h-auto w-full object-contain" loading="eager" />
+              </div>
+            ) : (
+              <div
+                className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
+                style={{ background: `color-mix(in oklab, ${S.color} 15%, white)` }}
+              >
+                <Icon className="h-16 w-16" style={{ color: S.color }} strokeWidth={1.8} />
+              </div>
+            )}
             <h1 className="mt-8 max-w-xs text-2xl font-black leading-tight">{S.title}</h1>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">{S.body}</p>
           </motion.div>
