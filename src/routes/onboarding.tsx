@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";
 import { setState } from "@/lib/store";
-import { Check, TrendingUp, Sparkles } from "lucide-react";
+import { Check } from "lucide-react";
 import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
+import onboardingBrain from "@/assets/onboarding-brain.jpeg.asset.json";
+import onboardingAssistant from "@/assets/onboarding-assistant.jpeg.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
@@ -16,13 +18,13 @@ const SLIDES = [
     color: "oklch(0.52 0.19 275)",
   },
   {
-    icon: TrendingUp,
+    image: onboardingBrain.url,
     title: "افهم عاداتك، لا أرقامك",
     body: "بدل الجداول المملة، نحوّل بياناتك إلى قصص وقرارات واضحة.",
     color: "oklch(0.68 0.16 155)",
   },
   {
-    icon: Sparkles,
+    image: onboardingAssistant.url,
     title: "مساعد ذكي في جيبك",
     body: "اسأل: هل أقدر أشتري آيفون؟ نجاوبك بأثر حقيقي على راتبك وأهدافك.",
     color: "oklch(0.75 0.15 65)",
