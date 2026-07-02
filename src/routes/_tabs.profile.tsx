@@ -69,6 +69,77 @@ function Profile() {
   );
 }
 
+function TrustedAssistantCard() {
+  const ta = useStore((x) => x.trustedAssistant);
+  const invite = useStore((x) => x.incomingInvite);
+  const activePerms = ta ? Object.values(ta.permissions).filter(Boolean).length : 0;
+
+  return (
+    <div className="space-y-3">
+      {invite && !ta && (
+        <Link to="/trusted-assistant/incoming" className="tap block rounded-2xl border border-primary/30 bg-primary-soft p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-xs text-primary/80">دعوة جديدة</div>
+              <div className="text-sm font-bold text-primary">{invite.fromName} دعاك كمساعد موثوق</div>
+            </div>
+            <ChevronLeft className="h-4 w-4 text-primary" />
+          </div>
+        </Link>
+      )}
+
+      {!ta ? (
+        <Card>
+          <div className="flex items-start gap-3">
+            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
+              <ShieldCheck className="h-5 w-5" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-bold">المساعد الموثوق</div>
+              <div className="mt-1 text-xs leading-6 text-muted-foreground">
+                أضف شخصًا تثق به لمساعدتك في استخدام التطبيق وفق الصلاحيات التي تحددها.
+              </div>
+            </div>
+          </div>
+          <Link to="/trusted-assistant/invite" className="mt-4 block">
+            <Btn full variant="primary">
+              <UserPlus className="h-4 w-4" strokeWidth={1.75} />
+              إضافة مساعد موثوق
+            </Btn>
+          </Link>
+        </Card>
+      ) : (
+        <Card>
+          <div className="flex items-center gap-3">
+            <div className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground text-lg font-black">
+              {ta.name[0]}
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-bold">{ta.name}</div>
+              <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Circle className="h-2 w-2 fill-success text-success" strokeWidth={0} />
+                <span>متصل · {ta.phone}</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 rounded-xl bg-muted/60 p-3 text-[11px] text-muted-foreground">
+            الصلاحيات النشطة: <span className="font-bold text-foreground">{activePerms}</span> من 7
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <Link to="/trusted-assistant/permissions" search={{ mode: "edit" as const }}>
+              <Btn full variant="secondary" size="sm">تعديل الصلاحيات</Btn>
+            </Link>
+            <Link to="/trusted-assistant">
+              <Btn full variant="outline" size="sm">إزالة المساعد</Btn>
+            </Link>
+          </div>
+        </Card>
+      )}
+    </div>
+  );
+}
+
+
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
     <Card className="text-center !p-3">
