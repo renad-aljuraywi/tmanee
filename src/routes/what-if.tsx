@@ -58,24 +58,9 @@ function WhatIf() {
                 <Row icon={<Wallet className="h-4 w-4" strokeWidth={1.75} />} label="المتبقّي آخر الشهر" value={`${fmtSAR(sim.remaining)} ر.س`} tone="warning" />
               </Card>
 
-              <Card className="!bg-primary-soft border-primary/20">
-                <div className="text-xs text-primary font-bold">نصيحة منيع</div>
-                <div className="mt-1 text-sm font-bold leading-relaxed">
-                  {highRisk
-                    ? `هذا القرار سيرفع مؤشر الاستنزاف إلى ${projected}. أنصحك بتأجيل الشراء حتى منتصف الشهر القادم لتجنّب الضغط المالي.`
-                    : sim.delayMonths > 1
-                    ? `شراء بمبلغ ${fmtSAR(amt)} ر.س سيؤخّر أهدافك ~${sim.delayMonths} شهر. جرّب تقسيمه على شهرين للحفاظ على توازنك.`
-                    : `المبلغ ضمن حدودك الآمنة. تأكد من عدم تكرار عمليات مشابهة هذا الأسبوع.`}
-                </div>
-                <div className="mt-3 flex gap-2">
-                  <Btn variant="secondary" onClick={() => nav({ to: "/burnout" })}>تفاصيل</Btn>
-                  <Btn onClick={() => nav({ to: "/coach" })}>اسأل منيع</Btn>
-                </div>
-              </Card>
-
               {highRisk && (
                 <>
-                  <SectionTitle>وضع التعافي المقترح</SectionTitle>
+                  <SectionTitle>خطة التعافي المقترحة</SectionTitle>
                   <Card className="mx-0 !bg-success-soft border-success/20">
                     <div className="flex items-start gap-3">
                       <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-success text-success-foreground">
@@ -109,6 +94,22 @@ function WhatIf() {
                   </Card>
                 </>
               )}
+
+              <Card className="!bg-primary-soft border-primary/20">
+                <div className="text-xs text-primary font-bold">نصيحة منيع</div>
+                <div className="mt-1 text-sm font-bold leading-relaxed">
+                  {highRisk
+                    ? `هذا القرار سيرفع مؤشر الاستنزاف إلى ${projected}. أنصحك بتأجيل الشراء حتى منتصف الشهر القادم لتجنّب الضغط المالي.`
+                    : sim.delayMonths > 1
+                    ? `شراء بمبلغ ${fmtSAR(amt)} ر.س سيؤخّر أهدافك ~${sim.delayMonths} شهر. جرّب تقسيمه على شهرين للحفاظ على توازنك.`
+                    : `المبلغ ضمن حدودك الآمنة. تأكد من عدم تكرار عمليات مشابهة هذا الأسبوع.`}
+                </div>
+                <div className="mt-3 flex gap-2">
+                  <Btn variant="secondary" onClick={() => nav({ to: "/burnout" })}>تفاصيل</Btn>
+                  <Btn onClick={() => nav({ to: "/coach" })}>اسأل منيع</Btn>
+                </div>
+              </Card>
+
             </motion.div>
           )}
         </AnimatePresence>
