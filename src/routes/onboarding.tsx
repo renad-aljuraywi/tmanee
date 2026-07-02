@@ -3,8 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";
 import { setState } from "@/lib/store";
-import { Check, TrendingUp, Sparkles } from "lucide-react";
+import { Check } from "lucide-react";
 import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
+import onboardingBrain from "@/assets/onboarding-brain.jpeg.asset.json";
+import onboardingAssistant from "@/assets/onboarding-assistant.jpeg.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
@@ -16,13 +18,13 @@ const SLIDES = [
     color: "oklch(0.52 0.19 275)",
   },
   {
-    icon: TrendingUp,
+    image: onboardingBrain.url,
     title: "افهم عاداتك، لا أرقامك",
     body: "بدل الجداول المملة، نحوّل بياناتك إلى قصص وقرارات واضحة.",
     color: "oklch(0.68 0.16 155)",
   },
   {
-    icon: Sparkles,
+    image: onboardingAssistant.url,
     title: "مساعد ذكي في جيبك",
     body: "اسأل: هل أقدر أشتري آيفون؟ نجاوبك بأثر حقيقي على راتبك وأهدافك.",
     color: "oklch(0.75 0.15 65)",
@@ -66,7 +68,6 @@ function Onboarding() {
   }
 
   const S = SLIDES[i];
-  const Icon = S.icon;
 
   return (
     <div className="flex min-h-dvh flex-col px-6 pt-8">
@@ -83,16 +84,7 @@ function Onboarding() {
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
             className="flex flex-col items-center"
           >
-            {S.image ? (
-              <img src={S.image} alt="" className="mb-2 h-auto w-full max-w-[320px] object-contain" loading="eager" />
-            ) : Icon ? (
-              <div
-                className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
-                style={{ background: `color-mix(in oklab, ${S.color} 15%, white)` }}
-              >
-                <Icon className="h-16 w-16" style={{ color: S.color }} strokeWidth={1.8} />
-              </div>
-            ) : null}
+            <img src={S.image} alt="" className="mb-2 h-auto w-full max-w-[320px] object-contain" loading="eager" />
             <h1 className="mt-8 max-w-xs text-2xl font-black leading-tight">{S.title}</h1>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">{S.body}</p>
           </motion.div>
