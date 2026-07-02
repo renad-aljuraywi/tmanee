@@ -1,7 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
+import { useState } from "react";
+import { Screen, Card, SectionTitle, Sheet } from "@/components/mobile/Shell";
+import { Btn } from "@/components/mobile/Btn";
 import { useStore, setState, resetAll } from "@/lib/store";
-import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings } from "lucide-react";
+import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle } from "lucide-react";
+
+
 
 export const Route = createFileRoute("/_tabs/profile")({ component: Profile });
 
@@ -29,13 +33,19 @@ function Profile() {
         <Stat label="إنجازات" value={`${s.achievements.filter(a => a.earned).length}`} sub={`/ ${s.achievements.length}`} />
       </div>
 
+      <SectionTitle>المساعد الموثوق</SectionTitle>
+      <div className="mx-4">
+        <TrustedAssistantCard />
+      </div>
+
       <SectionTitle>الحساب</SectionTitle>
       <List>
-        <Row to="/achievements" icon={<Trophy className="h-5 w-5" />} label="الإنجازات" />
-        <Row to="/settings" icon={<Settings className="h-5 w-5" />} label="الإعدادات" />
-        <Row to="/notifications" icon={<Bell className="h-5 w-5" />} label="الإشعارات" />
-        <Row to="/security" icon={<Lock className="h-5 w-5" />} label="الأمان والدخول" />
+        <Row to="/achievements" icon={<Trophy className="h-5 w-5" strokeWidth={1.75} />} label="الإنجازات" />
+        <Row to="/settings" icon={<Settings className="h-5 w-5" strokeWidth={1.75} />} label="الإعدادات" />
+        <Row to="/notifications" icon={<Bell className="h-5 w-5" strokeWidth={1.75} />} label="الإشعارات" />
+        <Row to="/security" icon={<Lock className="h-5 w-5" strokeWidth={1.75} />} label="الأمان والدخول" />
       </List>
+
 
       <SectionTitle>التجربة</SectionTitle>
       <List>
@@ -60,6 +70,99 @@ function Profile() {
     </Screen>
   );
 }
+
+function TrustedAssistantCard() {
+  const ta = useStore((x) => x.trustedAssistant);
+  const invite = useStore((x) => x.incomingInvite);
+  const activePerms = ta ? Object.values(ta.permissions).filter(Boolean).length : 0;
+  const [confirmRemove, setConfirmRemove] = useState(false);
+
+
+  return (
+    <div className="space-y-3">
+      {invite && !ta && (
+        <Link to="/trusted-assistant/incoming" className="tap block rounded-2xl border border-primary/30 bg-primary-soft p-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <div className="text-xs text-primary/80">دعوة جديدة</div>
+              <div className="text-sm font-bold text-primary">{invite.fromName} دعاك كمساعد موثوق</div>
+            </div>
+            <ChevronLeft className="h-4 w-4 text-primary" />
+          </div>
+        </Link>
+      )}
+
+      {!ta ? (
+        <Card>
+          <div className="flex items-start gap-3">
+            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-primary-soft text-primary">
+              <ShieldCheck className="h-5 w-5" strokeWidth={1.75} />
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-bold">المساعد الموثوق</div>
+              <div className="mt-1 text-xs leading-6 text-muted-foreground">
+                أضف شخصًا تثق به لمساعدتك في استخدام التطبيق وفق الصلاحيات التي تحددها.
+              </div>
+            </div>
+          </div>
+          <Link to="/trusted-assistant/invite" className="mt-4 block">
+            <Btn full variant="primary">
+              <UserPlus className="h-4 w-4" strokeWidth={1.75} />
+              إضافة مساعد موثوق
+            </Btn>
+          </Link>
+        </Card>
+      ) : (
+        <Card>
+          <div className="flex items-center gap-3">
+            <div className="grid h-12 w-12 place-items-center rounded-full bg-primary text-primary-foreground text-lg font-black">
+              {ta.name[0]}
+            </div>
+            <div className="flex-1">
+              <div className="text-sm font-bold">{ta.name}</div>
+              <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-muted-foreground">
+                <Circle className="h-2 w-2 fill-success text-success" strokeWidth={0} />
+                <span>متصل · {ta.phone}</span>
+              </div>
+            </div>
+          </div>
+          <div className="mt-3 rounded-xl bg-muted/60 p-3 text-[11px] text-muted-foreground">
+            الصلاحيات النشطة: <span className="font-bold text-foreground">{activePerms}</span> من 7
+          </div>
+          <div className="mt-3 grid grid-cols-2 gap-2">
+            <Link to="/trusted-assistant/permissions">
+              <Btn full variant="secondary" size="sm">تعديل الصلاحيات</Btn>
+            </Link>
+            <Btn full variant="outline" size="sm" onClick={() => setConfirmRemove(true)}>
+              إزالة المساعد
+            </Btn>
+          </div>
+        </Card>
+      )}
+
+      <Sheet open={confirmRemove} onClose={() => setConfirmRemove(false)}>
+        <div className="text-center">
+          <div className="text-base font-black">إزالة المساعد الموثوق؟</div>
+          <div className="mt-1 text-xs text-muted-foreground">سيتم إلغاء جميع الصلاحيات فورًا.</div>
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <Btn variant="outline" onClick={() => setConfirmRemove(false)}>إلغاء</Btn>
+          <Btn
+            variant="danger"
+            onClick={() => {
+              setState({ trustedAssistant: null });
+              setConfirmRemove(false);
+            }}
+          >
+            نعم، إزالة
+          </Btn>
+        </div>
+      </Sheet>
+
+    </div>
+  );
+}
+
 
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (

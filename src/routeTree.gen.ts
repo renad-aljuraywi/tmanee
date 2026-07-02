@@ -26,6 +26,9 @@ import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrustedAssistantPermissionsRouteImport } from './routes/trusted-assistant.permissions'
+import { Route as TrustedAssistantInviteRouteImport } from './routes/trusted-assistant.invite'
+import { Route as TrustedAssistantIncomingRouteImport } from './routes/trusted-assistant.incoming'
 import { Route as TransactionIdRouteImport } from './routes/transaction.$id'
 import { Route as GoalNewRouteImport } from './routes/goal.new'
 import { Route as GoalIdRouteImport } from './routes/goal.$id'
@@ -122,6 +125,23 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrustedAssistantPermissionsRoute =
+  TrustedAssistantPermissionsRouteImport.update({
+    id: '/trusted-assistant/permissions',
+    path: '/trusted-assistant/permissions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const TrustedAssistantInviteRoute = TrustedAssistantInviteRouteImport.update({
+  id: '/trusted-assistant/invite',
+  path: '/trusted-assistant/invite',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrustedAssistantIncomingRoute =
+  TrustedAssistantIncomingRouteImport.update({
+    id: '/trusted-assistant/incoming',
+    path: '/trusted-assistant/incoming',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TransactionIdRoute = TransactionIdRouteImport.update({
   id: '/transaction/$id',
   path: '/transaction/$id',
@@ -206,6 +226,9 @@ export interface FileRoutesByFullPath {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
+  '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -235,6 +258,9 @@ export interface FileRoutesByTo {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
+  '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -266,6 +292,9 @@ export interface FileRoutesById {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
+  '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -297,6 +326,9 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
+    | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -326,6 +358,9 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
+    | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   id:
     | '__root__'
     | '/'
@@ -356,6 +391,9 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
+    | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -382,6 +420,9 @@ export interface RootRouteChildren {
   GoalIdRoute: typeof GoalIdRoute
   GoalNewRoute: typeof GoalNewRoute
   TransactionIdRoute: typeof TransactionIdRoute
+  TrustedAssistantIncomingRoute: typeof TrustedAssistantIncomingRoute
+  TrustedAssistantInviteRoute: typeof TrustedAssistantInviteRoute
+  TrustedAssistantPermissionsRoute: typeof TrustedAssistantPermissionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -503,6 +544,27 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trusted-assistant/permissions': {
+      id: '/trusted-assistant/permissions'
+      path: '/trusted-assistant/permissions'
+      fullPath: '/trusted-assistant/permissions'
+      preLoaderRoute: typeof TrustedAssistantPermissionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trusted-assistant/invite': {
+      id: '/trusted-assistant/invite'
+      path: '/trusted-assistant/invite'
+      fullPath: '/trusted-assistant/invite'
+      preLoaderRoute: typeof TrustedAssistantInviteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trusted-assistant/incoming': {
+      id: '/trusted-assistant/incoming'
+      path: '/trusted-assistant/incoming'
+      fullPath: '/trusted-assistant/incoming'
+      preLoaderRoute: typeof TrustedAssistantIncomingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/transaction/$id': {
@@ -627,6 +689,9 @@ const rootRouteChildren: RootRouteChildren = {
   GoalIdRoute: GoalIdRoute,
   GoalNewRoute: GoalNewRoute,
   TransactionIdRoute: TransactionIdRoute,
+  TrustedAssistantIncomingRoute: TrustedAssistantIncomingRoute,
+  TrustedAssistantInviteRoute: TrustedAssistantInviteRoute,
+  TrustedAssistantPermissionsRoute: TrustedAssistantPermissionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
