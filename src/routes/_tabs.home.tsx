@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
-import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye, User } from "lucide-react";
+import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye, User, Plus, Minus } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Ring, Bar, HalfGauge } from "@/components/mobile/Ring";
 import { useStore, setState, categoryLabel } from "@/lib/store";
@@ -196,19 +196,19 @@ function Home() {
         </div>
         <div className="space-y-2">
           <A11yRow
-            icon={<Type className="h-4 w-4" strokeWidth={1.75} />}
+            icon={<Plus className="h-5 w-5" strokeWidth={1.75} />}
             label="تكبير الخط"
             active={s.fontScale === 1.15}
             onClick={() => setState({ fontScale: 1.15 })}
           />
           <A11yRow
-            icon={<Type className="h-3 w-3" strokeWidth={1.75} />}
+            icon={<Minus className="h-5 w-5" strokeWidth={1.75} />}
             label="تصغير الخط"
             active={s.fontScale === 0.9}
             onClick={() => setState({ fontScale: 0.9 })}
           />
           <A11yRow
-            icon={<Type className="h-4 w-4" strokeWidth={1.75} />}
+            icon={<Type className="h-5 w-5" strokeWidth={1.75} />}
             label="الحجم الافتراضي"
             active={s.fontScale === 1}
             onClick={() => setState({ fontScale: 1 })}
