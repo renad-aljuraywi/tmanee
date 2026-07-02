@@ -127,7 +127,7 @@ function Home() {
                 تنفق أكثر بعد الساعة 9 مساءً. جرّب إغلاق تطبيقات التسوق مساءً هذا الأسبوع.
               </div>
             </div>
-            <ChevronLeft className="h-4 w-4 text-primary" strokeWidth={1.75} />
+            <ChevronLeft className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
           </div>
         </Card>
       </Link>

@@ -39,7 +39,7 @@ function Permissions() {
       <div className="px-4 pt-2 space-y-3">
         <Card>
           <div className="flex items-center gap-2">
-            <ShieldCheck className="h-4 w-4 text-primary" strokeWidth={1.75} />
+            <ShieldCheck className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
             <div className="text-sm font-bold">صلاحيات {ta.name}</div>
           </div>
           <div className="mt-3 divide-y divide-border rounded-2xl border border-border overflow-hidden">

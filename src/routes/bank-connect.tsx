@@ -80,7 +80,7 @@ function BankConnect() {
         </motion.div>
 
         <div className="mt-4 rounded-2xl bg-success-soft p-3 flex items-start gap-2">
-          <ShieldCheck className="h-4 w-4 text-success shrink-0 mt-0.5" strokeWidth={1.75} />
+          <ShieldCheck className="h-4 w-4 text-muted-foreground shrink-0 mt-0.5" strokeWidth={1.75} />
           <div className="text-[11px] text-success leading-relaxed">
             لن يتمكن منيع من إجراء أي عملية مالية. الوصول للقراءة فقط عبر واجهة البنك الرسمية.
           </div>

@@ -152,7 +152,7 @@ function Invite() {
           >
             <Card>
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-primary" strokeWidth={1.75} />
+                <ShieldCheck className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
                 <div className="text-sm font-bold">الصلاحيات الممنوحة</div>
               </div>
               <div className="mt-1 text-[11px] text-muted-foreground">اختر ما يمكن للمساعد فعله نيابةً عنك.</div>

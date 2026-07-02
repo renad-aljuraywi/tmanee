@@ -117,7 +117,7 @@ function GoalDetail() {
         <Card>
           <div className="mb-3 flex items-center justify-between">
             <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1.5">
-              <TargetIcon className="h-4 w-4 text-primary" strokeWidth={1.75} />
+              <TargetIcon className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
               <span className="text-xs font-bold text-primary">لوحة الادّخار</span>
             </div>
             <div className="text-[11px] text-muted-foreground">{filled.filter(Boolean).length} / {tiles.length}</div>
