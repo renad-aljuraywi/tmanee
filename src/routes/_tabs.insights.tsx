@@ -47,7 +47,7 @@ function Insights() {
       <Card className="mx-4">
         <div className="text-xs text-muted-foreground">الإنفاق يرتفع كل خميس</div>
         <div className="mt-4 flex h-40 items-end justify-between gap-2">
-          {WEEK.map((v, i) => (
+          {week.map((v: number, i: number) => (
             <div key={i} className="flex flex-1 flex-col items-center gap-2">
               <motion.div
                 initial={{ height: 0 }}
