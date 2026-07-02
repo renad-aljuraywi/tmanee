@@ -16,6 +16,7 @@ export const Route = createFileRoute("/_tabs/home")({ component: Home });
 function Home() {
   const s = useStore((x) => x);
   const [a11yOpen, setA11yOpen] = useState(false);
+  useEffect(() => { refreshBurnoutFromBackend().catch(() => {}); }, []);
   const remainingSalary = s.salary - s.fixed - s.loans - s.transactions.filter(t => t.amount < 0).reduce((a, b) => a + Math.abs(b.amount), 0);
   const tier = burnoutTier(s.burnoutScore);
   const perDay = Math.round(remainingSalary / Math.max(1, s.daysUntilPayday));
