@@ -136,7 +136,7 @@ function GoalDetail() {
               <span className="text-xs font-bold text-primary">لوحة الادّخار</span>
             </div>
             <div className="text-[11px] text-muted-foreground num">
-              {filled.filter(Boolean).length} / {tiles.length} · كل خانة = {fmtSAR(unit)} ر.س
+              {filled.filter(Boolean).length} / {tiles.length} · كل خانة ≈ {fmtSAR(Math.round(unit))} ر.س
             </div>
           </div>
 
