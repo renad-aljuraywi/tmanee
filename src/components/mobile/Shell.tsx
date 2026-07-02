@@ -57,24 +57,32 @@ export function TopBar({
 }
 
 const TABS = [
-  { to: "/home", icon: Home, label: "الرئيسية" },
-  { to: "/insights", icon: PieChart, label: "التحليل" },
-  { to: "/goals", icon: Target, label: "الأهداف" },
+  { to: "/profile", icon: User, label: "حسابي" },
   { to: "/coach", icon: Sparkles, label: "اسأل منيع" },
-  { to: "/profile", icon: User, label: "الحساب" },
+  { to: "/home", icon: Home, label: "الرئيسية", center: true },
+  { to: "/goals", icon: Target, label: "الهدف" },
+  { to: "/insights", icon: PieChart, label: "التحليلات" },
 ] as const;
 
 export function BottomNav() {
   const recovery = useStore((s) => s.recoveryMode);
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 px-3 pb-3">
-      <div className={clsx(
-        "glass mx-auto flex max-w-md items-center justify-between rounded-3xl border border-border/60 px-2 py-2 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.15)]",
-        recovery && "bg-[color-mix(in_oklab,var(--primary-soft)_60%,white)]",
-      )}>
-        {TABS.map((t) => (
-          <TabLink key={t.to} to={t.to} icon={t.icon} label={t.label} />
-        ))}
+    <div className="fixed inset-x-0 bottom-0 z-40">
+      <div className="relative mx-auto max-w-md">
+        <div
+          className={clsx(
+            "relative flex items-end justify-between border-t border-border/60 bg-surface/95 px-2 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_-15px_rgba(0,0,0,0.15)] backdrop-blur",
+            recovery && "bg-[color-mix(in_oklab,var(--primary-soft)_60%,white)]",
+          )}
+        >
+          {TABS.map((t) =>
+            "center" in t && t.center ? (
+              <CenterTab key={t.to} to={t.to} icon={t.icon} label={t.label} />
+            ) : (
+              <TabLink key={t.to} to={t.to} icon={t.icon} label={t.label} />
+            ),
+          )}
+        </div>
       </div>
     </div>
   );
@@ -84,24 +92,29 @@ function TabLink({ to, icon: Icon, label }: { to: string; icon: typeof Home; lab
   return (
     <Link
       to={to}
-      className="tap group relative flex flex-1 flex-col items-center gap-0.5 rounded-2xl py-1.5"
+      className="tap relative flex flex-1 flex-col items-center gap-1 py-1.5"
       activeProps={{ className: "text-primary" }}
       inactiveProps={{ className: "text-muted-foreground" }}
     >
-      {({ isActive }) => (
-        <>
-          {isActive && (
-            <motion.div
-              layoutId="tab-pill"
-              className="absolute inset-0 rounded-2xl bg-primary-soft"
-              transition={{ type: "spring", stiffness: 400, damping: 32 }}
-            />
-          )}
-          <Icon className="relative z-10 h-5 w-5" strokeWidth={2.2} />
-          <span className="relative z-10 text-[10px] font-semibold">{label}</span>
-        </>
-      )}
+      <Icon className="h-6 w-6" strokeWidth={1.75} />
+      <span className="text-[11px] font-semibold">{label}</span>
     </Link>
+  );
+}
+
+function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; label: string }) {
+  return (
+    <div className="relative flex flex-1 flex-col items-center">
+      <Link
+        to={to}
+        aria-label={label}
+        className="tap absolute -top-8 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] ring-4 ring-surface"
+        activeProps={{ className: "" }}
+      >
+        <Icon className="h-7 w-7" strokeWidth={2} />
+      </Link>
+      <span className="mt-10 text-[11px] font-semibold text-muted-foreground">{label}</span>
+    </div>
   );
 }
 
