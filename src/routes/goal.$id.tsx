@@ -11,38 +11,20 @@ import { Plus, Pencil, PiggyBank, CalendarDays, Wallet } from "lucide-react";
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
-// Choose a plan (tile count + per-unit currency) that exactly sums to target.
-// Prefer plans where the per-unit value is a "nice" round number.
-function pickPlan(target: number): { count: number; unit: number } {
-  const nice = [1, 5, 10, 25, 50, 100, 200, 250, 500, 1000, 2500, 5000];
-  // Try nice unit values whose count falls between 20-50
-  const candidates: { count: number; unit: number; niceScore: number }[] = [];
-  for (const u of nice) {
-    if (target % u === 0) {
-      const c = target / u;
-      if (c >= 20 && c <= 50) candidates.push({ count: c, unit: u, niceScore: 0 });
-    }
-  }
-  if (candidates.length) {
-    // Prefer count closest to 35
-    candidates.sort((a, b) => Math.abs(a.count - 35) - Math.abs(b.count - 35));
-    return { count: candidates[0].count, unit: candidates[0].unit };
-  }
-  // Fallback: fixed count, fractional unit (still sums exactly to target)
-  const count = 35;
-  return { count, unit: target / count };
-}
-
-// Build tiles (each tile is N "units"); sum of tiles = count units = target.
-function buildTiles(count: number, unit: number): number[] {
+// Build tiles from realistic denominations (50/100/150/200/250 scaled to target)
+// so the sum equals the target exactly and each tile shows a real ر.س amount.
+function buildTiles(target: number): number[] {
+  const scale = Math.max(1, Math.pow(10, Math.floor(Math.log10(Math.max(1000, target) / 1000))));
+  const base = 50 * scale;
+  const denoms = [1, 2, 3, 4, 5].map((x) => x * base);
   const tiles: number[] = [];
-  const pattern = [1, 1, 2, 1, 3, 1, 2, 1, 1, 2];
-  let remaining = count;
+  let remaining = target;
   let i = 0;
-  while (remaining > 0) {
-    const step = Math.min(remaining, pattern[i % pattern.length]);
-    tiles.push(step * unit);
-    remaining -= step;
+  while (remaining > 0 && tiles.length < 80) {
+    let v = denoms[i % denoms.length];
+    if (v > remaining) v = remaining;
+    tiles.push(v);
+    remaining -= v;
     i++;
   }
   return tiles.sort((a, b) => a - b);
