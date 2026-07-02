@@ -34,11 +34,11 @@ export function TopBar({
   return (
     <div
       className={clsx(
-        "sticky top-0 z-30 flex h-14 items-center justify-between px-4",
+        "sticky top-0 z-30 grid h-14 grid-cols-[1fr_auto_1fr] items-center px-4",
         transparent ? "bg-transparent" : "glass border-b border-border/40",
       )}
     >
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 justify-self-start">
         {back && (
           <button
             onClick={() => router.history.back()}
@@ -50,8 +50,8 @@ export function TopBar({
         )}
         {right}
       </div>
-      {title && <div className="text-base font-bold">{title}</div>}
-      {!title && <div />}
+      <div className="text-base font-bold text-center">{title || ""}</div>
+      <div />
     </div>
   );
 }
