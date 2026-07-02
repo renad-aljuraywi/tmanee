@@ -249,24 +249,25 @@ function HighContrastRow() {
   const active = s.highContrast;
   return (
     <div className="flex items-center justify-between rounded-2xl border border-border bg-surface p-4">
+      <div className="flex items-center gap-3">
+        <div className="grid h-11 w-11 place-items-center rounded-full bg-surface border border-border text-foreground">
+          <Contrast className="h-5 w-5" strokeWidth={1.75} />
+        </div>
+        <div className="text-right">
+          <div className="text-sm font-bold underline decoration-primary underline-offset-4">تباين الألوان</div>
+          <div className="text-[11px] text-muted-foreground">ألوان صديقة لعمى الألوان</div>
+        </div>
+      </div>
       <button
         onClick={() => setState({ highContrast: !active })}
-        aria-label={active ? "إيقاف التباين العالي" : "تفعيل التباين العالي"}
+        aria-label={active ? "إيقاف تباين الألوان" : "تفعيل تباين الألوان"}
         className={`tap rounded-full px-5 py-2.5 text-sm font-bold ${active ? "bg-primary text-primary-foreground" : "bg-surface border border-border text-foreground"}`}
       >
         {active ? "مفعّل" : "تفعيل"}
       </button>
-      <div className="flex items-center gap-3">
-        <div className="text-right">
-          <div className="text-sm font-bold">تباين عالي</div>
-          <div className="text-[11px] text-muted-foreground">ألوان واضحة للرؤية الضعيفة</div>
-        </div>
-        <div className="grid h-11 w-11 place-items-center rounded-full bg-surface border border-border text-foreground">
-          <Contrast className="h-5 w-5" strokeWidth={1.75} />
-        </div>
-      </div>
     </div>
   );
+
 }
 
 function A11yRow({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active: boolean; onClick: () => void }) {
