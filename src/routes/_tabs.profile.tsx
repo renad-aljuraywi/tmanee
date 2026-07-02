@@ -40,18 +40,11 @@ function Profile() {
       <SectionTitle>التجربة</SectionTitle>
       <List>
         <Toggle
-          icon={<Moon className="h-5 w-5" />}
+          icon={<Moon className="h-5 w-5" strokeWidth={1.75} />}
           label="الوضع الداكن"
           on={s.darkMode}
           onChange={(v) => setState({ darkMode: v })}
         />
-        <Toggle
-          icon={<HeartHandshake className="h-5 w-5" />}
-          label="وضع التعافي المالي"
-          on={s.recoveryMode}
-          onChange={(v) => setState({ recoveryMode: v })}
-        />
-        <Row to="/recovery" icon={<Sparkles className="h-5 w-5" />} label="لوحة التعافي" />
       </List>
 
       <SectionTitle>عن منيع</SectionTitle>
