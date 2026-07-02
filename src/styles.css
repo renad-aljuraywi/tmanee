@@ -51,23 +51,23 @@
 
 :root {
   --radius: 1rem;
-  /* Lavender-tinted background that matches the onboarding illustrations */
-  --background: oklch(0.92 0.04 290);
+  /* Light lavender background #F7F0FB for all app pages */
+  --background: #F7F0FB;
   --foreground: oklch(0.22 0.03 305);
-  --surface: oklch(0.96 0.025 290);
-  --surface-elevated: oklch(1 0 0);
-  --card: oklch(0.96 0.025 290);
+  --surface: oklch(0.97 0.014 314);
+  --surface-elevated: oklch(0.985 0.012 314);
+  --card: oklch(0.97 0.014 314);
   --card-foreground: oklch(0.22 0.03 305);
-  --popover: oklch(0.96 0.025 290);
+  --popover: oklch(0.97 0.014 314);
   --popover-foreground: oklch(0.22 0.03 305);
 
   --primary: oklch(0.34 0.09 305);
   --primary-foreground: oklch(0.98 0.006 60);
   --primary-soft: oklch(0.94 0.035 300);
 
-  --secondary: oklch(0.94 0.03 290);
+  --secondary: oklch(0.94 0.018 314);
   --secondary-foreground: oklch(0.24 0.03 305);
-  --muted: oklch(0.9 0.025 290);
+  --muted: oklch(0.9 0.016 314);
   --muted-foreground: oklch(0.5 0.03 300);
   --accent: oklch(0.94 0.035 300);
   --accent-foreground: oklch(0.34 0.08 305);
@@ -82,8 +82,8 @@
   --danger-foreground: oklch(0.99 0 0);
   --danger-soft: oklch(0.95 0.03 25);
 
-  --border: oklch(0.87 0.025 290);
-  --input: oklch(0.9 0.025 290);
+  --border: oklch(0.85 0.02 314);
+  --input: oklch(0.92 0.016 314);
   --ring: oklch(0.34 0.09 305);
 }
 
