@@ -111,7 +111,7 @@ function Coach() {
         </div>
       )}
 
-      <div className="fixed inset-x-0 bottom-20 z-30 mx-auto max-w-md px-3">
+      <div className="fixed inset-x-0 bottom-32 z-30 mx-auto max-w-md px-3">
         <form
           onSubmit={(e) => { e.preventDefault(); ask(input); }}
           className="glass flex items-center gap-2 rounded-full border border-border p-1.5"
