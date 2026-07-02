@@ -21,7 +21,6 @@ export interface Goal {
   saved: number;
   monthly: number;
   color: string;
-  claimed?: boolean;
 }
 
 export interface Alert {
