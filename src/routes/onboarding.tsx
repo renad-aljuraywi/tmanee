@@ -3,13 +3,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";
 import { setState } from "@/lib/store";
-import { Check, TrendingUp, Shield, Sparkles } from "lucide-react";
+import { Check, TrendingUp, Sparkles } from "lucide-react";
+import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
 const SLIDES = [
   {
-    icon: Shield,
+    image: onboardingHero.url,
     title: "احمِ نفسك من الإرهاق المالي",
     body: "منيع يراقب سلوكك المالي بذكاء ويحذّرك قبل أن يتأثر راتبك.",
     color: "oklch(0.52 0.19 275)",
@@ -82,12 +83,18 @@ function Onboarding() {
             transition={{ duration: 0.4, ease: [0.2, 0.8, 0.2, 1] }}
             className="flex flex-col items-center"
           >
-            <div
-              className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
-              style={{ background: `color-mix(in oklab, ${S.color} 15%, white)` }}
-            >
-              <Icon className="h-16 w-16" style={{ color: S.color }} strokeWidth={1.8} />
-            </div>
+            {S.image ? (
+              <div className="mb-2 w-full max-w-[320px] overflow-hidden rounded-3xl">
+                <img src={S.image} alt="" className="h-auto w-full object-contain" loading="eager" />
+              </div>
+            ) : Icon ? (
+              <div
+                className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
+                style={{ background: `color-mix(in oklab, ${S.color} 15%, white)` }}
+              >
+                <Icon className="h-16 w-16" style={{ color: S.color }} strokeWidth={1.8} />
+              </div>
+            ) : null}
             <h1 className="mt-8 max-w-xs text-2xl font-black leading-tight">{S.title}</h1>
             <p className="mt-3 max-w-xs text-sm text-muted-foreground">{S.body}</p>
           </motion.div>
