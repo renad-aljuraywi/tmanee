@@ -7,7 +7,7 @@ import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Party } from "@/components/mobile/Party";
-import { Plus, Pencil, PiggyBank, CalendarDays, Wallet, Gift } from "lucide-react";
+import { Plus, Pencil, PiggyBank, CalendarDays, Wallet } from "lucide-react";
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
