@@ -62,7 +62,7 @@ export interface AppState {
   recoveryMode: boolean;
   darkMode: boolean;
   fontScale: number;
-  colorblind: boolean;
+  highContrast: boolean;
   user: { name: string; phone: string; avatar?: string };
   salary: number;
   fixed: number;
