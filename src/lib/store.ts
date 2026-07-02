@@ -180,6 +180,21 @@ const initial: AppState = {
     { id: "ac3", title: "شهر كامل ضمن الميزانية", emoji: "🏆", earned: false },
     { id: "ac4", title: "قلّلت المطاعم 20%", emoji: "🥗", earned: false },
   ],
+  trustedAssistant: null,
+  incomingInvite: {
+    fromName: "والدك — عبدالله",
+    fromPhone: "+966 5• ••• ••23",
+    permissions: {
+      viewGoals: true,
+      addSaving: true,
+      editSavingPlan: false,
+      createGoal: false,
+      viewReports: true,
+      receiveAlerts: true,
+      editBudget: false,
+    },
+  },
+
 };
 
 let state: AppState = load();
