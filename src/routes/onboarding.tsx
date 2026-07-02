@@ -84,9 +84,7 @@ function Onboarding() {
             className="flex flex-col items-center"
           >
             {S.image ? (
-              <div className="mb-2 w-full max-w-[320px] overflow-hidden rounded-3xl">
-                <img src={S.image} alt="" className="h-auto w-full object-contain" loading="eager" />
-              </div>
+              <img src={S.image} alt="" className="mb-2 h-auto w-full max-w-[320px] object-contain" loading="eager" />
             ) : Icon ? (
               <div
                 className="grid h-32 w-32 place-items-center rounded-[36px] floaty"
