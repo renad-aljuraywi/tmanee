@@ -60,7 +60,7 @@ const TABS = [
   { to: "/home", icon: Home, label: "الرئيسية" },
   { to: "/insights", icon: PieChart, label: "التحليل" },
   { to: "/goals", icon: Target, label: "الأهداف" },
-  { to: "/coach", icon: Sparkles, label: "AI" },
+  { to: "/coach", icon: Sparkles, label: "اسأل منيع" },
   { to: "/profile", icon: User, label: "الحساب" },
 ] as const;
 
