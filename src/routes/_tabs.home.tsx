@@ -3,7 +3,7 @@ import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
 import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye, User } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
-import { Ring, Bar } from "@/components/mobile/Ring";
+import { Ring, Bar, HalfGauge } from "@/components/mobile/Ring";
 import { useStore, setState, categoryLabel } from "@/lib/store";
 import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 
@@ -49,59 +49,57 @@ function Home() {
         </div>
       </div>
 
-      {/* Balance hero */}
+      {/* Balance hero - softened Alinma-inspired plum */}
       <motion.div
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
-        className="mx-4 rounded-3xl bg-gradient-to-br from-primary to-[oklch(0.42_0.2_285)] p-5 text-primary-foreground shadow-[var(--shadow-glow)]"
+        className="mx-4 rounded-3xl p-5 text-primary-foreground shadow-[var(--shadow-card)]"
+        style={{
+          background:
+            "linear-gradient(135deg, oklch(0.58 0.09 305) 0%, oklch(0.48 0.10 310) 55%, oklch(0.40 0.09 305) 100%)",
+        }}
       >
         <div className="flex items-start justify-between">
           <div>
-            <div className="text-xs opacity-80">المتبقّي من راتبك</div>
+            <div className="text-xs opacity-85">المتبقّي من راتبك</div>
             <div className="num mt-1 text-4xl font-black">
               {fmtSAR(remainingSalary)} <span className="text-lg font-bold opacity-80">ر.س</span>
             </div>
           </div>
           <div className="text-left">
-            <div className="text-[10px] opacity-80">الراتب القادم</div>
+            <div className="text-[10px] opacity-85">الراتب القادم</div>
             <div className="num text-xl font-bold">{s.daysUntilPayday} يوم</div>
           </div>
         </div>
-        <div className="mt-4 rounded-2xl bg-white/10 p-3 text-xs backdrop-blur">
+        <div className="mt-4 rounded-2xl bg-white/15 p-3 text-xs backdrop-blur">
           مصروفك المتاح يومياً: <span className="num font-bold">{fmtSAR(perDay)}</span> ر.س
         </div>
       </motion.div>
 
-      {/* Burnout wide card */}
+      {/* Burnout wide card - semicircular gauge */}
       <Link to="/burnout" className="block mx-4 mt-3">
         <Card className="tap">
           <div className="flex items-center gap-4">
-            <Ring
-              value={s.burnoutScore} max={100} size={92} stroke={9}
-              color={`var(--${tier.color})`}
-              track="color-mix(in oklab, var(--muted) 90%, transparent)"
-            >
-              <div className="text-center">
-                <div className="num text-xl font-black">{s.burnoutScore}</div>
-                <div className="text-[9px] text-muted-foreground">/ 100</div>
-              </div>
-            </Ring>
             <div className="flex-1 min-w-0">
-              <div className="text-xs text-muted-foreground">مؤشر الاستنزاف المالي</div>
-              <div className="mt-1 flex items-center gap-2">
-                <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[11px] font-bold bg-${tier.color}-soft text-${tier.color}`}>
-                  {tier.label}
-                </span>
-                <span className="text-[11px] text-muted-foreground">{tier.tone}</span>
-              </div>
-              <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
-                ارتفاع طفيف بسبب زيادة الإنفاق على المطاعم والتسوّق المتأخر هذا الأسبوع.
-              </p>
+              <div className="text-sm font-bold">مؤشر الاستنزاف المالي</div>
+              <div className="mt-1 text-[11px] text-muted-foreground">من 100</div>
+              <span className={`mt-2 inline-flex items-center rounded-full px-3 py-1 text-[11px] font-bold bg-${tier.color}-soft text-${tier.color}`}>
+                {tier.label}
+              </span>
             </div>
-            <ChevronLeft className="h-4 w-4 text-muted-foreground shrink-0" strokeWidth={1.75} />
+            <HalfGauge
+              value={s.burnoutScore}
+              max={100}
+              size={140}
+              stroke={14}
+              color={`var(--${tier.color})`}
+            >
+              <div className="num text-3xl font-black leading-none pb-1">{s.burnoutScore}</div>
+            </HalfGauge>
           </div>
         </Card>
       </Link>
+
 
       {/* Two smaller cards */}
       <div className="mt-3 grid grid-cols-2 gap-3 px-4">
