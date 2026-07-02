@@ -31,13 +31,19 @@ function Profile() {
         <Stat label="إنجازات" value={`${s.achievements.filter(a => a.earned).length}`} sub={`/ ${s.achievements.length}`} />
       </div>
 
+      <SectionTitle>المساعد الموثوق</SectionTitle>
+      <div className="mx-4">
+        <TrustedAssistantCard />
+      </div>
+
       <SectionTitle>الحساب</SectionTitle>
       <List>
-        <Row to="/achievements" icon={<Trophy className="h-5 w-5" />} label="الإنجازات" />
-        <Row to="/settings" icon={<Settings className="h-5 w-5" />} label="الإعدادات" />
-        <Row to="/notifications" icon={<Bell className="h-5 w-5" />} label="الإشعارات" />
-        <Row to="/security" icon={<Lock className="h-5 w-5" />} label="الأمان والدخول" />
+        <Row to="/achievements" icon={<Trophy className="h-5 w-5" strokeWidth={1.75} />} label="الإنجازات" />
+        <Row to="/settings" icon={<Settings className="h-5 w-5" strokeWidth={1.75} />} label="الإعدادات" />
+        <Row to="/notifications" icon={<Bell className="h-5 w-5" strokeWidth={1.75} />} label="الإشعارات" />
+        <Row to="/security" icon={<Lock className="h-5 w-5" strokeWidth={1.75} />} label="الأمان والدخول" />
       </List>
+
 
       <SectionTitle>التجربة</SectionTitle>
       <List>
