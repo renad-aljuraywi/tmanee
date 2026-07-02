@@ -208,6 +208,47 @@ function Home() {
   );
 }
 
+function FontSizeBar() {
+  const s = useStore((x) => x);
+  const steps = [0.85, 0.9, 0.95, 1, 1.05, 1.1, 1.15, 1.2];
+  const index = steps.findIndex((step) => step >= s.fontScale);
+  const currentIndex = index === -1 ? 3 : index;
+  const canIncrease = currentIndex < steps.length - 1;
+  const canDecrease = currentIndex > 0;
+
+  return (
+    <div className="flex items-center justify-between rounded-2xl border border-border bg-surface p-4">
+      <div className="flex items-center gap-3">
+        <div className="text-right">
+          <div className="text-sm font-bold underline decoration-primary underline-offset-4">حجم الخط</div>
+          <div className="text-[11px] text-muted-foreground">الحجم الحالي: {Math.round(s.fontScale * 100)}%</div>
+        </div>
+        <div className="grid h-11 w-11 place-items-center rounded-full bg-surface border border-border text-foreground">
+          <Type className="h-5 w-5" strokeWidth={1.75} />
+        </div>
+      </div>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => canIncrease && setState({ fontScale: steps[currentIndex + 1] })}
+          disabled={!canIncrease}
+          aria-label="تكبير الخط"
+          className={`tap grid h-11 w-11 place-items-center rounded-full ${canIncrease ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+        >
+          <Plus className="h-5 w-5" strokeWidth={1.75} />
+        </button>
+        <button
+          onClick={() => canDecrease && setState({ fontScale: steps[currentIndex - 1] })}
+          disabled={!canDecrease}
+          aria-label="تصغير الخط"
+          className={`tap grid h-11 w-11 place-items-center rounded-full border ${canDecrease ? "border-primary text-primary" : "border-muted text-muted-foreground"}`}
+        >
+          <Minus className="h-5 w-5" strokeWidth={1.75} />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function A11yRow({ icon, label, active, onClick }: { icon: React.ReactNode; label: string; active: boolean; onClick: () => void }) {
   return (
     <button
