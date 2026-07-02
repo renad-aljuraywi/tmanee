@@ -51,28 +51,26 @@
 
 :root {
   --radius: 1rem;
-  /* Alinma-inspired warm cream + deep plum */
-  --background: oklch(0.965 0.012 60);
+  /* Lavender-tinted background that matches the onboarding illustrations */
+  --background: oklch(0.92 0.04 290);
   --foreground: oklch(0.22 0.03 305);
-  --surface: oklch(0.99 0.006 60);
+  --surface: oklch(0.96 0.025 290);
   --surface-elevated: oklch(1 0 0);
-  --card: oklch(0.99 0.006 60);
+  --card: oklch(0.96 0.025 290);
   --card-foreground: oklch(0.22 0.03 305);
-  --popover: oklch(0.99 0.006 60);
+  --popover: oklch(0.96 0.025 290);
   --popover-foreground: oklch(0.22 0.03 305);
 
   --primary: oklch(0.34 0.09 305);
   --primary-foreground: oklch(0.98 0.006 60);
-  --primary-soft: oklch(0.955 0.02 300);
+  --primary-soft: oklch(0.94 0.035 300);
 
-
-  --secondary: oklch(0.94 0.014 60);
+  --secondary: oklch(0.94 0.03 290);
   --secondary-foreground: oklch(0.24 0.03 305);
-  --muted: oklch(0.94 0.012 60);
-  --muted-foreground: oklch(0.5 0.02 305);
-  --accent: oklch(0.955 0.02 300);
+  --muted: oklch(0.9 0.025 290);
+  --muted-foreground: oklch(0.5 0.03 300);
+  --accent: oklch(0.94 0.035 300);
   --accent-foreground: oklch(0.34 0.08 305);
-
 
   --success: oklch(0.6 0.12 165);
   --success-foreground: oklch(0.99 0 0);
@@ -84,8 +82,8 @@
   --danger-foreground: oklch(0.99 0 0);
   --danger-soft: oklch(0.95 0.03 25);
 
-  --border: oklch(0.9 0.012 60);
-  --input: oklch(0.93 0.012 60);
+  --border: oklch(0.87 0.025 290);
+  --input: oklch(0.9 0.025 290);
   --ring: oklch(0.34 0.09 305);
 }
 
