@@ -67,11 +67,11 @@ const TABS = [
 export function BottomNav() {
   const recovery = useStore((s) => s.recoveryMode);
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40">
-      <div className="relative mx-auto max-w-md">
+    <div className="fixed inset-x-0 bottom-0 z-40 pointer-events-none">
+      <div className="relative mx-auto max-w-md pointer-events-auto">
         <div
           className={clsx(
-            "relative flex items-end justify-between border-t border-border/60 bg-surface/95 px-2 pt-2 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_30px_-15px_rgba(0,0,0,0.15)] backdrop-blur",
+            "relative flex items-end justify-between rounded-t-3xl border-t border-x border-border/60 bg-surface/98 px-3 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] shadow-[0_-10px_30px_-18px_rgba(0,0,0,0.18)] backdrop-blur",
             recovery && "bg-[color-mix(in_oklab,var(--primary-soft)_60%,white)]",
           )}
         >
@@ -92,12 +92,12 @@ function TabLink({ to, icon: Icon, label }: { to: string; icon: typeof Home; lab
   return (
     <Link
       to={to}
-      className="tap relative flex flex-1 flex-col items-center gap-1 py-1.5"
+      className="tap relative flex flex-1 flex-col items-center gap-1.5 py-1"
       activeProps={{ className: "text-primary" }}
       inactiveProps={{ className: "text-muted-foreground" }}
     >
       <Icon className="h-6 w-6" strokeWidth={1.75} />
-      <span className="text-[11px] font-semibold">{label}</span>
+      <span className="text-[12px] font-bold">{label}</span>
     </Link>
   );
 }
@@ -105,14 +105,17 @@ function TabLink({ to, icon: Icon, label }: { to: string; icon: typeof Home; lab
 function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; label: string }) {
   return (
     <div className="relative flex flex-1 flex-col items-center">
+      {/* white cradle to create notch effect around the raised button */}
+      <div className="absolute -top-5 h-12 w-[76px] rounded-full bg-surface" aria-hidden />
       <Link
         to={to}
         aria-label={label}
-        className="tap absolute -top-8 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_10px_30px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] ring-4 ring-surface"
+        className="tap absolute -top-7 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] ring-[6px] ring-surface"
         activeProps={{ className: "" }}
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
       </Link>
+      <div className="h-[52px]" aria-hidden />
     </div>
   );
 }
