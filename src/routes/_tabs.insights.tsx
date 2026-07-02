@@ -7,10 +7,10 @@ import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { useMemo } from "react";
 
 export const Route = createFileRoute("/_tabs/insights")({ component: Insights });
 
-const WEEK = [40, 65, 30, 55, 90, 120, 75];
 const DAYS = ["س", "ح", "ن", "ث", "ر", "خ", "ج"];
 
 function Insights() {
