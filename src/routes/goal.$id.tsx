@@ -144,7 +144,7 @@ function GoalDetail() {
                     boxShadow: filled[i] ? "0 4px 12px -4px color-mix(in oklab, var(--primary) 40%, transparent)" : "none",
                   }}
                 >
-                  {v}
+                  {Math.round(v / unit)}
                 </motion.div>
               );
             })}
