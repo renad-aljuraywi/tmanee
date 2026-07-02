@@ -200,14 +200,14 @@ const listeners = new Set<() => void>();
 function load(): AppState {
   if (typeof window === "undefined") return initial;
   try {
-    const raw = localStorage.getItem("manee_state_v1");
+    const raw = localStorage.getItem("manee_state_v2");
     if (raw) return { ...initial, ...JSON.parse(raw) };
   } catch {}
   return initial;
 }
 function save() {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem("manee_state_v1", JSON.stringify(state)); } catch {}
+  try { localStorage.setItem("manee_state_v2", JSON.stringify(state)); } catch {}
 }
 
 export function getState() { return state; }
@@ -231,7 +231,7 @@ export function useStore<T>(selector: (s: AppState) => T): T {
 }
 
 export function resetAll() {
-  localStorage.removeItem("manee_state_v1");
+  localStorage.removeItem("manee_state_v2");
   state = initial;
   listeners.forEach((l) => l());
 }
