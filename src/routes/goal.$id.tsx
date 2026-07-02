@@ -32,11 +32,11 @@ function buildTiles(target: number): number[] {
 
 function tileColor(v: number, max: number) {
   const pct = v / max;
-  if (pct < 0.2) return "oklch(0.95 0.03 300)";
-  if (pct < 0.4) return "oklch(0.9 0.06 300)";
-  if (pct < 0.6) return "oklch(0.83 0.09 295)";
-  if (pct < 0.8) return "oklch(0.75 0.13 290)";
-  return "oklch(0.65 0.17 285)";
+  if (pct < 0.2) return "oklch(0.96 0.025 300)";
+  if (pct < 0.4) return "oklch(0.92 0.045 300)";
+  if (pct < 0.6) return "oklch(0.87 0.065 295)";
+  if (pct < 0.8) return "oklch(0.82 0.085 290)";
+  return "oklch(0.76 0.105 285)";
 }
 
 function GoalDetail() {
