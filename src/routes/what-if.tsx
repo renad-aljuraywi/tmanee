@@ -21,6 +21,8 @@ function WhatIf() {
   const currentBurnout = useStore((s) => s.burnoutScore);
   const [amt, setAmt] = useState(4000);
   const [shown, setShown] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
   const sim = simulatePurchase(amt);
   const projected = Math.min(100, currentBurnout + sim.burnoutDelta);
   const highRisk = projected >= 60;
