@@ -205,3 +205,68 @@ function Toggle({ icon, label, on, onChange }: { icon: React.ReactNode; label: s
     </button>
   );
 }
+
+const RECOVERY_MISSIONS = [
+  { id: 1, label: "لا مطاعم اليوم", reward: "+50 نقطة" },
+  { id: 2, label: "استخدم بدائل أرخص للقهوة", reward: "+30 نقطة" },
+  { id: 3, label: "أوقف اشتراكاً واحداً غير مستخدم", reward: "+80 نقطة" },
+  { id: 4, label: "امشِ بدل الأوبر لأقل من 3 كم", reward: "+40 نقطة" },
+];
+
+function RecoveryModeSection() {
+  const on = useStore((x) => x.recoveryMode);
+  return (
+    <div className="space-y-3">
+      <Card className="!bg-primary-soft border-primary/20">
+        <div className="flex items-center gap-3">
+          <div className="grid h-12 w-12 place-items-center rounded-2xl bg-primary text-primary-foreground">
+            <HeartHandshake className="h-6 w-6" strokeWidth={1.75} />
+          </div>
+          <div className="flex-1">
+            <div className="font-black text-sm">دعنا نأخذ نفَساً</div>
+            <div className="text-[11px] text-muted-foreground">مهمّات صغيرة يومية تعيد التوازن لراتبك.</div>
+          </div>
+          <Btn size="sm" onClick={() => setState({ recoveryMode: !on })}>{on ? "إيقاف" : "تفعيل"}</Btn>
+        </div>
+      </Card>
+
+      <div className="text-xs font-bold px-1 pt-1">مهمّاتك اليوم</div>
+      <div className="space-y-2">
+        {RECOVERY_MISSIONS.map((m, i) => (
+          <motion.div
+            key={m.id}
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: i * 0.05 }}
+            className="flex items-center justify-between rounded-2xl border border-border bg-surface p-4"
+          >
+            <div className="flex items-center gap-3">
+              <div className="grid h-8 w-8 place-items-center rounded-full border-2 border-border">
+                <Check className="h-4 w-4 opacity-30" strokeWidth={2} />
+              </div>
+              <div>
+                <div className="text-sm font-bold">{m.label}</div>
+                <div className="text-[11px] text-success">{m.reward}</div>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div className="text-xs font-bold px-1 pt-1">بدائل ذكية</div>
+      <div className="grid grid-cols-2 gap-3">
+        <Card>
+          <div className="text-primary"><IIcon e="☕" className="h-6 w-6" /></div>
+          <div className="mt-1 text-sm font-bold">اصنع قهوتك</div>
+          <div className="text-[11px] text-muted-foreground">توفير ~180 ر.س / أسبوع</div>
+        </Card>
+        <Card>
+          <div className="text-primary"><IIcon e="🥗" className="h-6 w-6" /></div>
+          <div className="mt-1 text-sm font-bold">وجبات منزلية</div>
+          <div className="text-[11px] text-muted-foreground">توفير ~350 ر.س / أسبوع</div>
+        </Card>
+      </div>
+    </div>
+  );
+}
+
