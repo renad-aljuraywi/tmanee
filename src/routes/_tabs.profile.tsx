@@ -75,6 +75,8 @@ function TrustedAssistantCard() {
   const ta = useStore((x) => x.trustedAssistant);
   const invite = useStore((x) => x.incomingInvite);
   const activePerms = ta ? Object.values(ta.permissions).filter(Boolean).length : 0;
+  const [confirmRemove, setConfirmRemove] = useState(false);
+
 
   return (
     <div className="space-y-3">
