@@ -59,8 +59,8 @@ export function TopBar({
 const TABS = [
   { to: "/profile", icon: User, label: "حسابي" },
   { to: "/coach", icon: Sparkles, label: "اسأل منيع" },
-  { to: "/home", icon: Home, label: "الرئيسية", center: true },
-  { to: "/goals", icon: Target, label: "الهدف" },
+  { to: "/home", icon: Home, label: "", center: true },
+  { to: "/goals", icon: Target, label: "أهدافي" },
   { to: "/insights", icon: PieChart, label: "التحليلات" },
 ] as const;
 
