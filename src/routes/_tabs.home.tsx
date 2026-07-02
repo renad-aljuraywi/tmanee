@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
 import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";

@@ -1,4 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";

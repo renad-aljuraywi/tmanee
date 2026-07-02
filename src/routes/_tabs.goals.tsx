@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
 import { useStore } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";

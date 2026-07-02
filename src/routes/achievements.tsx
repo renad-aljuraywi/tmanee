@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, TopBar, Card, SectionTitle } from "@/components/mobile/Shell";
 import { useStore } from "@/lib/store";
 import { motion, AnimatePresence } from "framer-motion";
