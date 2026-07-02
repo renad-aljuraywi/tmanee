@@ -30,7 +30,7 @@ function Home() {
             <User className="h-7 w-7" strokeWidth={1.75} />
           </div>
           <div>
-            <div className="text-sm text-muted-foreground">مرحباً 👋</div>
+            <div className="text-sm text-muted-foreground">مرحباً</div>
             <div className="text-2xl font-black leading-tight">{s.user.name}</div>
           </div>
         </div>
