@@ -15,19 +15,19 @@ const SLIDES = [
     image: onboardingHero.url,
     title: "احمِ نفسك من الإرهاق المالي",
     body: "منيع يراقب سلوكك المالي بذكاء ويحذّرك قبل أن يتأثر راتبك.",
-    color: "oklch(0.85 0.07 290)",
+    color: "oklch(0.52 0.19 275)",
   },
   {
     image: onboardingBrain.url,
     title: "افهم عاداتك، لا أرقامك",
     body: "بدل الجداول المملة، نحوّل بياناتك إلى قصص وقرارات واضحة.",
-    color: "oklch(0.85 0.07 290)",
+    color: "oklch(0.68 0.16 155)",
   },
   {
     image: onboardingAssistant.url,
     title: "مساعد ذكي في جيبك",
     body: "اسأل: هل أقدر أشتري آيفون؟ نجاوبك بأثر حقيقي على راتبك وأهدافك.",
-    color: "oklch(0.85 0.07 290)",
+    color: "oklch(0.75 0.15 65)",
   },
 ];
 
