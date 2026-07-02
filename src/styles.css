@@ -129,33 +129,19 @@
   --background: oklch(0.985 0.008 200);
 }
 
-/* High contrast mode — pure black/white with vivid accents */
+/* Colorblind-friendly palette (deuteranopia/protanopia safe)
+   Swaps red/green semantics to blue/orange which remain distinguishable. */
 .high-contrast {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0 0 0);
-  --surface: oklch(1 0 0);
-  --surface-2: oklch(0.96 0 0);
-  --muted: oklch(0.92 0 0);
-  --muted-foreground: oklch(0 0 0);
-  --border: oklch(0 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0 0 0);
-  --primary: oklch(0 0 0);
-  --primary-foreground: oklch(1 0 0);
-  --primary-soft: oklch(1 0 0);
-  --accent: oklch(0.85 0.25 85);
-  --accent-foreground: oklch(0 0 0);
-  --ring: oklch(0 0 0);
-  --success: oklch(0.45 0.2 145);
-  --warning: oklch(0.65 0.22 70);
-  --danger: oklch(0.5 0.28 25);
+  --success: oklch(0.55 0.15 240);   /* blue instead of green */
+  --warning: oklch(0.72 0.17 65);    /* amber orange */
+  --danger:  oklch(0.6 0.2 40);      /* vivid orange-red */
+  --accent:  oklch(0.7 0.16 55);
+  --accent-foreground: oklch(0.15 0.02 305);
+  --primary: oklch(0.42 0.16 260);   /* strong blue primary */
+  --primary-soft: oklch(0.95 0.04 260);
+  --ring: oklch(0.42 0.16 260);
 }
-.high-contrast * {
-  border-color: oklch(0 0 0) !important;
-}
-.high-contrast .text-muted-foreground {
-  color: oklch(0 0 0) !important;
-}
+
 
 
 @layer base {
