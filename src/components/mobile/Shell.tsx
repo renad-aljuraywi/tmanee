@@ -113,7 +113,6 @@ function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; l
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
       </Link>
-      <span className="mt-10 text-[11px] font-semibold text-muted-foreground">{label}</span>
     </div>
   );
 }
