@@ -122,7 +122,9 @@ function GoalDetail() {
               <TargetIcon className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
               <span className="text-xs font-bold text-primary">لوحة الادّخار</span>
             </div>
-            <div className="text-[11px] text-muted-foreground">{filled.filter(Boolean).length} / {tiles.length}</div>
+            <div className="text-[11px] text-muted-foreground num">
+              {filled.filter(Boolean).length} / {tiles.length} · كل خانة = {fmtSAR(unit)} ر.س
+            </div>
           </div>
 
           <div className="grid grid-cols-7 gap-1.5">
