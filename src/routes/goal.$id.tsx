@@ -172,12 +172,27 @@ function GoalDetail() {
           </Btn>
         </div>
 
-        <Link
-          to="/goal/new"
-          className="tap mb-4 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-primary/40 bg-primary-soft/60 px-4 py-3 text-sm font-bold text-primary"
-        >
-          <Plus className="h-4 w-4" strokeWidth={2} /> إضافة هدف جديد
-        </Link>
+        <Card className="!p-3">
+          <div className="mb-2 text-[11px] font-bold text-muted-foreground text-center">إضافة سريعة للهدف</div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[50, 100, 150, 200, 250].map((v) => (
+              <button
+                key={v}
+                onClick={() => {
+                  const g = getState().goals.map((x) =>
+                    x.id === goal.id ? { ...x, saved: Math.min(x.target, x.saved + v) } : x
+                  );
+                  setState({ goals: g });
+                  if (goal.saved + v >= goal.target) setShowParty(true);
+                }}
+                disabled={remaining <= 0}
+                className="tap rounded-full border border-primary/30 bg-primary-soft px-4 py-2 text-sm font-black text-primary num disabled:opacity-40"
+              >
+                +{v}
+              </button>
+            ))}
+          </div>
+        </Card>
       </div>
 
       <Sheet open={addOpen} onClose={() => setAddOpen(false)}>
