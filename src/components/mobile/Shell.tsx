@@ -124,7 +124,7 @@ function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; l
         className="tap absolute -top-16 grid h-16 w-16 place-items-center rounded-full border-[3px] border-white bg-primary text-primary-foreground shadow-[0_10px_24px_-6px_color-mix(in_oklab,var(--primary)_45%,transparent),0_0_0_1px_color-mix(in_oklab,var(--border)_30%,transparent)]"
         activeProps={{ className: "" }}
       >
-        <Icon className="h-7 w-7" strokeWidth={2} />
+        <Icon className="h-8 w-8" strokeWidth={2} />
       </Link>
       <div className="h-[52px]" aria-hidden />
     </div>
