@@ -8,7 +8,8 @@ import { useStore, setState, categoryLabel } from "@/lib/store";
 import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 
 import { fmtSAR, burnoutTier, fmtTime } from "@/lib/format";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { refreshBurnoutFromBackend } from "@/lib/ai";
 
 export const Route = createFileRoute("/_tabs/home")({ component: Home });
 
