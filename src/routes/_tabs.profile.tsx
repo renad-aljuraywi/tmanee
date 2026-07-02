@@ -130,15 +130,35 @@ function TrustedAssistantCard() {
             الصلاحيات النشطة: <span className="font-bold text-foreground">{activePerms}</span> من 7
           </div>
           <div className="mt-3 grid grid-cols-2 gap-2">
-            <Link to="/trusted-assistant/permissions" search={{ mode: "edit" as const }}>
+            <Link to="/trusted-assistant/permissions">
               <Btn full variant="secondary" size="sm">تعديل الصلاحيات</Btn>
             </Link>
-            <Link to="/trusted-assistant">
-              <Btn full variant="outline" size="sm">إزالة المساعد</Btn>
-            </Link>
+            <Btn full variant="outline" size="sm" onClick={() => setConfirmRemove(true)}>
+              إزالة المساعد
+            </Btn>
           </div>
         </Card>
       )}
+
+      <Sheet open={confirmRemove} onClose={() => setConfirmRemove(false)}>
+        <div className="text-center">
+          <div className="text-base font-black">إزالة المساعد الموثوق؟</div>
+          <div className="mt-1 text-xs text-muted-foreground">سيتم إلغاء جميع الصلاحيات فورًا.</div>
+        </div>
+        <div className="mt-5 grid grid-cols-2 gap-2">
+          <Btn variant="outline" onClick={() => setConfirmRemove(false)}>إلغاء</Btn>
+          <Btn
+            variant="danger"
+            onClick={() => {
+              setState({ trustedAssistant: null });
+              setConfirmRemove(false);
+            }}
+          >
+            نعم، إزالة
+          </Btn>
+        </div>
+      </Sheet>
+
     </div>
   );
 }
