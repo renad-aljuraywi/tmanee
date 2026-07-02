@@ -97,9 +97,25 @@ function Insights() {
           {loading ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin text-primary/70" />
           ) : assessment ? (
-            <div className="text-[10px] font-bold text-primary/70">من النموذج</div>
+            <div className="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold text-primary">
+              {assessment.label} · {Math.round((assessment.probabilities[assessment.label] ?? 0) * 100)}%
+            </div>
           ) : null}
         </div>
+        {assessment && (
+          <div className="mt-3 grid grid-cols-3 gap-2">
+            {(["Healthy","At Risk","Burnout"] as const).map((k) => {
+              const p = Math.round((assessment.probabilities[k] ?? 0) * 100);
+              const isTop = k === assessment.label;
+              return (
+                <div key={k} className={`rounded-xl p-2 text-center ${isTop ? "bg-primary text-primary-foreground" : "bg-white/60 text-muted-foreground"}`}>
+                  <div className="text-[10px] font-bold">{k}</div>
+                  <div className="num mt-0.5 text-sm font-black">{p}%</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
         <ul className="mt-3 space-y-2 text-sm">
           {patterns.map((p, i) => (
             <li key={i} className="flex gap-2"><span>•</span> {p}</li>
