@@ -20,6 +20,8 @@ function Insights() {
   const topSpent = cats[0][1].spent;
   const totalSpent = cats.reduce((a, [, v]) => a + v.spent, 0);
   const topPct = Math.round((topSpent / totalSpent) * 100);
+  const week = useMemo(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 120) + 20), []);
+
 
   return (
     <Screen>
