@@ -6,7 +6,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { simulatePurchase, useStore } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";
-import { Clock, AlertTriangle, Wallet, HeartHandshake, Check, ChevronDown } from "lucide-react";
+import { Clock, AlertTriangle, Wallet, HeartHandshake, Check, ChevronDown, ChevronLeft } from "lucide-react";
 
 export const Route = createFileRoute("/what-if")({ component: WhatIf });
 
