@@ -31,13 +31,37 @@ export interface Alert {
   time: string;
 }
 
+export type AssistantPermKey =
+  | "viewGoals"
+  | "addSaving"
+  | "editSavingPlan"
+  | "createGoal"
+  | "viewReports"
+  | "receiveAlerts"
+  | "editBudget";
+
+export type AssistantPerms = Record<AssistantPermKey, boolean>;
+
+export interface TrustedAssistant {
+  name: string;
+  phone: string;
+  permissions: AssistantPerms;
+  status: "connected" | "pending";
+}
+
+export interface IncomingInvite {
+  fromName: string;
+  fromPhone: string;
+  permissions: AssistantPerms;
+}
+
 export interface AppState {
   onboarded: boolean;
   authed: boolean;
   bankConnected: boolean;
   recoveryMode: boolean;
   darkMode: boolean;
-  fontScale: number; // 0.9, 1, 1.15
+  fontScale: number;
   colorblind: boolean;
   user: { name: string; phone: string; avatar?: string };
   salary: number;
@@ -46,14 +70,44 @@ export interface AppState {
   savingsGoal: number;
   savedThisMonth: number;
   daysUntilPayday: number;
-  burnoutScore: number; // 0-100 higher = worse
+  burnoutScore: number;
   todaySpend: number;
   budgets: Record<Category, { spent: number; limit: number }>;
   transactions: Transaction[];
   goals: Goal[];
   alerts: Alert[];
   achievements: { id: string; title: string; earned: boolean; emoji: string }[];
+  trustedAssistant: TrustedAssistant | null;
+  incomingInvite: IncomingInvite | null;
 }
+
+export const DEFAULT_ASSISTANT_PERMS: AssistantPerms = {
+  viewGoals: true,
+  addSaving: true,
+  editSavingPlan: false,
+  createGoal: false,
+  viewReports: true,
+  receiveAlerts: true,
+  editBudget: false,
+};
+
+export const ASSISTANT_PERM_LABELS: Record<AssistantPermKey, string> = {
+  viewGoals: "عرض أهداف التوفير",
+  addSaving: "إضافة مبلغ للتوفير",
+  editSavingPlan: "تعديل خطة التوفير",
+  createGoal: "إنشاء هدف جديد",
+  viewReports: "عرض التقارير",
+  receiveAlerts: "استقبال التنبيهات",
+  editBudget: "تعديل الميزانية",
+};
+
+export const RESTRICTED_ASSISTANT_ACTIONS: string[] = [
+  "تغيير كلمة المرور",
+  "تغيير رقم الجوال",
+  "حذف الحساب",
+  "ربط أو حذف الحساب البنكي",
+];
+
 
 const CAT_LABELS: Record<Category, string> = {
   food: "مطاعم",
