@@ -127,6 +127,7 @@ const CAT_ICONS: Record<Category, string> = {
 };
 export const categoryIcon = (c: Category) => CAT_ICONS[c];
 
+
 const initial: AppState = {
   onboarded: false,
   authed: false,

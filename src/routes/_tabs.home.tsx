@@ -3,7 +3,9 @@ import { motion } from "framer-motion";
 import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Ring, Bar } from "@/components/mobile/Ring";
-import { useStore, setState, categoryIcon, categoryLabel } from "@/lib/store";
+import { useStore, setState, categoryLabel } from "@/lib/store";
+import { CategoryIcon } from "@/components/mobile/CategoryIcon";
+
 import { fmtSAR, burnoutTier, fmtTime } from "@/lib/format";
 import { useState } from "react";
 
@@ -164,7 +166,7 @@ function Home() {
             className="tap flex items-center justify-between p-4"
           >
             <div className="flex items-center gap-3">
-              <div className="grid h-10 w-10 place-items-center rounded-xl bg-muted text-lg">{t.icon || categoryIcon(t.category)}</div>
+              <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-primary"><CategoryIcon category={t.category} /></div>
               <div>
                 <div className="text-sm font-bold">{t.merchant}</div>
                 <div className="text-[11px] text-muted-foreground">{categoryLabel(t.category)} · {fmtTime(t.date)}</div>

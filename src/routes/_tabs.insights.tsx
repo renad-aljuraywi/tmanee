@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
 import { Bar } from "@/components/mobile/Ring";
-import { useStore, categoryLabel, categoryIcon } from "@/lib/store";
+import { useStore, categoryLabel } from "@/lib/store";
+import { CategoryIcon } from "@/components/mobile/CategoryIcon";
+
 import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
@@ -28,7 +30,7 @@ function Insights() {
 
       {/* Top category */}
       <Card className="mx-4 mt-3 flex items-center gap-4">
-        <div className="text-5xl">{categoryIcon(topCat)}</div>
+        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-primary-soft text-primary"><CategoryIcon category={topCat} className="h-7 w-7" /></div>
         <div className="flex-1">
           <div className="text-xs text-muted-foreground">أكثر فئة تستنزف راتبك</div>
           <div className="mt-0.5 font-bold">{categoryLabel(topCat)}</div>
@@ -96,7 +98,7 @@ function Insights() {
             <Card key={cat} className="!p-3.5">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="text-xl">{categoryIcon(cat as any)}</div>
+                  <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-primary"><CategoryIcon category={cat as any} /></div>
                   <div>
                     <div className="text-sm font-bold">{categoryLabel(cat as any)}</div>
                     <div className="num text-[11px] text-muted-foreground">
