@@ -59,7 +59,7 @@ function Coach() {
           <Sparkles className="h-5 w-5" />
         </div>
         <div>
-          <div className="font-bold">كوتش منيع</div>
+          <div className="font-bold">اسأل منيع</div>
           <div className="text-[11px] text-success flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-success" /> نشِط الآن
           </div>
