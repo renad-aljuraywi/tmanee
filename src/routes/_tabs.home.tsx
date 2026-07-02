@@ -229,20 +229,20 @@ function FontSizeBar() {
       </div>
       <div className="flex items-center gap-3">
         <button
-          onClick={() => canIncrease && setState({ fontScale: steps[currentIndex + 1] })}
-          disabled={!canIncrease}
-          aria-label="تكبير الخط"
-          className={`tap grid h-11 w-11 place-items-center rounded-full ${canIncrease ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
-        >
-          <Plus className="h-5 w-5" strokeWidth={1.75} />
-        </button>
-        <button
           onClick={() => canDecrease && setState({ fontScale: steps[currentIndex - 1] })}
           disabled={!canDecrease}
           aria-label="تصغير الخط"
           className={`tap grid h-11 w-11 place-items-center rounded-full border ${canDecrease ? "border-primary text-primary" : "border-muted text-muted-foreground"}`}
         >
           <Minus className="h-5 w-5" strokeWidth={1.75} />
+        </button>
+        <button
+          onClick={() => canIncrease && setState({ fontScale: steps[currentIndex + 1] })}
+          disabled={!canIncrease}
+          aria-label="تكبير الخط"
+          className={`tap grid h-11 w-11 place-items-center rounded-full ${canIncrease ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"}`}
+        >
+          <Plus className="h-5 w-5" strokeWidth={1.75} />
         </button>
       </div>
     </div>
