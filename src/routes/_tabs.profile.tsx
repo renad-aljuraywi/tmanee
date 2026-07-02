@@ -3,9 +3,8 @@ import { useState } from "react";
 import { Screen, Card, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
 import { useStore, setState, resetAll } from "@/lib/store";
-import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle, User, HeartHandshake, Check } from "lucide-react";
-import { IIcon } from "@/components/mobile/IIcon";
-import { motion } from "framer-motion";
+import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle, User } from "lucide-react";
+
 
 
 
