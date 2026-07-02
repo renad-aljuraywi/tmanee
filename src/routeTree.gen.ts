@@ -28,6 +28,7 @@ import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TrustedAssistantPermissionsRouteImport } from './routes/trusted-assistant.permissions'
 import { Route as TrustedAssistantInviteRouteImport } from './routes/trusted-assistant.invite'
+import { Route as TrustedAssistantIncomingRouteImport } from './routes/trusted-assistant.incoming'
 import { Route as TransactionIdRouteImport } from './routes/transaction.$id'
 import { Route as GoalNewRouteImport } from './routes/goal.new'
 import { Route as GoalIdRouteImport } from './routes/goal.$id'
@@ -135,6 +136,12 @@ const TrustedAssistantInviteRoute = TrustedAssistantInviteRouteImport.update({
   path: '/trusted-assistant/invite',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrustedAssistantIncomingRoute =
+  TrustedAssistantIncomingRouteImport.update({
+    id: '/trusted-assistant/incoming',
+    path: '/trusted-assistant/incoming',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TransactionIdRoute = TransactionIdRouteImport.update({
   id: '/transaction/$id',
   path: '/transaction/$id',
@@ -219,6 +226,7 @@ export interface FileRoutesByFullPath {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
@@ -250,6 +258,7 @@ export interface FileRoutesByTo {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
@@ -283,6 +292,7 @@ export interface FileRoutesById {
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
+  '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
@@ -316,6 +326,7 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
   fileRoutesByTo: FileRoutesByTo
@@ -347,6 +358,7 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
   id:
@@ -379,6 +391,7 @@ export interface FileRouteTypes {
     | '/goal/$id'
     | '/goal/new'
     | '/transaction/$id'
+    | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
   fileRoutesById: FileRoutesById
@@ -407,6 +420,7 @@ export interface RootRouteChildren {
   GoalIdRoute: typeof GoalIdRoute
   GoalNewRoute: typeof GoalNewRoute
   TransactionIdRoute: typeof TransactionIdRoute
+  TrustedAssistantIncomingRoute: typeof TrustedAssistantIncomingRoute
   TrustedAssistantInviteRoute: typeof TrustedAssistantInviteRoute
   TrustedAssistantPermissionsRoute: typeof TrustedAssistantPermissionsRoute
 }
@@ -546,6 +560,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrustedAssistantInviteRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trusted-assistant/incoming': {
+      id: '/trusted-assistant/incoming'
+      path: '/trusted-assistant/incoming'
+      fullPath: '/trusted-assistant/incoming'
+      preLoaderRoute: typeof TrustedAssistantIncomingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/transaction/$id': {
       id: '/transaction/$id'
       path: '/transaction/$id'
@@ -668,6 +689,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoalIdRoute: GoalIdRoute,
   GoalNewRoute: GoalNewRoute,
   TransactionIdRoute: TransactionIdRoute,
+  TrustedAssistantIncomingRoute: TrustedAssistantIncomingRoute,
   TrustedAssistantInviteRoute: TrustedAssistantInviteRoute,
   TrustedAssistantPermissionsRoute: TrustedAssistantPermissionsRoute,
 }
