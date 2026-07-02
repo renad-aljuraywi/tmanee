@@ -112,13 +112,6 @@ function Insights() {
         })}
       </div>
 
-      <Link to="/what-if" className="mx-4 mt-6 flex items-center justify-between rounded-2xl bg-primary p-4 text-primary-foreground">
-        <div>
-          <div className="text-xs opacity-80">جرّب</div>
-          <div className="font-bold">محاكي "ماذا لو؟" لأي عملية شراء</div>
-        </div>
-        <ChevronLeft className="h-5 w-5" />
-      </Link>
     </Screen>
   );
 }
