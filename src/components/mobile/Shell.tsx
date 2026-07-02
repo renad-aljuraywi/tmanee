@@ -12,7 +12,7 @@ export function Screen({ children, className }: { children: ReactNode; className
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
-      className={clsx("min-h-dvh pb-28", className)}
+      className={clsx("min-h-dvh pb-36", className)}
     >
       {children}
     </motion.div>
