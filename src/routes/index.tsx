@@ -54,7 +54,7 @@ function Splash() {
           transition={{ delay: 0.4 }}
           className="mt-2 text-sm"
         >
-          كوتش مالي ذكي يحميك من الإرهاق
+          مساعدك المالي الذكي يحميك من الإرهاق
         </motion.p>
       </div>
       <motion.div

@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, TopBar, Card, SectionTitle } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
@@ -6,7 +6,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { simulatePurchase, useStore } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";
-import { Clock, AlertTriangle, Wallet, HeartHandshake, Check, ChevronDown } from "lucide-react";
+import { Clock, AlertTriangle, Wallet, HeartHandshake, Check, ChevronDown, ChevronLeft } from "lucide-react";
 
 export const Route = createFileRoute("/what-if")({ component: WhatIf });
 
@@ -64,15 +64,17 @@ function WhatIf() {
                 <>
                   <SectionTitle>خطة التعافي المقترحة</SectionTitle>
                   <Card className="mx-0 !bg-success-soft border-success/20">
-                    <div className="flex items-start gap-3">
+                    <Link to="/recovery" className="flex items-start gap-3 tap">
                       <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-success text-success-foreground">
                         <HeartHandshake className="h-5 w-5" strokeWidth={1.75} />
                       </div>
                       <div className="flex-1">
                         <div className="text-sm font-black text-success">خطة تعافي سريعة</div>
-                        <div className="mt-0.5 text-[11px] text-muted-foreground">اتبع هذه الخطوات لتقليل الأثر خلال أسبوعين.</div>
+                        <div className="mt-0.5 text-[11px] text-muted-foreground">افتح الخطة الكاملة في وضع التعافي.</div>
                       </div>
-                    </div>
+                      <ChevronLeft className="h-5 w-5 text-success" strokeWidth={2} />
+                    </Link>
+
                     <div className="mt-3 space-y-2">
                       {(expanded ? RECOVERY_TIPS : RECOVERY_TIPS.slice(0, 1)).map((t, i) => (
                         <motion.div

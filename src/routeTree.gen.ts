@@ -30,6 +30,7 @@ import { Route as TrustedAssistantPermissionsRouteImport } from './routes/truste
 import { Route as TrustedAssistantInviteRouteImport } from './routes/trusted-assistant.invite'
 import { Route as TrustedAssistantIncomingRouteImport } from './routes/trusted-assistant.incoming'
 import { Route as TransactionIdRouteImport } from './routes/transaction.$id'
+import { Route as ProfileEditRouteImport } from './routes/profile.edit'
 import { Route as GoalNewRouteImport } from './routes/goal.new'
 import { Route as GoalIdRouteImport } from './routes/goal.$id'
 import { Route as AuthOtpRouteImport } from './routes/auth.otp'
@@ -147,6 +148,11 @@ const TransactionIdRoute = TransactionIdRouteImport.update({
   path: '/transaction/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileEditRoute = ProfileEditRouteImport.update({
+  id: '/profile/edit',
+  path: '/profile/edit',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GoalNewRoute = GoalNewRouteImport.update({
   id: '/goal/new',
   path: '/goal/new',
@@ -225,6 +231,7 @@ export interface FileRoutesByFullPath {
   '/auth/otp': typeof AuthOtpRoute
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
@@ -257,6 +264,7 @@ export interface FileRoutesByTo {
   '/auth/otp': typeof AuthOtpRoute
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
@@ -291,6 +299,7 @@ export interface FileRoutesById {
   '/auth/otp': typeof AuthOtpRoute
   '/goal/$id': typeof GoalIdRoute
   '/goal/new': typeof GoalNewRoute
+  '/profile/edit': typeof ProfileEditRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
@@ -325,6 +334,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/goal/$id'
     | '/goal/new'
+    | '/profile/edit'
     | '/transaction/$id'
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
@@ -357,6 +367,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/goal/$id'
     | '/goal/new'
+    | '/profile/edit'
     | '/transaction/$id'
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
@@ -390,6 +401,7 @@ export interface FileRouteTypes {
     | '/auth/otp'
     | '/goal/$id'
     | '/goal/new'
+    | '/profile/edit'
     | '/transaction/$id'
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
@@ -419,6 +431,7 @@ export interface RootRouteChildren {
   AuthOtpRoute: typeof AuthOtpRoute
   GoalIdRoute: typeof GoalIdRoute
   GoalNewRoute: typeof GoalNewRoute
+  ProfileEditRoute: typeof ProfileEditRoute
   TransactionIdRoute: typeof TransactionIdRoute
   TrustedAssistantIncomingRoute: typeof TrustedAssistantIncomingRoute
   TrustedAssistantInviteRoute: typeof TrustedAssistantInviteRoute
@@ -574,6 +587,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TransactionIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile/edit': {
+      id: '/profile/edit'
+      path: '/profile/edit'
+      fullPath: '/profile/edit'
+      preLoaderRoute: typeof ProfileEditRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/goal/new': {
       id: '/goal/new'
       path: '/goal/new'
@@ -688,6 +708,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthOtpRoute: AuthOtpRoute,
   GoalIdRoute: GoalIdRoute,
   GoalNewRoute: GoalNewRoute,
+  ProfileEditRoute: ProfileEditRoute,
   TransactionIdRoute: TransactionIdRoute,
   TrustedAssistantIncomingRoute: TrustedAssistantIncomingRoute,
   TrustedAssistantInviteRoute: TrustedAssistantInviteRoute,

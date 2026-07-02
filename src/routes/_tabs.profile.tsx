@@ -17,16 +17,18 @@ function Profile() {
   return (
     <Screen>
       <div className="px-5 pt-10 pb-2">
-        <div className="flex items-center gap-4">
+        <Link to="/profile/edit" className="flex items-center gap-4 tap">
           <div className="grid h-16 w-16 place-items-center rounded-full bg-surface border border-border text-foreground">
             <User className="h-8 w-8" strokeWidth={1.75} />
           </div>
-          <div>
+          <div className="flex-1">
             <div className="text-xl font-black">{s.user.name}</div>
             <div className="text-xs text-muted-foreground">{s.user.phone}</div>
           </div>
-        </div>
+          <div className="text-[11px] font-bold text-primary">تعديل</div>
+        </Link>
       </div>
+
 
       <div className="mx-4 mt-4 grid grid-cols-3 gap-3">
         <Stat label="ادّخار" value={`${s.savedThisMonth}`} sub="ريال / شهر" />

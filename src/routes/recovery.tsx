@@ -69,7 +69,7 @@ function Recovery() {
       </div>
 
 
-      <Link to="/coach" className="mx-4 mt-6 block text-center text-sm font-bold text-primary">اطلب خطة تعافي مخصّصة من الكوتش</Link>
+      <Link to="/coach" className="mx-4 mt-6 block text-center text-sm font-bold text-primary">اطلب خطة تعافي مخصّصة من منيع</Link>
     </Screen>
   );
 }

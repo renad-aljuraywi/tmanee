@@ -11,7 +11,7 @@ const SLIDES = [
   { bg: "linear-gradient(135deg,#059669,#10B981)", emoji: "📈", title: "أفضل إنجاز", big: "+420", sub: "ريال وفّرتها", note: "بفضل تقليل مصاريف الترفيه" },
   { bg: "linear-gradient(135deg,#F97316,#EA580C)", emoji: "🍔", title: "أسوأ عادة", big: "28%", sub: "من إنفاقك على المطاعم الليلية", note: "الأربعاء والخميس تحديداً" },
   { bg: "linear-gradient(135deg,#0EA5E9,#0284C7)", emoji: "🔮", title: "توقّع الأسبوع القادم", big: "68", sub: "مؤشر استنزاف متوقع", note: "إذا استمر النمط الحالي" },
-  { bg: "linear-gradient(135deg,#EC4899,#DB2777)", emoji: "💡", title: "نصيحة منيع", big: "3", sub: "خطوات لتحسّن أسبوعك", note: "افتحها في الكوتش الذكي" },
+  { bg: "linear-gradient(135deg,#EC4899,#DB2777)", emoji: "💡", title: "نصيحة منيع", big: "3", sub: "خطوات لتحسّن أسبوعك", note: "افتحها في منيع" },
 ];
 
 function WeeklyReport() {
