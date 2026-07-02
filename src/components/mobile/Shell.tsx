@@ -122,7 +122,7 @@ function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; l
       <Link
         to={to}
         aria-label={label}
-        className="tap absolute -top-8 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+        className="tap absolute -top-12 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
         activeProps={{ className: "" }}
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
