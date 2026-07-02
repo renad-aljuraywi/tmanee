@@ -57,11 +57,11 @@ export function TopBar({
 }
 
 const TABS = [
-  { to: "/profile", icon: User, label: "حسابي" },
+  { to: "/insights", icon: PieChart, label: "التحليلات" },
   { to: "/coach", icon: Sparkles, label: "اسأل منيع" },
   { to: "/home", icon: Home, label: "", center: true },
   { to: "/goals", icon: Target, label: "أهدافي" },
-  { to: "/insights", icon: PieChart, label: "التحليلات" },
+  { to: "/profile", icon: User, label: "حسابي" },
 ] as const;
 
 export function BottomNav() {
