@@ -93,6 +93,12 @@ function Goals() {
                 </Link>
               );
             })}
+            <Link
+              to="/goal/new"
+              className="tap flex items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-primary/40 bg-primary-soft/60 px-4 py-4 text-sm font-black text-primary"
+            >
+              <Plus className="h-5 w-5" strokeWidth={2.5} /> إضافة هدف جديد
+            </Link>
           </div>
         </>
       )}
