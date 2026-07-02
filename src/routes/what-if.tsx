@@ -74,7 +74,7 @@ function WhatIf() {
                       </div>
                     </div>
                     <div className="mt-3 space-y-2">
-                      {RECOVERY_TIPS.map((t, i) => (
+                      {(expanded ? RECOVERY_TIPS : RECOVERY_TIPS.slice(0, 1)).map((t, i) => (
                         <motion.div
                           key={i}
                           initial={{ opacity: 0, x: -8 }}
@@ -93,6 +93,17 @@ function WhatIf() {
                         </motion.div>
                       ))}
                     </div>
+                    {RECOVERY_TIPS.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setExpanded((v) => !v)}
+                        className="mt-3 flex w-full items-center justify-center gap-1 rounded-2xl border border-success/30 bg-surface py-2 text-xs font-bold text-success tap"
+                      >
+                        {expanded ? "عرض أقل" : `عرض المزيد (${RECOVERY_TIPS.length - 1}+)`}
+                        <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} strokeWidth={2} />
+                      </button>
+                    )}
+
                   </Card>
                 </>
               )}
