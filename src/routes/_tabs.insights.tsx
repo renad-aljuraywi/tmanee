@@ -23,7 +23,7 @@ function Insights() {
 
   return (
     <Screen>
-      <div className="px-5 pt-8 pb-2">
+      <div className="px-5 pt-8 pb-2 text-center">
         <h1 className="text-2xl font-black">التحليل</h1>
         <p className="text-sm text-muted-foreground">لمحة ذكية عن عاداتك المالية.</p>
       </div>
