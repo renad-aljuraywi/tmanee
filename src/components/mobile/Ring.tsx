@@ -59,3 +59,49 @@ export function Bar({ value, max = 100, color = "var(--primary)", className }: {
     </div>
   );
 }
+
+// Half-circle (semicircular) gauge for at-a-glance score display.
+export function HalfGauge({
+  value,
+  max = 100,
+  size = 160,
+  stroke = 14,
+  color = "var(--success)",
+  track = "color-mix(in oklab, var(--muted) 90%, transparent)",
+  children,
+}: {
+  value: number;
+  max?: number;
+  size?: number;
+  stroke?: number;
+  color?: string;
+  track?: string;
+  children?: React.ReactNode;
+}) {
+  const r = (size - stroke) / 2;
+  const cy = size / 2;
+  const d = `M ${stroke / 2} ${cy} A ${r} ${r} 0 0 1 ${size - stroke / 2} ${cy}`;
+  const len = Math.PI * r;
+  const pct = Math.min(1, Math.max(0, value / max));
+  const h = size / 2 + stroke;
+  return (
+    <div className="relative inline-block" style={{ width: size, height: h }}>
+      <svg width={size} height={h} viewBox={`0 0 ${size} ${h}`}>
+        <path d={d} stroke={track} strokeWidth={stroke} fill="none" strokeLinecap="round" />
+        <motion.path
+          d={d}
+          stroke={color}
+          strokeWidth={stroke}
+          fill="none"
+          strokeLinecap="round"
+          strokeDasharray={len}
+          initial={{ strokeDashoffset: len }}
+          animate={{ strokeDashoffset: len * (1 - pct) }}
+          transition={{ duration: 1.1, ease: [0.2, 0.8, 0.2, 1] }}
+        />
+      </svg>
+      <div className="absolute inset-x-0 bottom-0 grid place-items-center">{children}</div>
+    </div>
+  );
+}
+
