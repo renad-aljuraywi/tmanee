@@ -10,7 +10,7 @@ export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
 const SLIDES = [
   {
-    icon: Shield,
+    image: onboardingHero.url,
     title: "احمِ نفسك من الإرهاق المالي",
     body: "منيع يراقب سلوكك المالي بذكاء ويحذّرك قبل أن يتأثر راتبك.",
     color: "oklch(0.52 0.19 275)",
