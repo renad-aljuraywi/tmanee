@@ -169,7 +169,7 @@ function GoalDetail() {
           </Card>
         </div>
 
-        <div className="grid grid-cols-2 gap-3 pb-4">
+        <div className="grid grid-cols-2 gap-3">
           <Btn variant="outline">
             <Pencil className="h-4 w-4" strokeWidth={1.75} /> تعديل الهدف
           </Btn>
@@ -177,6 +177,13 @@ function GoalDetail() {
             <Plus className="h-4 w-4" strokeWidth={2} /> إضافة مبلغ
           </Btn>
         </div>
+
+        <Link
+          to="/goal/new"
+          className="tap mb-4 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-primary/40 bg-primary-soft/60 px-4 py-3 text-sm font-bold text-primary"
+        >
+          <Plus className="h-4 w-4" strokeWidth={2} /> إضافة هدف جديد
+        </Link>
       </div>
 
       <Sheet open={addOpen} onClose={() => setAddOpen(false)}>
