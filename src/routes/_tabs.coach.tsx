@@ -20,7 +20,7 @@ const SUGGEST = [
 function Coach() {
   const s = useStore((x) => x);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { role: "ai", text: `أهلاً ${s.user.name} 👋 أنا كوتش منيع. اسألني أي شيء عن راتبك، أهدافك، أو قرارات الشراء.` },
+    { role: "ai", text: `أهلاً ${s.user.name} 👋 أنا منيع. اسألني أي شيء عن راتبك، أهدافك، أو قرارات الشراء.` },
   ]);
   const [input, setInput] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
