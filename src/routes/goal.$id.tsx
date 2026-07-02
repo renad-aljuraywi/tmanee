@@ -172,29 +172,6 @@ function GoalDetail() {
           </Btn>
         </div>
 
-        <Card className="!p-4">
-          <Btn
-            full
-            size="lg"
-            variant={goal.claimed ? "secondary" : "primary"}
-            disabled={goal.claimed || remaining > 0}
-            onClick={() => {
-              const g = getState().goals.map((x) =>
-                x.id === goal.id ? { ...x, claimed: true } : x
-              );
-              setState({ goals: g });
-              setShowParty(true);
-            }}
-          >
-            <Gift className="h-5 w-5" strokeWidth={1.75} />
-            {goal.claimed ? "تم تسليم الهدف" : "تسلم الهدف"}
-          </Btn>
-          {!goal.claimed && remaining > 0 && (
-            <div className="mt-2 text-center text-xs text-muted-foreground">
-              متاح بعد اكتمال المبلغ بالكامل
-            </div>
-          )}
-        </Card>
       </div>
 
       <Sheet open={addOpen} onClose={() => setAddOpen(false)}>
