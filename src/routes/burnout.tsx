@@ -3,13 +3,30 @@ import { Screen, TopBar, Card } from "@/components/mobile/Shell";
 import { Ring } from "@/components/mobile/Ring";
 import { useStore } from "@/lib/store";
 import { burnoutTier } from "@/lib/format";
-import { AlertTriangle, Utensils, PiggyBank, ShoppingBag, CalendarDays, Lightbulb } from "lucide-react";
+import { AlertTriangle, Utensils, PiggyBank, ShoppingBag, CalendarDays, Lightbulb, Loader2 } from "lucide-react";
+import { useEffect, useState } from "react";
+import { refreshBurnoutFromBackend, type BurnoutAssessment } from "@/lib/ai";
 
 export const Route = createFileRoute("/burnout")({ component: Burnout });
 
 function Burnout() {
   const s = useStore((x) => x);
   const t = burnoutTier(s.burnoutScore);
+  const [assessment, setAssessment] = useState<BurnoutAssessment | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let alive = true;
+    setLoading(true);
+    refreshBurnoutFromBackend()
+      .then((a) => { if (alive) { setAssessment(a); setError(null); } })
+      .catch((e) => { if (alive) setError(e?.message ?? "تعذّر الاتصال بنموذج الذكاء"); })
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, []);
+
+  const pct = (x?: number) => `${Math.round((x ?? 0) * 100)}%`;
 
   return (
     <Screen>
@@ -24,7 +41,17 @@ function Burnout() {
         </Ring>
       </div>
 
-      <Card className={`mx-4 mt-6 !bg-${t.color}-soft border-${t.color}/20`}>
+      <div className="mx-4 mt-3 flex items-center justify-center gap-2 text-[11px] text-muted-foreground">
+        {loading ? (
+          <><Loader2 className="h-3 w-3 animate-spin" /> جاري تحليل نمطك عبر النموذج…</>
+        ) : error ? (
+          <span className="text-danger">{error}</span>
+        ) : assessment ? (
+          <>تحليل مباشر من نموذج AMD · تصنيف: <b className="font-bold text-foreground">{arabicLabel(assessment.label)}</b></>
+        ) : null}
+      </div>
+
+      <Card className={`mx-4 mt-4 !bg-${t.color}-soft border-${t.color}/20`}>
         <div className="flex items-start gap-2">
           <AlertTriangle className={`h-5 w-5 text-${t.color}`} />
           <div>
@@ -33,6 +60,14 @@ function Burnout() {
           </div>
         </div>
       </Card>
+
+      {assessment && (
+        <div className="mx-4 mt-4 grid grid-cols-3 gap-2">
+          <ProbBox label="سليم" value={pct(assessment.probabilities.Healthy)} tone="success" />
+          <ProbBox label="معرّض" value={pct(assessment.probabilities["At Risk"])} tone="warning" />
+          <ProbBox label="استنزاف" value={pct(assessment.probabilities.Burnout)} tone="danger" />
+        </div>
+      )}
 
       <div className="mx-4 mt-6 text-sm font-bold">لماذا يرتفع المؤشر؟</div>
       <div className="mx-4 mt-2 space-y-2">
@@ -54,6 +89,22 @@ function Burnout() {
         <Link to="/recovery" className="tap rounded-2xl bg-surface border border-border p-4 text-center font-bold">وضع التعافي</Link>
       </div>
     </Screen>
+  );
+}
+
+function arabicLabel(l: string) {
+  if (l === "Healthy") return "سليم";
+  if (l === "At Risk") return "معرّض للخطر";
+  if (l === "Burnout") return "استنزاف";
+  return l;
+}
+
+function ProbBox({ label, value, tone }: { label: string; value: string; tone: "success" | "warning" | "danger" }) {
+  return (
+    <div className={`rounded-2xl border border-${tone}/20 !bg-${tone}-soft p-3 text-center`}>
+      <div className={`num text-lg font-black text-${tone}`}>{value}</div>
+      <div className="mt-0.5 text-[11px] text-muted-foreground">{label}</div>
+    </div>
   );
 }
 
