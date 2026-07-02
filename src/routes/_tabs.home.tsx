@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
-import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye } from "lucide-react";
+import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye, User } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Ring, Bar } from "@/components/mobile/Ring";
 import { useStore, setState, categoryLabel } from "@/lib/store";
@@ -25,13 +25,13 @@ function Home() {
     <Screen>
       {/* Header */}
       <div className="px-5 pt-6 pb-3 flex items-start justify-between">
-        <div className="flex flex-col items-start gap-2">
-          <div className="grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground font-bold">
-            {s.user.name[0]}
+        <div className="flex flex-col items-start gap-3">
+          <div className="grid h-14 w-14 place-items-center rounded-full bg-surface border border-border text-foreground">
+            <User className="h-7 w-7" strokeWidth={1.75} />
           </div>
           <div>
-            <div className="text-xs text-muted-foreground">مرحباً 👋</div>
-            <div className="font-bold">{s.user.name}</div>
+            <div className="text-sm text-muted-foreground">مرحباً 👋</div>
+            <div className="text-2xl font-black leading-tight">{s.user.name}</div>
           </div>
         </div>
         <div className="flex gap-1.5">
