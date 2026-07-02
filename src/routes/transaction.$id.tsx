@@ -44,11 +44,6 @@ function Detail() {
           <div className="text-xs font-bold text-primary">اكتشاف الذكاء</div>
           <div className="mt-1 text-sm font-bold">تنفق ~180 ر.س شهرياً في {t.merchant}. تقليل زيارة واحدة يوفّر ~60 ر.س.</div>
         </Card>
-
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <Btn variant="outline" onClick={() => nav({ to: "/what-if" })}>محاكي</Btn>
-          <Btn onClick={() => nav({ to: "/coach" })}>اسأل منيع</Btn>
-        </div>
       </div>
     </Screen>
   );
