@@ -69,7 +69,7 @@ export function BottomNav() {
   // SVG shape: rounded outer corners that drop down at the sides,
   // and an upward arch in the middle cradling the raised center button.
   const shape =
-    "M0,28 Q0,0 28,0 L150,0 Q168,0 176,16 A40,40 0 0 0 224,16 Q232,0 250,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
+    "M0,28 Q0,0 28,0 L132,0 C156,0 164,34 200,34 C236,34 244,0 268,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
   const bg = recovery
     ? "color-mix(in oklab, var(--primary-soft) 60%, white)"
     : "var(--surface)";
