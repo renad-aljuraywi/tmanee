@@ -66,10 +66,9 @@ const TABS = [
 
 export function BottomNav() {
   const recovery = useStore((s) => s.recoveryMode);
-  // SVG shape: rounded outer corners that drop down at the sides,
-  // and an upward arch in the middle cradling the raised center button.
+  // Flat top with rounded outer corners + soft centered notch cradling the raised home button.
   const shape =
-    "M0,28 Q0,0 28,0 L130,0 C148,0 156,28 200,28 C244,28 252,0 270,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
+    "M0,24 Q0,0 24,0 L156,0 C172,0 176,22 200,22 C224,22 228,0 244,0 L376,0 Q400,0 400,24 L400,100 L0,100 Z";
   const bg = recovery
     ? "color-mix(in oklab, var(--primary-soft) 60%, white)"
     : "var(--surface)";
@@ -81,10 +80,10 @@ export function BottomNav() {
           <svg
             viewBox="0 0 400 100"
             preserveAspectRatio="none"
-            className="absolute inset-x-0 bottom-0 h-[calc(100%+8px)] w-full drop-shadow-[0_-8px_18px_rgba(0,0,0,0.10)]"
+            className="absolute inset-x-0 bottom-0 h-[calc(100%+6px)] w-full drop-shadow-[0_-6px_14px_rgba(60,40,20,0.10)]"
             aria-hidden
           >
-            <path d={shape} fill={bg} stroke="color-mix(in oklab, var(--border) 70%, transparent)" strokeWidth="1" />
+            <path d={shape} fill={bg} stroke="color-mix(in oklab, var(--border) 60%, transparent)" strokeWidth="1" />
           </svg>
           {/* Content row */}
           <div className="relative flex items-end justify-between px-3 pt-4 pb-[max(0.85rem,env(safe-area-inset-bottom))]">
