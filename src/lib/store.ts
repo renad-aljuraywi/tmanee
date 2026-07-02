@@ -135,7 +135,7 @@ const initial: AppState = {
   recoveryMode: false,
   darkMode: false,
   fontScale: 1,
-  colorblind: false,
+  highContrast: false,
   user: { name: "محمد", phone: "+966 5• ••• ••••" },
   salary: 12000,
   fixed: 4200,

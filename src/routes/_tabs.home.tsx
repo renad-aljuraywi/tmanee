@@ -196,12 +196,7 @@ function Home() {
         </div>
         <div className="space-y-2">
           <FontSizeBar />
-          <A11yRow
-            icon={<Eye className="h-4 w-4" strokeWidth={1.75} />}
-            label="وضع عمى الألوان"
-            active={s.colorblind}
-            onClick={() => setState({ colorblind: !s.colorblind })}
-          />
+          <HighContrastRow />
         </div>
       </Sheet>
     </Screen>
