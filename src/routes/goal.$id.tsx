@@ -11,23 +11,35 @@ import { Plus, Pencil, Target as TargetIcon, CalendarDays, Wallet } from "lucide
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
-// Pick a friendly "unit" so tile labels stay as small numbers (1..~15)
-function pickUnit(target: number): number {
-  const candidates = [1, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000];
-  const ideal = target / 40; // aim ~40 tiles
-  return candidates.reduce((p, c) => (Math.abs(c - ideal) < Math.abs(p - ideal) ? c : p), candidates[0]);
+// Choose a plan (tile count + per-unit currency) that exactly sums to target.
+// Prefer plans where the per-unit value is a "nice" round number.
+function pickPlan(target: number): { count: number; unit: number } {
+  const nice = [1, 5, 10, 25, 50, 100, 200, 250, 500, 1000, 2500, 5000];
+  // Try nice unit values whose count falls between 20-50
+  const candidates: { count: number; unit: number; niceScore: number }[] = [];
+  for (const u of nice) {
+    if (target % u === 0) {
+      const c = target / u;
+      if (c >= 20 && c <= 50) candidates.push({ count: c, unit: u, niceScore: 0 });
+    }
+  }
+  if (candidates.length) {
+    // Prefer count closest to 35
+    candidates.sort((a, b) => Math.abs(a.count - 35) - Math.abs(b.count - 35));
+    return { count: candidates[0].count, unit: candidates[0].unit };
+  }
+  // Fallback: fixed count, fractional unit (still sums exactly to target)
+  const count = 35;
+  return { count, unit: target / count };
 }
 
-// Build a deterministic set of tiles that sum to target,
-// each tile value is a multiple of `unit`; displayed as tile/unit (small number).
-function buildTiles(target: number, unit: number): number[] {
+// Build tiles (each tile is N "units"); sum of tiles = count units = target.
+function buildTiles(count: number, unit: number): number[] {
   const tiles: number[] = [];
-  const totalUnits = Math.max(1, Math.round(target / unit));
-  // Vary tile sizes: mostly 1×, some 2×, 3×
   const pattern = [1, 1, 2, 1, 3, 1, 2, 1, 1, 2];
-  let remaining = totalUnits;
+  let remaining = count;
   let i = 0;
-  while (remaining > 0 && tiles.length < 60) {
+  while (remaining > 0) {
     const step = Math.min(remaining, pattern[i % pattern.length]);
     tiles.push(step * unit);
     remaining -= step;
