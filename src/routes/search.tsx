@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Screen, TopBar } from "@/components/mobile/Shell";
 import { useState, useMemo } from "react";
-import { useStore, categoryIcon, categoryLabel } from "@/lib/store";
+import { useStore, categoryLabel } from "@/lib/store";
+import { CategoryIcon } from "@/components/mobile/CategoryIcon";
+
 import { fmtSAR } from "@/lib/format";
 import { Search as SearchIcon } from "lucide-react";
 
@@ -44,7 +46,7 @@ function Search() {
           {results.map((t) => (
             <Link key={t.id} to="/transaction/$id" params={{ id: t.id }} className="tap flex items-center justify-between rounded-2xl border border-border bg-surface p-3.5">
               <div className="flex items-center gap-3">
-                <div className="grid h-10 w-10 place-items-center rounded-xl bg-muted text-lg">{t.icon || categoryIcon(t.category)}</div>
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-primary"><CategoryIcon category={t.category} /></div>
                 <div>
                   <div className="text-sm font-bold">{t.merchant}</div>
                   <div className="text-[11px] text-muted-foreground">{categoryLabel(t.category)}</div>

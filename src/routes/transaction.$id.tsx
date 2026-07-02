@@ -1,7 +1,9 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { Screen, TopBar, Card } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
-import { useStore, categoryIcon, categoryLabel } from "@/lib/store";
+import { useStore, categoryLabel } from "@/lib/store";
+import { CategoryIcon } from "@/components/mobile/CategoryIcon";
+
 import { fmtSAR, fmtDate, fmtTime } from "@/lib/format";
 import { MapPin, Repeat, Tag } from "lucide-react";
 
@@ -26,7 +28,7 @@ function Detail() {
       <TopBar title="تفاصيل العملية" />
       <div className="px-4 pt-2">
         <Card className="text-center">
-          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-muted text-3xl">{t.icon || categoryIcon(t.category)}</div>
+          <div className="mx-auto grid h-16 w-16 place-items-center rounded-2xl bg-primary-soft text-primary"><CategoryIcon category={t.category} className="h-7 w-7" /></div>
           <div className="mt-3 text-sm text-muted-foreground">{t.merchant}</div>
           <div className={`num mt-1 text-4xl font-black ${t.amount < 0 ? "text-danger" : "text-success"}`}>
             {t.amount < 0 ? "-" : "+"}{fmtSAR(Math.abs(t.amount))} <span className="text-base opacity-70">ر.س</span>

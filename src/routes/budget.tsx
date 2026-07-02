@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Screen, TopBar, Card } from "@/components/mobile/Shell";
 import { Bar } from "@/components/mobile/Ring";
-import { useStore, setState, getState, categoryIcon, categoryLabel } from "@/lib/store";
+import { useStore, setState, getState, categoryLabel } from "@/lib/store";
+import { CategoryIcon } from "@/components/mobile/CategoryIcon";
+
 import { fmtSAR } from "@/lib/format";
 
 export const Route = createFileRoute("/budget")({ component: Budget });
@@ -23,7 +25,7 @@ function Budget() {
           <Card key={cat}>
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="text-2xl">{categoryIcon(cat as any)}</div>
+                <div className="grid h-10 w-10 place-items-center rounded-xl bg-primary-soft text-primary"><CategoryIcon category={cat as any} /></div>
                 <div>
                   <div className="text-sm font-bold">{categoryLabel(cat as any)}</div>
                   <div className="num text-[11px] text-muted-foreground">{fmtSAR(b.spent)} من {fmtSAR(b.limit)}</div>
