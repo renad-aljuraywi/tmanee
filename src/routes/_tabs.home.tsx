@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
 import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
@@ -243,9 +244,10 @@ function A11yRow({ icon, label, active, onClick }: { icon: React.ReactNode; labe
 
 function QuickAction({ to, emoji, label }: { to: any; emoji: string; label: string }) {
   return (
-    <Link to={to} className="card-elevated tap flex flex-col items-center gap-1 p-4 text-center">
-      <div className="text-2xl">{emoji}</div>
+    <Link to={to} className="card-elevated tap flex flex-col items-center gap-1.5 p-4 text-center">
+      <div className="text-primary"><IIcon e={emoji} className="h-6 w-6" /></div>
       <div className="text-xs font-bold">{label}</div>
     </Link>
   );
+
 }

@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
 import { useStore } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";
@@ -49,10 +50,11 @@ function Goals() {
                   <motion.div
                     initial={{ scale: 0.7, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="text-6xl"
+                    className="text-primary"
                   >
-                    {g.emoji}
+                    <IIcon e={g.emoji} className="h-14 w-14" />
                   </motion.div>
+
                   <div className="absolute inset-x-0 bottom-0 h-1 bg-black/5">
                     <motion.div
                       initial={{ width: 0 }}

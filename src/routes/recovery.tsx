@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, TopBar, Card, SectionTitle } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
 import { setState, useStore } from "@/lib/store";
@@ -56,16 +57,17 @@ function Recovery() {
       <SectionTitle>بدائل ذكية</SectionTitle>
       <div className="mx-4 grid grid-cols-2 gap-3">
         <Card>
-          <div className="text-2xl">☕</div>
+          <div className="text-primary"><IIcon e="☕" className="h-6 w-6" /></div>
           <div className="mt-1 text-sm font-bold">اصنع قهوتك</div>
           <div className="text-[11px] text-muted-foreground">توفير ~180 ر.س / أسبوع</div>
         </Card>
         <Card>
-          <div className="text-2xl">🥗</div>
+          <div className="text-primary"><IIcon e="🥗" className="h-6 w-6" /></div>
           <div className="mt-1 text-sm font-bold">وجبات منزلية</div>
           <div className="text-[11px] text-muted-foreground">توفير ~350 ر.س / أسبوع</div>
         </Card>
       </div>
+
 
       <Link to="/coach" className="mx-4 mt-6 block text-center text-sm font-bold text-primary">اطلب خطة تعافي مخصّصة من الكوتش</Link>
     </Screen>
