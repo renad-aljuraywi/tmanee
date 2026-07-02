@@ -5,7 +5,7 @@ import { TopBar } from "@/components/mobile/Shell";
 import { setState } from "@/lib/store";
 import { motion } from "framer-motion";
 import { Check, Lock, ShieldCheck } from "lucide-react";
-import alinmaLogo from "@/assets/alinma-logo.png.asset.json";
+import alinmaLogo from "@/assets/alinma-logo-navy.jpeg.asset.json";
 
 export const Route = createFileRoute("/bank-connect")({ component: BankConnect });
 
