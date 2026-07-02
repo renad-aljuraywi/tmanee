@@ -183,6 +183,12 @@ function GoalDetail() {
           </Btn>
         </div>
 
+        <Link to="/goal/new" className="block">
+          <Btn variant="outline" full size="lg" className="w-full border-dashed">
+            <Plus className="h-4 w-4" strokeWidth={2} /> إضافة هدف جديد
+          </Btn>
+        </Link>
+
       </div>
 
       <Sheet open={addOpen} onClose={() => setAddOpen(false)}>
