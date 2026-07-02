@@ -26,6 +26,7 @@ import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as AchievementsRouteImport } from './routes/achievements'
 import { Route as TabsRouteImport } from './routes/_tabs'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TrustedAssistantPermissionsRouteImport } from './routes/trusted-assistant.permissions'
 import { Route as TrustedAssistantInviteRouteImport } from './routes/trusted-assistant.invite'
 import { Route as TransactionIdRouteImport } from './routes/transaction.$id'
 import { Route as GoalNewRouteImport } from './routes/goal.new'
@@ -123,6 +124,12 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TrustedAssistantPermissionsRoute =
+  TrustedAssistantPermissionsRouteImport.update({
+    id: '/trusted-assistant/permissions',
+    path: '/trusted-assistant/permissions',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const TrustedAssistantInviteRoute = TrustedAssistantInviteRouteImport.update({
   id: '/trusted-assistant/invite',
   path: '/trusted-assistant/invite',
@@ -213,6 +220,7 @@ export interface FileRoutesByFullPath {
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -243,6 +251,7 @@ export interface FileRoutesByTo {
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -275,6 +284,7 @@ export interface FileRoutesById {
   '/goal/new': typeof GoalNewRoute
   '/transaction/$id': typeof TransactionIdRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
+  '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -307,6 +317,7 @@ export interface FileRouteTypes {
     | '/goal/new'
     | '/transaction/$id'
     | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -337,6 +348,7 @@ export interface FileRouteTypes {
     | '/goal/new'
     | '/transaction/$id'
     | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   id:
     | '__root__'
     | '/'
@@ -368,6 +380,7 @@ export interface FileRouteTypes {
     | '/goal/new'
     | '/transaction/$id'
     | '/trusted-assistant/invite'
+    | '/trusted-assistant/permissions'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -395,6 +408,7 @@ export interface RootRouteChildren {
   GoalNewRoute: typeof GoalNewRoute
   TransactionIdRoute: typeof TransactionIdRoute
   TrustedAssistantInviteRoute: typeof TrustedAssistantInviteRoute
+  TrustedAssistantPermissionsRoute: typeof TrustedAssistantPermissionsRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -516,6 +530,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trusted-assistant/permissions': {
+      id: '/trusted-assistant/permissions'
+      path: '/trusted-assistant/permissions'
+      fullPath: '/trusted-assistant/permissions'
+      preLoaderRoute: typeof TrustedAssistantPermissionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/trusted-assistant/invite': {
@@ -648,6 +669,7 @@ const rootRouteChildren: RootRouteChildren = {
   GoalNewRoute: GoalNewRoute,
   TransactionIdRoute: TransactionIdRoute,
   TrustedAssistantInviteRoute: TrustedAssistantInviteRoute,
+  TrustedAssistantPermissionsRoute: TrustedAssistantPermissionsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
