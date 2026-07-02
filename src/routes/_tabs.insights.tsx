@@ -7,10 +7,10 @@ import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { Sparkles } from "lucide-react";
+import { useMemo } from "react";
 
 export const Route = createFileRoute("/_tabs/insights")({ component: Insights });
 
-const WEEK = [40, 65, 30, 55, 90, 120, 75];
 const DAYS = ["س", "ح", "ن", "ث", "ر", "خ", "ج"];
 
 function Insights() {
@@ -20,6 +20,8 @@ function Insights() {
   const topSpent = cats[0][1].spent;
   const totalSpent = cats.reduce((a, [, v]) => a + v.spent, 0);
   const topPct = Math.round((topSpent / totalSpent) * 100);
+  const week = useMemo(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 120) + 20), []);
+
 
   return (
     <Screen>
@@ -45,7 +47,7 @@ function Insights() {
       <Card className="mx-4">
         <div className="text-xs text-muted-foreground">الإنفاق يرتفع كل خميس</div>
         <div className="mt-4 flex h-40 items-end justify-between gap-2">
-          {WEEK.map((v, i) => (
+          {week.map((v: number, i: number) => (
             <div key={i} className="flex flex-1 flex-col items-center gap-2">
               <motion.div
                 initial={{ height: 0 }}
