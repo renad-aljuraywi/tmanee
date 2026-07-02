@@ -11,36 +11,36 @@ import { Plus, Pencil, Target as TargetIcon, CalendarDays, Wallet } from "lucide
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
+// Pick a friendly "unit" so tile labels stay as small numbers (1..~15)
+function pickUnit(target: number): number {
+  const candidates = [1, 5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000];
+  const ideal = target / 40; // aim ~40 tiles
+  return candidates.reduce((p, c) => (Math.abs(c - ideal) < Math.abs(p - ideal) ? c : p), candidates[0]);
+}
+
 // Build a deterministic set of tiles that sum to target,
-// with varied denominations (mimics the saving-challenge board).
-function buildTiles(target: number): number[] {
-  const denoms = [50, 100, 150, 200, 250, 300, 350, 400, 500, 600];
+// each tile value is a multiple of `unit`; displayed as tile/unit (small number).
+function buildTiles(target: number, unit: number): number[] {
   const tiles: number[] = [];
-  let remaining = target;
+  const totalUnits = Math.max(1, Math.round(target / unit));
+  // Vary tile sizes: mostly 1×, some 2×, 3×
+  const pattern = [1, 1, 2, 1, 3, 1, 2, 1, 1, 2];
+  let remaining = totalUnits;
   let i = 0;
-  // Aim for ~35 tiles
-  const avg = Math.max(50, Math.round(target / 35));
-  // pick closest denom step to avg
-  const step = denoms.reduce((p, c) => (Math.abs(c - avg) < Math.abs(p - avg) ? c : p), denoms[0]);
-  while (remaining > 0 && tiles.length < 42) {
-    const jitter = [step * 0.6, step * 0.8, step, step * 1.2, step * 1.5];
-    const raw = jitter[i % jitter.length];
-    const val = Math.min(remaining, Math.max(50, Math.round(raw / 50) * 50));
-    tiles.push(val);
-    remaining -= val;
+  while (remaining > 0 && tiles.length < 60) {
+    const step = Math.min(remaining, pattern[i % pattern.length]);
+    tiles.push(step * unit);
+    remaining -= step;
     i++;
   }
-  // sort ascending for nice gradient rows
   return tiles.sort((a, b) => a - b);
 }
 
 function tileColor(v: number, max: number) {
   const pct = v / max;
-  if (pct < 0.15) return "oklch(0.955 0.028 275)";
-  if (pct < 0.3) return "oklch(0.92 0.05 275)";
-  if (pct < 0.5) return "oklch(0.88 0.09 275)";
-  if (pct < 0.7) return "oklch(0.78 0.13 275)";
-  return "oklch(0.62 0.18 275)";
+  if (pct < 0.34) return "oklch(0.94 0.04 275)";
+  if (pct < 0.67) return "oklch(0.85 0.09 275)";
+  return "oklch(0.72 0.14 275)";
 }
 
 function GoalDetail() {
