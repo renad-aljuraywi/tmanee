@@ -5,13 +5,39 @@ import { useStore, categoryLabel } from "@/lib/store";
 import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 
 import { fmtSAR } from "@/lib/format";
+import { patternsFromLabel } from "@/lib/format";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import { useMemo } from "react";
+import { Sparkles, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { refreshBurnoutFromBackend, type BurnoutAssessment } from "@/lib/ai";
 
 export const Route = createFileRoute("/_tabs/insights")({ component: Insights });
 
 const DAYS = ["س", "ح", "ن", "ث", "ر", "خ", "ج"];
+
+function Insights() {
+  const s = useStore((x) => x);
+  const cats = Object.entries(s.budgets).sort((a, b) => b[1].spent - a[1].spent);
+  const topCat = cats[0][0] as any;
+  const topSpent = cats[0][1].spent;
+  const totalSpent = cats.reduce((a, [, v]) => a + v.spent, 0);
+  const topPct = Math.round((topSpent / totalSpent) * 100);
+  const week = useMemo(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 380) + 120), []);
+  const weekMax = Math.max(...week);
+  const peakIdx = week.indexOf(weekMax);
+
+  const [assessment, setAssessment] = useState<BurnoutAssessment | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let alive = true;
+    refreshBurnoutFromBackend()
+      .then((a) => { if (alive) setAssessment(a); })
+      .catch(() => {})
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, []);
+  const patterns = patternsFromLabel(assessment?.label ?? (s.burnoutScore < 35 ? "Healthy" : s.burnoutScore < 75 ? "At Risk" : "Burnout"));
+
 
 function Insights() {
   const s = useStore((x) => x);
