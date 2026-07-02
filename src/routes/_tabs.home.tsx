@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { motion } from "framer-motion";
-import { Bell, ChevronLeft, Sparkles, Accessibility, Type, Eye, User, Plus, Minus } from "lucide-react";
+import { Bell, ChevronLeft, Sparkles, Accessibility, Type, User, Plus, Minus, Contrast } from "lucide-react";
 import { Card, Screen, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Ring, Bar, HalfGauge } from "@/components/mobile/Ring";
 import { useStore, setState, categoryLabel } from "@/lib/store";
@@ -196,12 +196,7 @@ function Home() {
         </div>
         <div className="space-y-2">
           <FontSizeBar />
-          <A11yRow
-            icon={<Eye className="h-4 w-4" strokeWidth={1.75} />}
-            label="وضع عمى الألوان"
-            active={s.colorblind}
-            onClick={() => setState({ colorblind: !s.colorblind })}
-          />
+          <HighContrastRow />
         </div>
       </Sheet>
     </Screen>
@@ -244,6 +239,31 @@ function FontSizeBar() {
         >
           <Plus className="h-5 w-5" strokeWidth={1.75} />
         </button>
+      </div>
+    </div>
+  );
+}
+
+function HighContrastRow() {
+  const s = useStore((x) => x);
+  const active = s.highContrast;
+  return (
+    <div className="flex items-center justify-between rounded-2xl border border-border bg-surface p-4">
+      <button
+        onClick={() => setState({ highContrast: !active })}
+        aria-label={active ? "إيقاف التباين العالي" : "تفعيل التباين العالي"}
+        className={`tap rounded-full px-5 py-2.5 text-sm font-bold ${active ? "bg-primary text-primary-foreground" : "bg-surface border border-border text-foreground"}`}
+      >
+        {active ? "مفعّل" : "تفعيل"}
+      </button>
+      <div className="flex items-center gap-3">
+        <div className="text-right">
+          <div className="text-sm font-bold">تباين عالي</div>
+          <div className="text-[11px] text-muted-foreground">ألوان واضحة للرؤية الضعيفة</div>
+        </div>
+        <div className="grid h-11 w-11 place-items-center rounded-full bg-surface border border-border text-foreground">
+          <Contrast className="h-5 w-5" strokeWidth={1.75} />
+        </div>
       </div>
     </div>
   );

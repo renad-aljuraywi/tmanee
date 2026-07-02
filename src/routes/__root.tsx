@@ -91,14 +91,14 @@ function RootComponent() {
   const dark = useStore((s) => s.darkMode);
   const recovery = useStore((s) => s.recoveryMode);
   const fontScale = useStore((s) => s.fontScale);
-  const colorblind = useStore((s) => s.colorblind);
+  const highContrast = useStore((s) => s.highContrast);
   useEffect(() => {
     const html = document.documentElement;
     html.classList.toggle("dark", dark);
     html.classList.toggle("recovery", recovery);
-    html.classList.toggle("cb", colorblind);
+    html.classList.toggle("high-contrast", highContrast);
     html.style.fontSize = `${16 * fontScale}px`;
-  }, [dark, recovery, fontScale, colorblind]);
+  }, [dark, recovery, fontScale, highContrast]);
 
   return (
     <QueryClientProvider client={queryClient}>
