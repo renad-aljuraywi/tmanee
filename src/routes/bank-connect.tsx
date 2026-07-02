@@ -41,7 +41,7 @@ function BankConnect() {
           }`}
         >
           <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-white border border-border overflow-hidden">
-            <img src={alinmaLogo.url} alt="Alinma Bank" className="h-11 w-11 object-contain rotate-[-18deg]" loading="lazy" width={44} height={44} />
+            <img src={alinmaLogo.url} alt="Alinma Bank" className="h-11 w-11 object-contain" loading="lazy" width={44} height={44} />
           </div>
           <div className="flex-1">
             <div className="font-bold">مصرف الإنماء</div>
