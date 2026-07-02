@@ -59,8 +59,8 @@ export function TopBar({
 const TABS = [
   { to: "/profile", icon: User, label: "حسابي" },
   { to: "/coach", icon: Sparkles, label: "اسأل منيع" },
-  { to: "/home", icon: Home, label: "الرئيسية", center: true },
-  { to: "/goals", icon: Target, label: "الهدف" },
+  { to: "/home", icon: Home, label: "", center: true },
+  { to: "/goals", icon: Target, label: "أهدافي" },
   { to: "/insights", icon: PieChart, label: "التحليلات" },
 ] as const;
 
@@ -113,7 +113,6 @@ function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; l
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
       </Link>
-      <span className="mt-10 text-[11px] font-semibold text-muted-foreground">{label}</span>
     </div>
   );
 }
