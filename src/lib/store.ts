@@ -164,11 +164,7 @@ const initial: AppState = {
     { id: "t6", merchant: "ستاربكس", category: "food", amount: -28, date: "2026-06-28T08:15:00.000Z", icon: "☕" },
     { id: "t7", merchant: "راتب شهري", category: "other", amount: 12000, date: "2026-06-20T00:00:00.000Z", icon: "💰" },
   ],
-  goals: [
-    { id: "g1", name: "سيارة جديدة", emoji: "🚗", target: 10000, saved: 6200, monthly: 500, color: "oklch(0.65 0.15 155)" },
-    { id: "g2", name: "آيفون 17", emoji: "📱", target: 5500, saved: 1800, monthly: 400, color: "oklch(0.55 0.18 275)" },
-    { id: "g3", name: "سفر إلى اليابان", emoji: "✈️", target: 15000, saved: 3400, monthly: 800, color: "oklch(0.7 0.15 40)" },
-  ],
+  goals: [],
   alerts: [
     { id: "a1", title: "ارتفاع غير معتاد في الإنفاق", body: "لاحظنا زيادة 55% عن معدل هذا الأسبوع.", severity: "warning", time: "قبل 2 ساعة" },
     { id: "a2", title: "ميزانية الترفيه شارفت على الانتهاء", body: "استهلكت 80% من ميزانية الترفيه ومازال أمامك 6 أيام.", severity: "warning", time: "اليوم" },
@@ -204,14 +200,14 @@ const listeners = new Set<() => void>();
 function load(): AppState {
   if (typeof window === "undefined") return initial;
   try {
-    const raw = localStorage.getItem("manee_state_v1");
+    const raw = localStorage.getItem("manee_state_v2");
     if (raw) return { ...initial, ...JSON.parse(raw) };
   } catch {}
   return initial;
 }
 function save() {
   if (typeof window === "undefined") return;
-  try { localStorage.setItem("manee_state_v1", JSON.stringify(state)); } catch {}
+  try { localStorage.setItem("manee_state_v2", JSON.stringify(state)); } catch {}
 }
 
 export function getState() { return state; }
@@ -235,7 +231,7 @@ export function useStore<T>(selector: (s: AppState) => T): T {
 }
 
 export function resetAll() {
-  localStorage.removeItem("manee_state_v1");
+  localStorage.removeItem("manee_state_v2");
   state = initial;
   listeners.forEach((l) => l());
 }
