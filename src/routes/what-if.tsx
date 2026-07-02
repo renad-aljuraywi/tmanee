@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, TopBar, Card, SectionTitle } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
