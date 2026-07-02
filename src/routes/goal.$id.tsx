@@ -7,42 +7,24 @@ import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Party } from "@/components/mobile/Party";
-import { Plus, Pencil, Target as TargetIcon, CalendarDays, Wallet } from "lucide-react";
+import { Plus, Pencil, PiggyBank, CalendarDays, Wallet } from "lucide-react";
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
-// Choose a plan (tile count + per-unit currency) that exactly sums to target.
-// Prefer plans where the per-unit value is a "nice" round number.
-function pickPlan(target: number): { count: number; unit: number } {
-  const nice = [1, 5, 10, 25, 50, 100, 200, 250, 500, 1000, 2500, 5000];
-  // Try nice unit values whose count falls between 20-50
-  const candidates: { count: number; unit: number; niceScore: number }[] = [];
-  for (const u of nice) {
-    if (target % u === 0) {
-      const c = target / u;
-      if (c >= 20 && c <= 50) candidates.push({ count: c, unit: u, niceScore: 0 });
-    }
-  }
-  if (candidates.length) {
-    // Prefer count closest to 35
-    candidates.sort((a, b) => Math.abs(a.count - 35) - Math.abs(b.count - 35));
-    return { count: candidates[0].count, unit: candidates[0].unit };
-  }
-  // Fallback: fixed count, fractional unit (still sums exactly to target)
-  const count = 35;
-  return { count, unit: target / count };
-}
-
-// Build tiles (each tile is N "units"); sum of tiles = count units = target.
-function buildTiles(count: number, unit: number): number[] {
+// Build tiles from realistic denominations (50/100/150/200/250 scaled to target)
+// so the sum equals the target exactly and each tile shows a real ر.س amount.
+function buildTiles(target: number): number[] {
+  const scale = Math.max(1, Math.pow(10, Math.floor(Math.log10(Math.max(1000, target) / 1000))));
+  const base = 50 * scale;
+  const denoms = [1, 2, 3, 4, 5].map((x) => x * base);
   const tiles: number[] = [];
-  const pattern = [1, 1, 2, 1, 3, 1, 2, 1, 1, 2];
-  let remaining = count;
+  let remaining = target;
   let i = 0;
-  while (remaining > 0) {
-    const step = Math.min(remaining, pattern[i % pattern.length]);
-    tiles.push(step * unit);
-    remaining -= step;
+  while (remaining > 0 && tiles.length < 80) {
+    let v = denoms[i % denoms.length];
+    if (v > remaining) v = remaining;
+    tiles.push(v);
+    remaining -= v;
     i++;
   }
   return tiles.sort((a, b) => a - b);
@@ -62,10 +44,9 @@ function GoalDetail() {
   const [addOpen, setAddOpen] = useState(false);
   const [addAmt, setAddAmt] = useState(100);
 
-  const plan = useMemo(() => (goal ? pickPlan(goal.target) : { count: 1, unit: 1 }), [goal?.target]);
-  const unit = plan.unit;
-  const tiles = useMemo(() => (goal ? buildTiles(plan.count, plan.unit) : []), [goal?.id, plan.count, plan.unit]);
+  const tiles = useMemo(() => (goal ? buildTiles(goal.target) : []), [goal?.id, goal?.target]);
   const maxTile = tiles.length ? Math.max(...tiles) : 1;
+  const minTile = tiles.length ? Math.min(...tiles) : 1;
 
   if (!goal)
     return (
@@ -130,36 +111,36 @@ function GoalDetail() {
 
         {/* Saving challenge board */}
         <Card>
-          <div className="mb-3 flex items-center justify-between">
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1.5">
-              <TargetIcon className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
-              <span className="text-xs font-bold text-primary">لوحة الادّخار</span>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3.5 py-2">
+              <PiggyBank className="h-5 w-5 text-primary" strokeWidth={1.75} />
+              <span className="text-sm font-black text-primary">لوحة الادّخار</span>
             </div>
             <div className="text-[11px] text-muted-foreground num">
-              {filled.filter(Boolean).length} / {tiles.length} · كل خانة ≈ {fmtSAR(Math.round(unit))} ر.س
+              {filled.filter(Boolean).length} / {tiles.length}
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-1.5">
+          <div className="grid grid-cols-5 gap-2">
             {tiles.map((v, i) => {
               const bg = tileColor(v, maxTile);
+              const size = 0.9 + 0.35 * ((v - minTile) / Math.max(1, maxTile - minTile));
               return (
                 <motion.div
                   key={i}
                   initial={false}
-                  animate={{
-                    scale: filled[i] ? [1, 1.15, 1] : 1,
-                    opacity: 1,
-                  }}
+                  animate={{ scale: filled[i] ? [1, 1.12, 1] : 1, opacity: 1 }}
                   transition={{ duration: 0.4, delay: filled[i] ? Math.min(0.4, i * 0.01) : 0 }}
-                  className="relative aspect-square rounded-full grid place-items-center text-[10px] font-black num overflow-hidden"
+                  className="relative aspect-square rounded-2xl grid place-items-center font-black num overflow-hidden"
                   style={{
                     background: filled[i] ? "var(--primary)" : bg,
                     color: filled[i] ? "var(--primary-foreground)" : "var(--foreground)",
-                    boxShadow: filled[i] ? "0 4px 12px -4px color-mix(in oklab, var(--primary) 40%, transparent)" : "none",
+                    boxShadow: filled[i] ? "0 6px 14px -6px color-mix(in oklab, var(--primary) 45%, transparent)" : "none",
+                    fontSize: `${size * 0.72}rem`,
+                    lineHeight: 1,
                   }}
                 >
-                  {Math.round(v / unit)}
+                  {v}
                 </motion.div>
               );
             })}
@@ -191,12 +172,27 @@ function GoalDetail() {
           </Btn>
         </div>
 
-        <Link
-          to="/goal/new"
-          className="tap mb-4 flex items-center justify-center gap-2 rounded-2xl border border-dashed border-primary/40 bg-primary-soft/60 px-4 py-3 text-sm font-bold text-primary"
-        >
-          <Plus className="h-4 w-4" strokeWidth={2} /> إضافة هدف جديد
-        </Link>
+        <Card className="!p-3">
+          <div className="mb-2 text-[11px] font-bold text-muted-foreground text-center">إضافة سريعة للهدف</div>
+          <div className="flex flex-wrap justify-center gap-2">
+            {[50, 100, 150, 200, 250].map((v) => (
+              <button
+                key={v}
+                onClick={() => {
+                  const g = getState().goals.map((x) =>
+                    x.id === goal.id ? { ...x, saved: Math.min(x.target, x.saved + v) } : x
+                  );
+                  setState({ goals: g });
+                  if (goal.saved + v >= goal.target) setShowParty(true);
+                }}
+                disabled={remaining <= 0}
+                className="tap rounded-full border border-primary/30 bg-primary-soft px-4 py-2 text-sm font-black text-primary num disabled:opacity-40"
+              >
+                +{v}
+              </button>
+            ))}
+          </div>
+        </Card>
       </div>
 
       <Sheet open={addOpen} onClose={() => setAddOpen(false)}>
