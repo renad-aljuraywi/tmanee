@@ -69,7 +69,7 @@ export function BottomNav() {
   // SVG shape: rounded outer corners that drop down at the sides,
   // and an upward arch in the middle cradling the raised center button.
   const shape =
-    "M0,28 Q0,0 28,0 L150,0 Q168,0 176,16 A40,40 0 0 0 224,16 Q232,0 250,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
+    "M0,28 Q0,0 28,0 L130,0 C148,0 156,28 200,28 C244,28 252,0 270,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
   const bg = recovery
     ? "color-mix(in oklab, var(--primary-soft) 60%, white)"
     : "var(--surface)";
@@ -122,7 +122,7 @@ function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; l
       <Link
         to={to}
         aria-label={label}
-        className="tap absolute -top-8 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
+        className="tap absolute -top-16 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
         activeProps={{ className: "" }}
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
