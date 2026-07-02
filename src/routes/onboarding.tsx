@@ -5,8 +5,8 @@ import { Btn } from "@/components/mobile/Btn";
 import { setState } from "@/lib/store";
 import { Check } from "lucide-react";
 import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
-import onboardingBrain from "@/assets/onboarding-brain.jpeg.asset.json";
-import onboardingAssistant from "@/assets/onboarding-assistant.jpeg.asset.json";
+import onboardingBrain from "@/assets/onboarding-brain.png.asset.json";
+import onboardingAssistant from "@/assets/onboarding-assistant.png.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
