@@ -3,7 +3,9 @@ import { useState } from "react";
 import { Screen, Card, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
 import { useStore, setState, resetAll } from "@/lib/store";
-import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle } from "lucide-react";
+import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle, User, HeartHandshake, Check } from "lucide-react";
+import { IIcon } from "@/components/mobile/IIcon";
+import { motion } from "framer-motion";
 
 
 
@@ -17,8 +19,8 @@ function Profile() {
     <Screen>
       <div className="px-5 pt-10 pb-2">
         <div className="flex items-center gap-4">
-          <div className="grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground text-2xl font-black">
-            {s.user.name[0]}
+          <div className="grid h-16 w-16 place-items-center rounded-full bg-surface border border-border text-foreground">
+            <User className="h-8 w-8" strokeWidth={1.75} />
           </div>
           <div>
             <div className="text-xl font-black">{s.user.name}</div>
@@ -33,10 +35,16 @@ function Profile() {
         <Stat label="إنجازات" value={`${s.achievements.filter(a => a.earned).length}`} sub={`/ ${s.achievements.length}`} />
       </div>
 
+      <SectionTitle>وضع التعافي</SectionTitle>
+      <div className="mx-4">
+        <RecoveryModeSection />
+      </div>
+
       <SectionTitle>المساعد الموثوق</SectionTitle>
       <div className="mx-4">
         <TrustedAssistantCard />
       </div>
+
 
       <SectionTitle>الحساب</SectionTitle>
       <List>
