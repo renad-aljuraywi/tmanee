@@ -65,15 +65,16 @@ function Insights() {
           <div className="text-xs text-muted-foreground">إجمالي الأسبوع</div>
           <div className="num text-sm font-black">{fmtSAR(week.reduce((a, b) => a + b, 0))} ر.س</div>
         </div>
-        <div className="mt-4 flex h-44 items-end justify-between gap-2">
+        <div className="mt-4 flex h-44 items-stretch justify-between gap-2">
           {week.map((v: number, i: number) => {
             const h = Math.max(6, (v / weekMax) * 100);
             const isPeak = i === peakIdx;
             return (
-              <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
+              <div key={i} className="flex h-full flex-1 flex-col items-center gap-1.5">
                 <div className={`num text-[10px] font-bold ${isPeak ? "text-primary" : "text-muted-foreground"}`}>{v}</div>
                 <div className="relative flex w-full flex-1 items-end">
                   <motion.div
+                    data-week-bar
                     initial={{ height: 0 }}
                     animate={{ height: `${h}%` }}
                     transition={{ duration: 0.9, delay: i * 0.06, ease: [0.2, 0.8, 0.2, 1] }}
