@@ -90,11 +90,15 @@ function RootComponent() {
   const { queryClient } = Route.useRouteContext();
   const dark = useStore((s) => s.darkMode);
   const recovery = useStore((s) => s.recoveryMode);
+  const fontScale = useStore((s) => s.fontScale);
+  const colorblind = useStore((s) => s.colorblind);
   useEffect(() => {
     const html = document.documentElement;
     html.classList.toggle("dark", dark);
     html.classList.toggle("recovery", recovery);
-  }, [dark, recovery]);
+    html.classList.toggle("cb", colorblind);
+    html.style.fontSize = `${16 * fontScale}px`;
+  }, [dark, recovery, fontScale, colorblind]);
 
   return (
     <QueryClientProvider client={queryClient}>
