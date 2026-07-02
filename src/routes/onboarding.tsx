@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";
 import { setState } from "@/lib/store";
 import { Check, TrendingUp, Shield, Sparkles } from "lucide-react";
+import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 
