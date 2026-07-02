@@ -6,7 +6,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { simulatePurchase, useStore } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";
-import { Clock, AlertTriangle, Wallet, HeartHandshake, Check } from "lucide-react";
+import { Clock, AlertTriangle, Wallet, HeartHandshake, Check, ChevronDown } from "lucide-react";
 
 export const Route = createFileRoute("/what-if")({ component: WhatIf });
 
@@ -21,6 +21,8 @@ function WhatIf() {
   const currentBurnout = useStore((s) => s.burnoutScore);
   const [amt, setAmt] = useState(4000);
   const [shown, setShown] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+
   const sim = simulatePurchase(amt);
   const projected = Math.min(100, currentBurnout + sim.burnoutDelta);
   const highRisk = projected >= 60;
@@ -72,7 +74,7 @@ function WhatIf() {
                       </div>
                     </div>
                     <div className="mt-3 space-y-2">
-                      {RECOVERY_TIPS.map((t, i) => (
+                      {(expanded ? RECOVERY_TIPS : RECOVERY_TIPS.slice(0, 1)).map((t, i) => (
                         <motion.div
                           key={i}
                           initial={{ opacity: 0, x: -8 }}
@@ -91,6 +93,17 @@ function WhatIf() {
                         </motion.div>
                       ))}
                     </div>
+                    {RECOVERY_TIPS.length > 1 && (
+                      <button
+                        type="button"
+                        onClick={() => setExpanded((v) => !v)}
+                        className="mt-3 flex w-full items-center justify-center gap-1 rounded-2xl border border-success/30 bg-surface py-2 text-xs font-bold text-success tap"
+                      >
+                        {expanded ? "عرض أقل" : `عرض المزيد (${RECOVERY_TIPS.length - 1}+)`}
+                        <ChevronDown className={`h-4 w-4 transition-transform ${expanded ? "rotate-180" : ""}`} strokeWidth={2} />
+                      </button>
+                    )}
+
                   </Card>
                 </>
               )}
