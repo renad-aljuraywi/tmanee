@@ -5,6 +5,7 @@ import { TopBar } from "@/components/mobile/Shell";
 import { setState } from "@/lib/store";
 import { motion } from "framer-motion";
 import { Check, Lock, ShieldCheck } from "lucide-react";
+import alinmaLogo from "@/assets/alinma-logo.png.asset.json";
 
 export const Route = createFileRoute("/bank-connect")({ component: BankConnect });
 
@@ -39,8 +40,8 @@ function BankConnect() {
             selected ? "border-primary bg-primary-soft" : "border-border bg-surface"
           }`}
         >
-          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-[#8E5FBB] text-white font-black text-lg">
-            الإنماء
+          <div className="grid h-14 w-14 shrink-0 place-items-center rounded-xl bg-white border border-border overflow-hidden">
+            <img src={alinmaLogo.url} alt="Alinma Bank" className="h-11 w-11 object-contain" loading="lazy" width={44} height={44} />
           </div>
           <div className="flex-1">
             <div className="font-bold">مصرف الإنماء</div>
