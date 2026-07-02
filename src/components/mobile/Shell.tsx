@@ -48,10 +48,9 @@ export function TopBar({
             <ArrowRight className="h-5 w-5" />
           </button>
         )}
-        {right}
       </div>
       <div className="text-base font-bold text-center">{title || ""}</div>
-      <div />
+      <div className="flex items-center gap-2 justify-self-end">{right}</div>
     </div>
   );
 }

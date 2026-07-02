@@ -1,6 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { Screen, TopBar, Card } from "@/components/mobile/Shell";
-import { Btn } from "@/components/mobile/Btn";
 import { useStore, categoryLabel } from "@/lib/store";
 import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 
@@ -12,7 +11,6 @@ export const Route = createFileRoute("/transaction/$id")({ component: Detail });
 function Detail() {
   const { id } = Route.useParams();
   const t = useStore((s) => s.transactions.find(x => x.id === id));
-  const nav = useNavigate();
 
   if (!t) {
     return (
@@ -46,11 +44,6 @@ function Detail() {
           <div className="text-xs font-bold text-primary">اكتشاف الذكاء</div>
           <div className="mt-1 text-sm font-bold">تنفق ~180 ر.س شهرياً في {t.merchant}. تقليل زيارة واحدة يوفّر ~60 ر.س.</div>
         </Card>
-
-        <div className="mt-4 grid grid-cols-2 gap-3">
-          <Btn variant="outline" onClick={() => nav({ to: "/what-if" })}>محاكي</Btn>
-          <Btn onClick={() => nav({ to: "/coach" })}>اسأل منيع</Btn>
-        </div>
       </div>
     </Screen>
   );

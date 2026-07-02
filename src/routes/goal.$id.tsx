@@ -82,7 +82,18 @@ function GoalDetail() {
 
   return (
     <Screen>
-      <TopBar title="تفاصيل الهدف" />
+      <TopBar
+        title="تفاصيل الهدف"
+        right={
+          <Link
+            to="/goal/new"
+            aria-label="إضافة هدف"
+            className="tap grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground"
+          >
+            <Plus className="h-5 w-5" strokeWidth={2.5} />
+          </Link>
+        }
+      />
       {showParty && <Party />}
 
       <div className="px-4 pt-2 space-y-3">

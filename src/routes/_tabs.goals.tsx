@@ -15,9 +15,16 @@ function Goals() {
 
   return (
     <Screen>
-      <div className="px-5 pt-8 pb-2 text-center">
+      <div className="relative px-5 pt-8 pb-2 text-center">
         <h1 className="text-2xl font-black">أهدافي</h1>
         <p className="text-sm text-muted-foreground">تخيّل مستقبلك يتحقق قطعة قطعة.</p>
+        <Link
+          to="/goal/new"
+          aria-label="إضافة هدف"
+          className="tap absolute top-6 left-4 grid h-11 w-11 place-items-center rounded-full bg-primary text-primary-foreground shadow-[var(--shadow-glow)]"
+        >
+          <Plus className="h-5 w-5" strokeWidth={2.5} />
+        </Link>
       </div>
 
       {goals.length > 0 && (
@@ -94,12 +101,6 @@ function Goals() {
               );
             })}
           </div>
-          <Link
-            to="/goal/new"
-            className="fixed bottom-24 left-4 right-4 z-30 tap inline-flex items-center justify-center gap-2 rounded-2xl bg-primary px-5 py-3.5 text-sm font-black text-primary-foreground shadow-[var(--shadow-glow)]"
-          >
-            <Plus className="h-5 w-5" strokeWidth={2.5} /> إضافة هدف
-          </Link>
         </>
       )}
     </Screen>
