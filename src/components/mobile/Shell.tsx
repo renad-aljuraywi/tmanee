@@ -12,7 +12,7 @@ export function Screen({ children, className }: { children: ReactNode; className
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
       transition={{ duration: 0.28, ease: [0.2, 0.8, 0.2, 1] }}
-      className={clsx("min-h-dvh pb-36", className)}
+      className={clsx("min-h-dvh pb-32", className)}
     >
       {children}
     </motion.div>
@@ -72,7 +72,7 @@ export function BottomNav() {
     ? "color-mix(in oklab, var(--primary-soft) 60%, white)"
     : "var(--surface)";
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 pointer-events-none">
+    <div className="fixed inset-x-0 -bottom-4 z-40 pointer-events-none">
       <div className="relative mx-auto max-w-md pointer-events-auto">
         <div className="relative">
           {/* Shaped background */}
@@ -85,7 +85,7 @@ export function BottomNav() {
             <path d={shape} fill={bg} stroke="color-mix(in oklab, var(--border) 60%, transparent)" strokeWidth="1" />
           </svg>
           {/* Content row */}
-          <div className="relative flex items-end justify-between px-3 pt-4 pb-[max(0.85rem,env(safe-area-inset-bottom))]">
+          <div className="relative flex items-end justify-between px-3 pt-3 pb-[max(0.65rem,env(safe-area-inset-bottom))]">
             {TABS.map((t) =>
               "center" in t && t.center ? (
                 <CenterTab key={t.to} to={t.to} icon={t.icon} label={t.label} />

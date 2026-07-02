@@ -53,7 +53,7 @@ function Coach() {
   };
 
   return (
-    <Screen className="flex flex-col pb-40">
+    <Screen className="flex flex-col pb-36">
       <div className="sticky top-0 z-20 glass border-b border-border/40 flex items-center gap-3 px-4 py-3">
         <div className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground">
           <Sparkles className="h-5 w-5" />
@@ -111,7 +111,7 @@ function Coach() {
         </div>
       )}
 
-      <div className="fixed inset-x-0 bottom-32 z-30 mx-auto max-w-md px-3">
+      <div className="fixed inset-x-0 bottom-24 z-30 mx-auto max-w-md px-3">
         <form
           onSubmit={(e) => { e.preventDefault(); ask(input); }}
           className="glass flex items-center gap-2 rounded-full border border-border p-1.5"
