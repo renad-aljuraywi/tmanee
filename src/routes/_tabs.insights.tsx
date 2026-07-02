@@ -4,7 +4,7 @@ import { Bar } from "@/components/mobile/Ring";
 import { useStore, categoryLabel, categoryIcon } from "@/lib/store";
 import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
-import { Sparkles, ChevronLeft } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/_tabs/insights")({ component: Insights });
 
