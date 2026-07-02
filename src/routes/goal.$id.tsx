@@ -44,10 +44,9 @@ function GoalDetail() {
   const [addOpen, setAddOpen] = useState(false);
   const [addAmt, setAddAmt] = useState(100);
 
-  const plan = useMemo(() => (goal ? pickPlan(goal.target) : { count: 1, unit: 1 }), [goal?.target]);
-  const unit = plan.unit;
-  const tiles = useMemo(() => (goal ? buildTiles(plan.count, plan.unit) : []), [goal?.id, plan.count, plan.unit]);
+  const tiles = useMemo(() => (goal ? buildTiles(goal.target) : []), [goal?.id, goal?.target]);
   const maxTile = tiles.length ? Math.max(...tiles) : 1;
+  const minTile = tiles.length ? Math.min(...tiles) : 1;
 
   if (!goal)
     return (
