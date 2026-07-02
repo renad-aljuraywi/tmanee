@@ -111,36 +111,36 @@ function GoalDetail() {
 
         {/* Saving challenge board */}
         <Card>
-          <div className="mb-3 flex items-center justify-between">
-            <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3 py-1.5">
-              <TargetIcon className="h-4 w-4 text-muted-foreground" strokeWidth={1.75} />
-              <span className="text-xs font-bold text-primary">لوحة الادّخار</span>
+          <div className="mb-4 flex items-center justify-between">
+            <div className="inline-flex items-center gap-2 rounded-full bg-primary-soft px-3.5 py-2">
+              <PiggyBank className="h-5 w-5 text-primary" strokeWidth={1.75} />
+              <span className="text-sm font-black text-primary">لوحة الادّخار</span>
             </div>
             <div className="text-[11px] text-muted-foreground num">
-              {filled.filter(Boolean).length} / {tiles.length} · كل خانة ≈ {fmtSAR(Math.round(unit))} ر.س
+              {filled.filter(Boolean).length} / {tiles.length}
             </div>
           </div>
 
-          <div className="grid grid-cols-7 gap-1.5">
+          <div className="grid grid-cols-5 gap-2">
             {tiles.map((v, i) => {
               const bg = tileColor(v, maxTile);
+              const size = 0.9 + 0.35 * ((v - minTile) / Math.max(1, maxTile - minTile));
               return (
                 <motion.div
                   key={i}
                   initial={false}
-                  animate={{
-                    scale: filled[i] ? [1, 1.15, 1] : 1,
-                    opacity: 1,
-                  }}
+                  animate={{ scale: filled[i] ? [1, 1.12, 1] : 1, opacity: 1 }}
                   transition={{ duration: 0.4, delay: filled[i] ? Math.min(0.4, i * 0.01) : 0 }}
-                  className="relative aspect-square rounded-full grid place-items-center text-[10px] font-black num overflow-hidden"
+                  className="relative aspect-square rounded-2xl grid place-items-center font-black num overflow-hidden"
                   style={{
                     background: filled[i] ? "var(--primary)" : bg,
                     color: filled[i] ? "var(--primary-foreground)" : "var(--foreground)",
-                    boxShadow: filled[i] ? "0 4px 12px -4px color-mix(in oklab, var(--primary) 40%, transparent)" : "none",
+                    boxShadow: filled[i] ? "0 6px 14px -6px color-mix(in oklab, var(--primary) 45%, transparent)" : "none",
+                    fontSize: `${size * 0.72}rem`,
+                    lineHeight: 1,
                   }}
                 >
-                  {Math.round(v / unit)}
+                  {v}
                 </motion.div>
               );
             })}
