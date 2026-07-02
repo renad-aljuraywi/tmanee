@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { IIcon } from "@/components/mobile/IIcon";
 import { Screen, TopBar, Card, Sheet } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
