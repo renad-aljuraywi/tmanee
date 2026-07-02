@@ -1,8 +1,10 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
+import { useState } from "react";
+import { Screen, Card, SectionTitle, Sheet } from "@/components/mobile/Shell";
 import { Btn } from "@/components/mobile/Btn";
 import { useStore, setState, resetAll } from "@/lib/store";
 import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings, UserPlus, ShieldCheck, Circle } from "lucide-react";
+
 
 
 export const Route = createFileRoute("/_tabs/profile")({ component: Profile });
