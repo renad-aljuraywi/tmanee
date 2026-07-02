@@ -5,9 +5,11 @@ import { useStore, categoryLabel } from "@/lib/store";
 import { CategoryIcon } from "@/components/mobile/CategoryIcon";
 
 import { fmtSAR } from "@/lib/format";
+import { patternsFromLabel } from "@/lib/format";
 import { motion } from "framer-motion";
-import { Sparkles } from "lucide-react";
-import { useMemo } from "react";
+import { Sparkles, Loader2 } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+import { refreshBurnoutFromBackend, type BurnoutAssessment } from "@/lib/ai";
 
 export const Route = createFileRoute("/_tabs/insights")({ component: Insights });
 
@@ -20,8 +22,21 @@ function Insights() {
   const topSpent = cats[0][1].spent;
   const totalSpent = cats.reduce((a, [, v]) => a + v.spent, 0);
   const topPct = Math.round((topSpent / totalSpent) * 100);
-  const week = useMemo(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 120) + 20), []);
+  const week = useMemo(() => Array.from({ length: 7 }, () => Math.floor(Math.random() * 380) + 120), []);
+  const weekMax = Math.max(...week);
+  const peakIdx = week.indexOf(weekMax);
 
+  const [assessment, setAssessment] = useState<BurnoutAssessment | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    let alive = true;
+    refreshBurnoutFromBackend()
+      .then((a) => { if (alive) setAssessment(a); })
+      .catch(() => {})
+      .finally(() => { if (alive) setLoading(false); });
+    return () => { alive = false; };
+  }, []);
+  const patterns = patternsFromLabel(assessment?.label ?? (s.burnoutScore < 35 ? "Healthy" : s.burnoutScore < 75 ? "At Risk" : "Burnout"));
 
   return (
     <Screen>
@@ -45,35 +60,53 @@ function Insights() {
         آخر 7 أيام
       </SectionTitle>
       <Card className="mx-4">
-        <div className="text-xs text-muted-foreground">الإنفاق يرتفع كل خميس</div>
-        <div className="mt-4 flex h-40 items-end justify-between gap-2">
-          {week.map((v: number, i: number) => (
-            <div key={i} className="flex flex-1 flex-col items-center gap-2">
-              <motion.div
-                initial={{ height: 0 }}
-                animate={{ height: `${(v / 120) * 100}%` }}
-                transition={{ duration: 0.8, delay: i * 0.05, ease: [0.2, 0.8, 0.2, 1] }}
-                className={`w-full rounded-t-lg ${i === 5 ? "bg-primary" : "bg-primary/25"}`}
-              />
-              <div className="text-[10px] text-muted-foreground">{DAYS[i]}</div>
-            </div>
-          ))}
+        <div className="flex items-center justify-between">
+          <div className="text-xs text-muted-foreground">إجمالي الأسبوع</div>
+          <div className="num text-sm font-black">{fmtSAR(week.reduce((a, b) => a + b, 0))} ر.س</div>
+        </div>
+        <div className="mt-4 flex h-44 items-end justify-between gap-2">
+          {week.map((v: number, i: number) => {
+            const h = Math.max(6, (v / weekMax) * 100);
+            const isPeak = i === peakIdx;
+            return (
+              <div key={i} className="flex flex-1 flex-col items-center gap-1.5">
+                <div className={`num text-[10px] font-bold ${isPeak ? "text-primary" : "text-muted-foreground"}`}>{v}</div>
+                <div className="relative flex w-full flex-1 items-end">
+                  <motion.div
+                    initial={{ height: 0 }}
+                    animate={{ height: `${h}%` }}
+                    transition={{ duration: 0.9, delay: i * 0.06, ease: [0.2, 0.8, 0.2, 1] }}
+                    className={`w-full rounded-t-lg ${isPeak ? "bg-primary" : "bg-primary/30"}`}
+                  />
+                </div>
+                <div className="text-[10px] text-muted-foreground">{DAYS[i]}</div>
+              </div>
+            );
+          })}
         </div>
       </Card>
 
-      {/* AI patterns */}
+      {/* AI patterns — driven by model label */}
       <SectionTitle>اكتشافات AI</SectionTitle>
       <Card className="mx-4 !bg-primary-soft border-primary/20">
-        <div className="flex items-center gap-2">
-          <Sparkles className="h-4 w-4 text-muted-foreground" />
-          <div className="text-sm font-bold text-primary">أنماط سلوكية</div>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Sparkles className="h-4 w-4 text-primary" />
+            <div className="text-sm font-bold text-primary">أنماط سلوكية</div>
+          </div>
+          {loading ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin text-primary/70" />
+          ) : assessment ? (
+            <div className="text-[10px] font-bold text-primary/70">من النموذج</div>
+          ) : null}
         </div>
         <ul className="mt-3 space-y-2 text-sm">
-          <li className="flex gap-2"><span>•</span> تزيد مشترياتك بعد الساعة 9 مساءً</li>
-          <li className="flex gap-2"><span>•</span> تشتري كثيراً بعد استلام الراتب مباشرة</li>
-          <li className="flex gap-2"><span>•</span> تنفق أكثر عند نهاية الأسبوع</li>
+          {patterns.map((p, i) => (
+            <li key={i} className="flex gap-2"><span>•</span> {p}</li>
+          ))}
         </ul>
       </Card>
+
 
       {/* Comparison */}
       <SectionTitle>مقارنة سريعة</SectionTitle>

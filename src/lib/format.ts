@@ -77,3 +77,51 @@ export function reasonsFromLabel(label: BurnoutLabel) {
     { icon: "cal", label: "اعتماد كبير على الشراء المؤجّل", delta: "+7 عمليات" },
   ];
 }
+
+export function patternsFromLabel(label: BurnoutLabel): string[] {
+  if (label === "Healthy")
+    return [
+      "تلتزم بحدود الميزانية في معظم الفئات",
+      "معدّل الادّخار الأسبوعي مستقر",
+      "لا توجد عمليات شراء متكرّرة في وقت متأخر",
+    ];
+  if (label === "At Risk")
+    return [
+      "تزيد مشترياتك بعد الساعة 9 مساءً",
+      "ارتفاع الإنفاق على المطاعم بعد استلام الراتب",
+      "بداية اعتماد على الشراء المؤجّل في نهاية الأسبوع",
+    ];
+  return [
+    "عمليات شراء متسارعة خلال ساعات الليل",
+    "الإنفاق يفوق الدخل المتاح لهذا الشهر",
+    "اعتماد مرتفع على التقسيط والشراء المؤجّل",
+  ];
+}
+
+export interface ModelAlert {
+  id: string;
+  title: string;
+  body: string;
+  severity: "info" | "warning" | "danger";
+  time: string;
+}
+
+export function alertsFromLabel(label: BurnoutLabel): ModelAlert[] {
+  if (label === "Healthy")
+    return [
+      { id: "m1", title: "وضعك المالي مستقر", body: "النموذج يصنّف نمطك ضمن الحالة الصحية — استمر على نفس العادات.", severity: "info", time: "قبل قليل" },
+      { id: "m2", title: "فرصة لزيادة الادّخار", body: "لديك هامش مريح هذا الشهر، يمكنك رفع مبلغ التوفير التلقائي.", severity: "info", time: "اليوم" },
+    ];
+  if (label === "At Risk")
+    return [
+      { id: "m1", title: "إشارات ضغط مالي مبكّرة", body: "النموذج رصد ارتفاعاً في الإنفاق الليلي وتراجعاً في الادّخار.", severity: "warning", time: "قبل قليل" },
+      { id: "m2", title: "المطاعم تستنزف ميزانيتك", body: "زاد الإنفاق على المطاعم بنسبة 22% مقارنة بالأسبوع الماضي.", severity: "warning", time: "اليوم" },
+      { id: "m3", title: "قد تدخل مرحلة الاستنزاف قريباً", body: "إذا استمر النمط الحالي، مؤشر الاستنزاف سيرتفع قبل نهاية الشهر.", severity: "warning", time: "أمس" },
+    ];
+  return [
+    { id: "m1", title: "تنبيه: نمط استنزاف مالي", body: "النموذج يصنّف نمطك ضمن حالة الاستنزاف — يُنصح بتفعيل وضع التعافي.", severity: "danger", time: "قبل قليل" },
+    { id: "m2", title: "الإنفاق يفوق قدرتك المستدامة", body: "توقّف شبه كامل للادّخار مع تكرار عمليات شراء متسارعة.", severity: "danger", time: "اليوم" },
+    { id: "m3", title: "اعتماد كبير على الشراء المؤجّل", body: "زادت عمليات التقسيط 7 مرات خلال الأسبوع الأخير.", severity: "danger", time: "أمس" },
+  ];
+}
+
