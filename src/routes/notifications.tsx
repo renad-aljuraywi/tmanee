@@ -35,8 +35,28 @@ function Notifications() {
             <Sparkles className="h-4 w-4 text-primary" />
             <div className="text-xs font-bold text-primary">تنبيهات من النموذج</div>
           </div>
-          {loading && <Loader2 className="h-3.5 w-3.5 animate-spin text-primary/70" />}
+          {loading ? (
+            <Loader2 className="h-3.5 w-3.5 animate-spin text-primary/70" />
+          ) : assessment ? (
+            <div className="rounded-full bg-primary/15 px-2 py-0.5 text-[10px] font-bold text-primary">
+              {assessment.label} · {Math.round((assessment.probabilities[assessment.label] ?? 0) * 100)}%
+            </div>
+          ) : null}
         </div>
+        {assessment && (
+          <div className="grid grid-cols-3 gap-2 pb-1">
+            {(["Healthy","At Risk","Burnout"] as const).map((k) => {
+              const p = Math.round((assessment.probabilities[k] ?? 0) * 100);
+              const isTop = k === assessment.label;
+              return (
+                <div key={k} className={`rounded-xl p-2 text-center ${isTop ? "bg-primary text-primary-foreground" : "bg-surface text-muted-foreground border border-border"}`}>
+                  <div className="text-[10px] font-bold">{k}</div>
+                  <div className="num mt-0.5 text-sm font-black">{p}%</div>
+                </div>
+              );
+            })}
+          </div>
+        )}
 
         {modelAlerts.map((a) => (
           <div key={a.id} className="flex items-start gap-3 rounded-2xl border border-primary/20 bg-primary-soft p-4">
