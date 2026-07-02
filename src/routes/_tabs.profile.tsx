@@ -1,7 +1,7 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { Screen, Card, SectionTitle } from "@/components/mobile/Shell";
 import { useStore, setState, resetAll } from "@/lib/store";
-import { ChevronLeft, Bell, Lock, HeartHandshake, Moon, LogOut, Sparkles, Trophy, Settings } from "lucide-react";
+import { ChevronLeft, Bell, Lock, Moon, LogOut, Trophy, Settings } from "lucide-react";
 
 export const Route = createFileRoute("/_tabs/profile")({ component: Profile });
 
@@ -40,18 +40,11 @@ function Profile() {
       <SectionTitle>التجربة</SectionTitle>
       <List>
         <Toggle
-          icon={<Moon className="h-5 w-5" />}
+          icon={<Moon className="h-5 w-5" strokeWidth={1.75} />}
           label="الوضع الداكن"
           on={s.darkMode}
           onChange={(v) => setState({ darkMode: v })}
         />
-        <Toggle
-          icon={<HeartHandshake className="h-5 w-5" />}
-          label="وضع التعافي المالي"
-          on={s.recoveryMode}
-          onChange={(v) => setState({ recoveryMode: v })}
-        />
-        <Row to="/recovery" icon={<Sparkles className="h-5 w-5" />} label="لوحة التعافي" />
       </List>
 
       <SectionTitle>عن منيع</SectionTitle>

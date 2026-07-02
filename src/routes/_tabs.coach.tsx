@@ -20,7 +20,7 @@ const SUGGEST = [
 function Coach() {
   const s = useStore((x) => x);
   const [msgs, setMsgs] = useState<Msg[]>([
-    { role: "ai", text: `أهلاً ${s.user.name} 👋 أنا كوتش منيع. اسألني أي شيء عن راتبك، أهدافك، أو قرارات الشراء.` },
+    { role: "ai", text: `أهلاً ${s.user.name} 👋 أنا منيع. اسألني أي شيء عن راتبك، أهدافك، أو قرارات الشراء.` },
   ]);
   const [input, setInput] = useState("");
   const bottom = useRef<HTMLDivElement>(null);
@@ -59,7 +59,7 @@ function Coach() {
           <Sparkles className="h-5 w-5" />
         </div>
         <div>
-          <div className="font-bold">كوتش منيع</div>
+          <div className="font-bold">اسأل منيع</div>
           <div className="text-[11px] text-success flex items-center gap-1">
             <span className="h-1.5 w-1.5 rounded-full bg-success" /> نشِط الآن
           </div>
