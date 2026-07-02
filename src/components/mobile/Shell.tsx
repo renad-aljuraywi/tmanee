@@ -66,22 +66,36 @@ const TABS = [
 
 export function BottomNav() {
   const recovery = useStore((s) => s.recoveryMode);
+  // SVG shape: rounded outer corners that drop down at the sides,
+  // and an upward arch in the middle cradling the raised center button.
+  const shape =
+    "M0,28 Q0,0 28,0 L150,0 Q168,0 176,16 A40,40 0 0 0 224,16 Q232,0 250,0 L372,0 Q400,0 400,28 L400,100 L0,100 Z";
+  const bg = recovery
+    ? "color-mix(in oklab, var(--primary-soft) 60%, white)"
+    : "var(--surface)";
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 pointer-events-none">
       <div className="relative mx-auto max-w-md pointer-events-auto">
-        <div
-          className={clsx(
-            "relative flex items-end justify-between rounded-t-3xl border-t border-x border-border/60 bg-surface/98 px-3 pt-3 pb-[max(0.85rem,env(safe-area-inset-bottom))] shadow-[0_-10px_30px_-18px_rgba(0,0,0,0.18)] backdrop-blur",
-            recovery && "bg-[color-mix(in_oklab,var(--primary-soft)_60%,white)]",
-          )}
-        >
-          {TABS.map((t) =>
-            "center" in t && t.center ? (
-              <CenterTab key={t.to} to={t.to} icon={t.icon} label={t.label} />
-            ) : (
-              <TabLink key={t.to} to={t.to} icon={t.icon} label={t.label} />
-            ),
-          )}
+        <div className="relative">
+          {/* Shaped background */}
+          <svg
+            viewBox="0 0 400 100"
+            preserveAspectRatio="none"
+            className="absolute inset-x-0 bottom-0 h-[calc(100%+8px)] w-full drop-shadow-[0_-8px_18px_rgba(0,0,0,0.10)]"
+            aria-hidden
+          >
+            <path d={shape} fill={bg} stroke="color-mix(in oklab, var(--border) 70%, transparent)" strokeWidth="1" />
+          </svg>
+          {/* Content row */}
+          <div className="relative flex items-end justify-between px-3 pt-4 pb-[max(0.85rem,env(safe-area-inset-bottom))]">
+            {TABS.map((t) =>
+              "center" in t && t.center ? (
+                <CenterTab key={t.to} to={t.to} icon={t.icon} label={t.label} />
+              ) : (
+                <TabLink key={t.to} to={t.to} icon={t.icon} label={t.label} />
+              ),
+            )}
+          </div>
         </div>
       </div>
     </div>
@@ -105,12 +119,10 @@ function TabLink({ to, icon: Icon, label }: { to: string; icon: typeof Home; lab
 function CenterTab({ to, icon: Icon, label }: { to: string; icon: typeof Home; label: string }) {
   return (
     <div className="relative flex flex-1 flex-col items-center">
-      {/* white cradle to create notch effect around the raised button */}
-      <div className="absolute -top-5 h-12 w-[76px] rounded-full bg-surface" aria-hidden />
       <Link
         to={to}
         aria-label={label}
-        className="tap absolute -top-7 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)] ring-[6px] ring-surface"
+        className="tap absolute -top-8 grid h-16 w-16 place-items-center rounded-full bg-primary text-primary-foreground shadow-[0_12px_28px_-8px_color-mix(in_oklab,var(--primary)_55%,transparent)]"
         activeProps={{ className: "" }}
       >
         <Icon className="h-7 w-7" strokeWidth={2} />
