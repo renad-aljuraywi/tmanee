@@ -28,7 +28,7 @@ function Goals() {
       </div>
 
       {goals.length > 0 && (
-        <Card className="mx-4 mt-3 bg-gradient-to-br from-primary to-[oklch(0.42_0.2_285)] text-primary-foreground border-transparent">
+        <Card className="mx-4 mt-3 bg-gradient-to-br from-[oklch(0.52_0.11_300)] to-[oklch(0.38_0.09_295)] text-primary-foreground border-transparent">
           <div className="text-xs opacity-80">مجموع الادّخار</div>
           <div className="num mt-1 text-3xl font-black">{fmtSAR(total)} <span className="text-base opacity-80">/ {fmtSAR(target)} ر.س</span></div>
           <div className="mt-3 h-2 overflow-hidden rounded-full bg-white/20">
