@@ -41,6 +41,7 @@ import { Route as TabsInsightsRouteImport } from './routes/_tabs.insights'
 import { Route as TabsHomeRouteImport } from './routes/_tabs.home'
 import { Route as TabsGoalsRouteImport } from './routes/_tabs.goals'
 import { Route as TabsCoachRouteImport } from './routes/_tabs.coach'
+import { Route as ApiPublicAiSplatRouteImport } from './routes/api/public/ai/$'
 
 const WhatIfRoute = WhatIfRouteImport.update({
   id: '/what-if',
@@ -203,6 +204,11 @@ const TabsCoachRoute = TabsCoachRouteImport.update({
   path: '/coach',
   getParentRoute: () => TabsRoute,
 } as any)
+const ApiPublicAiSplatRoute = ApiPublicAiSplatRouteImport.update({
+  id: '/api/public/ai/$',
+  path: '/api/public/ai/$',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -236,6 +242,7 @@ export interface FileRoutesByFullPath {
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
+  '/api/public/ai/$': typeof ApiPublicAiSplatRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -269,6 +276,7 @@ export interface FileRoutesByTo {
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
+  '/api/public/ai/$': typeof ApiPublicAiSplatRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -304,6 +312,7 @@ export interface FileRoutesById {
   '/trusted-assistant/incoming': typeof TrustedAssistantIncomingRoute
   '/trusted-assistant/invite': typeof TrustedAssistantInviteRoute
   '/trusted-assistant/permissions': typeof TrustedAssistantPermissionsRoute
+  '/api/public/ai/$': typeof ApiPublicAiSplatRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -339,6 +348,7 @@ export interface FileRouteTypes {
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
+    | '/api/public/ai/$'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -372,6 +382,7 @@ export interface FileRouteTypes {
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
+    | '/api/public/ai/$'
   id:
     | '__root__'
     | '/'
@@ -406,6 +417,7 @@ export interface FileRouteTypes {
     | '/trusted-assistant/incoming'
     | '/trusted-assistant/invite'
     | '/trusted-assistant/permissions'
+    | '/api/public/ai/$'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -436,6 +448,7 @@ export interface RootRouteChildren {
   TrustedAssistantIncomingRoute: typeof TrustedAssistantIncomingRoute
   TrustedAssistantInviteRoute: typeof TrustedAssistantInviteRoute
   TrustedAssistantPermissionsRoute: typeof TrustedAssistantPermissionsRoute
+  ApiPublicAiSplatRoute: typeof ApiPublicAiSplatRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -664,6 +677,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TabsCoachRouteImport
       parentRoute: typeof TabsRoute
     }
+    '/api/public/ai/$': {
+      id: '/api/public/ai/$'
+      path: '/api/public/ai/$'
+      fullPath: '/api/public/ai/$'
+      preLoaderRoute: typeof ApiPublicAiSplatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -713,6 +733,7 @@ const rootRouteChildren: RootRouteChildren = {
   TrustedAssistantIncomingRoute: TrustedAssistantIncomingRoute,
   TrustedAssistantInviteRoute: TrustedAssistantInviteRoute,
   TrustedAssistantPermissionsRoute: TrustedAssistantPermissionsRoute,
+  ApiPublicAiSplatRoute: ApiPublicAiSplatRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

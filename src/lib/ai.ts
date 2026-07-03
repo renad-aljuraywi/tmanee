@@ -4,7 +4,8 @@ import { getState, setState } from "./store";
 
 const API_BASE =
   (typeof import.meta !== "undefined" && (import.meta as any).env?.VITE_AI_API_BASE) ||
-  "https://amd-backend-production-5f23.up.railway.app";
+  "/api/public/ai";
+
 
 export type PredictionLabel = "Healthy" | "At Risk" | "Burnout";
 
