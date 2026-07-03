@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useStore } from "@/lib/store";
+import logo from "@/assets/muneea-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({ component: Splash });
 
@@ -36,9 +37,9 @@ function Splash() {
           initial={{ scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 240, damping: 20 }}
-          className="mx-auto grid h-24 w-24 place-items-center rounded-[28px] bg-white/15 backdrop-blur-xl"
+          className="mx-auto grid h-28 w-28 place-items-center rounded-[28px] bg-white/15 backdrop-blur-xl p-3"
         >
-          <span className="text-5xl">🛡️</span>
+          <img src={logo.url} alt="منيع" className="h-full w-full object-contain" />
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
