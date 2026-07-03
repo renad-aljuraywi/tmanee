@@ -62,13 +62,13 @@ function Profile() {
         />
       </List>
 
-      <SectionTitle>عن منيع</SectionTitle>
+      <div className="mt-6" />
       <List>
         <button
           className="tap flex w-full items-center justify-between p-4 text-danger"
           onClick={() => { resetAll(); nav({ to: "/" }); }}
         >
-          <div className="flex items-center gap-3"><LogOut className="h-5 w-5" /> تسجيل الخروج وإعادة التطبيق</div>
+          <div className="flex items-center gap-3"><LogOut className="h-5 w-5" /> تسجيل الخروج</div>
         </button>
       </List>
       <div className="px-5 py-6 text-center text-[11px] text-muted-foreground">إصدار 1.0.0 · صُنع بحُبّ 🤍</div>
