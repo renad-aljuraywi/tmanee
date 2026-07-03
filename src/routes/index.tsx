@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import { useStore } from "@/lib/store";
+import logo from "@/assets/muneea-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({ component: Splash });
 
