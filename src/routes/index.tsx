@@ -37,9 +37,8 @@ function Splash() {
           initial={{ scale: 0.6, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ type: "spring", stiffness: 240, damping: 20 }}
-          className="mx-auto grid h-28 w-28 place-items-center rounded-[28px] bg-white/15 backdrop-blur-xl p-3"
         >
-          <img src={logo.url} alt="منيع" className="h-full w-full object-contain" />
+          <img src={logo.url} alt="منيع" className="mx-auto h-28 w-28 object-contain" />
         </motion.div>
         <motion.h1
           initial={{ opacity: 0, y: 10 }}

@@ -7,7 +7,7 @@ import { fmtSAR } from "@/lib/format";
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
 import { Party } from "@/components/mobile/Party";
-import { Plus, Pencil, PiggyBank, CalendarDays, Wallet } from "lucide-react";
+import { Plus, Pencil, PiggyBank, CalendarDays, Wallet, Check } from "lucide-react";
 
 export const Route = createFileRoute("/goal/$id")({ component: GoalDetail });
 
@@ -45,6 +45,7 @@ function GoalDetail() {
   const [showParty, setShowParty] = useState(false);
   const [addOpen, setAddOpen] = useState(false);
   const [addAmt, setAddAmt] = useState(100);
+  const [added, setAdded] = useState(false);
 
   const tiles = useMemo(() => (goal ? buildTiles(goal.target) : []), [goal?.id, goal?.target]);
   const maxTile = tiles.length ? Math.max(...tiles) : 1;
@@ -185,11 +186,19 @@ function GoalDetail() {
           </Btn>
         </div>
 
-        <Link to="/goal/new" className="block">
-          <Btn variant="outline" full size="lg" className="w-full border-dashed">
-            <Plus className="h-4 w-4" strokeWidth={2} /> إضافة هدف جديد
+        {added ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.92 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="flex items-center justify-center gap-2 rounded-xl bg-green-500/10 py-3.5 text-sm font-black text-green-600"
+          >
+            <Check className="h-5 w-5" strokeWidth={2.5} /> تم إضافة الهدف
+          </motion.div>
+        ) : (
+          <Btn variant="outline" full size="lg" className="w-full border-dashed" onClick={() => setAdded(true)}>
+            <Plus className="h-4 w-4" strokeWidth={2} /> إضافة إلى أهدافي
           </Btn>
-        </Link>
+        )}
 
       </div>
 
