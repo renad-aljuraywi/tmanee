@@ -6,7 +6,7 @@ import { setState } from "@/lib/store";
 import { Check } from "lucide-react";
 import onboardingHero from "@/assets/onboarding-hero.jpeg.asset.json";
 import onboardingBrain from "@/assets/onboarding-brain.png.asset.json";
-import onboardingAssistant from "@/assets/onboarding-assistant.png.asset.json";
+import onboardingAssistant from "@/assets/assistant-pocket.png.asset.json";
 
 export const Route = createFileRoute("/onboarding")({ component: Onboarding });
 

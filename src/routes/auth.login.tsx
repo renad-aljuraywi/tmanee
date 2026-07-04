@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Btn } from "@/components/mobile/Btn";
 import { Fingerprint, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import logo from "@/assets/muneea-logo.png.asset.json";
 
 export const Route = createFileRoute("/auth/login")({ component: Login });
 
@@ -13,7 +14,7 @@ function Login() {
   return (
     <div className="min-h-dvh px-6 pt-14">
       <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
-        <div className="grid h-14 w-14 place-items-center rounded-2xl bg-primary text-primary-foreground text-2xl">🛡️</div>
+        <img src={logo.url} alt="منيع" className="h-20 w-20 object-contain" />
         <h1 className="mt-6 text-3xl font-black">أهلاً بك في منيع</h1>
         <p className="mt-1 text-muted-foreground">سجّل الدخول لمتابعة حمايتك المالية.</p>
       </motion.div>
